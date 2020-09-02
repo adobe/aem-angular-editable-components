@@ -16,10 +16,9 @@
     "linter": "ng lint",
     "e2e": "ng e2e",
     "publish-lib": "ng build aem-angular-editable-components && cd dist/aem-angular-editable-components && npm publish",
-    "version": "npm run docs && node update-doc.js && rm DOCUMENTATION.md && cp README.md dist/aem-angular-editable-components/ && git add -A",
+    "version": "cp README.md dist/aem-angular-editable-components/ && git add -A",
     "preversion": "npm run build:production && npm run test",
     "postversion": "git push && git push --tags",
-    "docs": "node_modules/.bin/typedoc --theme markdown --options typedoc.js projects/aem-angular-editable-components/src/lib --mode file --target ES6 --hideSources",
     "semantic-release": "semantic-release"
   },
   "author": "Adobe Systems Inc.",
@@ -71,8 +70,6 @@
     "protractor": "^7.0.0",
     "ts-node": "^8.10.2",
     "tslint": "^6.1.2",
-    "typedoc": "^0.17.7",
-    "typedoc-plugin-markdown": "^2.3.1",
     "typescript": "3.8.3",
     "@octokit/core": "^3.1.2"
   },
