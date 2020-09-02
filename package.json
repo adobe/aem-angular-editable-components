@@ -1,0 +1,83 @@
+{
+  "name": "@adobe/aem-angular-editable-components",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adobe/aem-angular-editable-components.git"
+  },
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "npm run test && ng build aem-angular-editable-components",
+    "build:production": "npm run test && ng build aem-angular-editable-components --prod",
+    "test": "ng test aem-angular-editable-components --code-coverage",
+    "test:debug": "ng test aem-angular-editable-components --watch=true --code-coverage",
+    "linter": "ng lint",
+    "e2e": "ng e2e",
+    "publish-lib": "ng build aem-angular-editable-components && cd dist/aem-angular-editable-components && npm publish",
+    "version": "npm run docs && node update-doc.js && rm DOCUMENTATION.md && cp README.md dist/aem-angular-editable-components/ && git add -A",
+    "preversion": "npm run build:production && npm run test",
+    "postversion": "git push && git push --tags",
+    "docs": "node_modules/.bin/typedoc --theme markdown --options typedoc.js projects/aem-angular-editable-components/src/lib --mode file --target ES6 --hideSources",
+    "semantic-release": "semantic-release"
+  },
+  "author": "Adobe Systems Inc.",
+  "license": "Apache-2.0",
+  "peerDependencies": {
+    "@adobe/aem-spa-component-mapping": "~1.0.5",
+    "@adobe/aem-spa-page-model-manager": "~1.0.3",
+    "@angular/common": "^9.1.9",
+    "@angular/core": "^9.1.9"
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "@semantic-release/github": "^7.0.7",
+    "commitizen": "^4.2.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "semantic-release": "^17.1.1",
+    "@angular/core": "^9.1.9",
+    "@angular/compiler": "^9.1.9",
+    "@angular/common": "^9.1.9",
+    "@angular/forms": "^9.1.9",
+    "@angular/platform-browser": "^9.1.9",
+    "@angular/platform-browser-dynamic": "^9.1.9",
+    "@angular/router": "^9.1.9",
+    "@angular-devkit/build-angular": "~0.901.12",
+    "@angular-devkit/build-ng-packagr": "~0.901.12",
+    "@angular/cli": "^9.1.7",
+    "@angular/compiler-cli": "^9.1.9",
+    "@angular/language-service": "^9.1.9",
+    "core-js": "^3.6.5",
+    "rxjs": "^6.5.5",
+    "tslib": "^1.10.0",
+    "zone.js": "~0.10.3",
+    "@adobe/aem-spa-component-mapping": "~1.0.5",
+    "@adobe/aem-spa-page-model-manager": "^1.0.3",
+    "@types/jasmine": "^3.5.10",
+    "@types/jasminewd2": "~2.0.8",
+    "@types/node": "^14.0.11",
+    "codelyzer": "^5.2.2",
+    "jasmine-core": "^3.5.0",
+    "jasmine-spec-reporter": "~4.2.1",
+    "karma": "^5.0.9",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-coverage-istanbul-reporter": "^3.0.3",
+    "karma-jasmine": "^3.3.1",
+    "karma-jasmine-html-reporter": "^1.5.4",
+    "ng-packagr": "^9.1.5",
+    "node-sass": "^4.14.1",
+    "protractor": "^7.0.0",
+    "ts-node": "^8.10.2",
+    "tslint": "^6.1.2",
+    "typedoc": "^0.17.7",
+    "typedoc-plugin-markdown": "^2.3.1",
+    "typescript": "3.8.3",
+    "@octokit/core": "^3.1.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
