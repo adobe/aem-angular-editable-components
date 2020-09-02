@@ -22,7 +22,7 @@ jobs:
         uses: mooyoul/tslint-actions@v1.1.1
         if: ${{ github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository }}
         with:
-          token: ${{secrets.GITHUB_TOKEN}}
+          token: ${{ secrets.GITHUB_TOKEN }}
           pattern: '*.ts'
       - name: Store code coverage as workflow artifact
         uses: actions/upload-artifact@v2
