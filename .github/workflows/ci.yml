@@ -41,4 +41,3 @@ jobs:
           args: >
             -Dsonar.organization=adobeinc
             -Dsonar.projectKey=adobe_aem-angular-editable-components
-            -Dsonar.verbose=true
