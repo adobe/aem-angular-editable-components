@@ -16,8 +16,8 @@
     "linter": "ng lint",
     "e2e": "ng e2e",
     "publish-lib": "ng build aem-angular-editable-components && cd dist/aem-angular-editable-components && npm publish",
+    "preversion": "npm run test && npm run build:production",
     "version": "cp README.md dist/aem-angular-editable-components/ && git add -A",
-    "preversion": "npm run build:production && npm run test",
     "postversion": "git push && git push --tags",
     "semantic-release": "semantic-release"
   },
