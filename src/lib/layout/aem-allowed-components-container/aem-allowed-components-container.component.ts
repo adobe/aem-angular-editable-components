@@ -13,7 +13,7 @@
 import { Component, Input } from '@angular/core';
 import { AEMContainerComponent } from '../aem-container/aem-container.component';
 
-export const ALLOWED_PLACEHOLDER_CLASS_NAMES = 'aem-AllowedComponent--list';
+export const ALLOWED_PLACEHOLDER_CLASS_NAMESALLOWED_PLACEHOLDER_CLASS_NAMESALLOWED_PLACEHOLDER_CLASS_NAMESALLOWED_PLACEHOLDER_CLASS_NAMESALLOWED_PLACEHOLDER_CLASS_NAMESALLOWED_PLACEHOLDER_CLASS_NAMES = 'aem-AllowedComponent--list';
 export const ALLOWED_COMPONENT_TITLE_CLASS_NAMES = 'aem-AllowedComponent--title';
 export const ALLOWED_COMPONENT_PLACEHOLDER_CLASS_NAMES = 'aem-AllowedComponent--component cq-placeholder placeholder';
 
@@ -26,7 +26,7 @@ export class AEMAllowedComponentsContainerComponent extends AEMContainerComponen
 
   @Input() title: string;
 
-  @Input() emptyLabel: string = 'No allowed components';
+  @Input() emptyLabelemptyLabel: string = 'No allowed components';
 
   @Input() allowedComponents: {
     applicable: boolean,
