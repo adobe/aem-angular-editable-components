@@ -19,7 +19,7 @@
     "preversion": "npm run test && npm run build:production",
     "version": "cp README.md dist/aem-angular-editable-components/ && git add -A",
     "postversion": "git push && git push --tags",
-    "semantic-release": "semantic-release"
+    "semantic-release": "cd dist && semantic-release"
   },
   "author": "Adobe Systems Inc.",
   "license": "Apache-2.0",
