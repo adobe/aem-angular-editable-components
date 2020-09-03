@@ -1,3 +1,11 @@
+## [1.0.3](https://github.com/adobe/aem-angular-editable-components/compare/v1.0.2...v1.0.3) (2020-09-03)
+
+
+### Bug Fixes
+
+* **semantic-release:** fix the build and release process ([4c0e647](https://github.com/adobe/aem-angular-editable-components/commit/4c0e647026ac96a3e8545df869a67b43150ef31a))
+* **semantic-release:** release from dist in a proper way ([133bde0](https://github.com/adobe/aem-angular-editable-components/commit/133bde098e84750c402e17b96b3b7fe0a43157f8))
+
 ## [1.0.2](https://github.com/adobe/aem-angular-editable-components/compare/v1.0.1...v1.0.2) (2020-09-03)
 
 
