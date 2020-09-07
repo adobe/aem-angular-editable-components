@@ -7,6 +7,7 @@
 [![codecov](https://codecov.io/gh/adobe/aem-angular-editable-components/branch/master/graph/badge.svg)](https://codecov.io/gh/adobe/aem-angular-editable-components) 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=adobe_aem-angular-editable-components&metric=alert_status)](https://sonarcloud.io/dashboard?id=adobe_aem-angular-editable-components)
 [![Known Vulnerabilities](https://snyk.io/test/github/adobe/aem-angular-editable-components/badge.svg)](https://snyk.io/test/github/adobe/aem-angular-editable-components)
+[![Dependencies](https://badges.renovateapi.com/github/adobe/aem-angular-editable-components)](https://app.renovatebot.com/dashboard#github/adobe/aem-angular-editable-components)
 
 This project provides the Angular components and integration layer to get you started with the Adobe Experience Manager Site Editor.
 
