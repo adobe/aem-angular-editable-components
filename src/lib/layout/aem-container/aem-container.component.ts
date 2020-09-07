@@ -13,6 +13,7 @@
 import { Component, Input } from '@angular/core';
 import { Constants } from '../constants';
 import { Utils } from '../utils';
+import {AbstractMappedComponent} from "../component-mapping";
 
 const PLACEHOLDER_CLASS_NAMES = Constants.NEW_SECTION_CLASS_NAMES;
 const PLACEHOLDER_ITEM_NAME = '*';
@@ -30,7 +31,7 @@ const CONTAINER_CLASS_NAMES = 'aem-container';
  * The current component provides the base presentational logic common to containers such as a grid or a page.
  * Container have in common the notion of item holders. Items are represented in the model by the fields _:items_ and _:itemsOrder_
  */
-export class AEMContainerComponent {
+export class AEMContainerComponent extends AbstractMappedComponent{
   /**
    * Map of model items included in the current container
    */

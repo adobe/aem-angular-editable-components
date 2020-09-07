@@ -15,7 +15,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {BrowserDynamicTestingModule} from '@angular/platform-browser-dynamic/testing';
 import {AEMComponentDirective} from './aem-component.directive';
 import {Component, Input} from '@angular/core';
-import {ComponentMapping, MapTo} from './component-mapping';
+import {AbstractMappedComponent, ComponentMapping, MapTo} from './component-mapping';
 import {Utils} from './utils';
 
 @Component({
@@ -35,7 +35,7 @@ class AEMDirectiveTestComponent {
   },
   template: `<div></div>`
 })
-class DirectiveComponent {
+class DirectiveComponent extends AbstractMappedComponent{
   @Input() attr1;
   @Input() attr2;
 
