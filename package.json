@@ -6,6 +6,7 @@
     "url": "https://github.com/adobe/aem-angular-editable-components.git"
   },
   "scripts": {
+    "docs": "npm i && npx typedoc ./src --out ./docs --mode file --ignoreCompilerErrors",
     "ng": "ng",
     "start": "ng serve",
     "build": "npm run test && ng build aem-angular-editable-components",
@@ -57,6 +58,7 @@
     "@types/jasmine": "^3.5.10",
     "@types/jasminewd2": "~2.0.8",
     "@types/node": "^14.0.11",
+    "typedoc": "^0.19.1",
     "codelyzer": "^5.2.2",
     "jasmine-core": "^3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
