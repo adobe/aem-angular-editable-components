@@ -1,0 +1,405 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>AemPageRouteReuseStrategy | @adobe/aem-angular-editable-components</title>
+	<meta name="description" content="Documentation for @adobe/aem-angular-editable-components">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">@adobe/aem-angular-editable-components</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../index.html">Globals</a>
+				</li>
+				<li>
+					<a href="aempageroutereusestrategy.html">AemPageRouteReuseStrategy</a>
+				</li>
+			</ul>
+			<h1>Class AemPageRouteReuseStrategy</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Implements RouteReuseStrategy to customize route reuse.</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">AemPageRouteReuseStrategy</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implements</h3>
+				<ul class="tsd-hierarchy">
+					<li><span class="tsd-signature-type">RouteReuseStrategy</span></li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="aempageroutereusestrategy.html#retrieve" class="tsd-kind-icon">retrieve</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="aempageroutereusestrategy.html#shouldattach" class="tsd-kind-icon">should<wbr>Attach</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="aempageroutereusestrategy.html#shoulddetach" class="tsd-kind-icon">should<wbr>Detach</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="aempageroutereusestrategy.html#shouldreuseroute" class="tsd-kind-icon">should<wbr>Reuse<wbr>Route</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="aempageroutereusestrategy.html#store" class="tsd-kind-icon">store</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="retrieve" class="tsd-anchor"></a>
+					<h3>retrieve</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">retrieve<span class="tsd-signature-symbol">(</span>route<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ActivatedRouteSnapshot</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">DetachedRouteHandle</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/adobe/aem-angular-editable-components/blob/8ae6dd7/src/lib/routing/AemPageRouteReuseStrategy.ts#L32">src/lib/routing/AemPageRouteReuseStrategy.ts:32</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Retrieves the previously stored route.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>route: <span class="tsd-signature-type">ActivatedRouteSnapshot</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">DetachedRouteHandle</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="shouldattach" class="tsd-anchor"></a>
+					<h3>should<wbr>Attach</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">should<wbr>Attach<span class="tsd-signature-symbol">(</span>route<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ActivatedRouteSnapshot</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/adobe/aem-angular-editable-components/blob/8ae6dd7/src/lib/routing/AemPageRouteReuseStrategy.ts#L27">src/lib/routing/AemPageRouteReuseStrategy.ts:27</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Determines if this route (and its subtree) should be reattached.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>route: <span class="tsd-signature-type">ActivatedRouteSnapshot</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="shoulddetach" class="tsd-anchor"></a>
+					<h3>should<wbr>Detach</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">should<wbr>Detach<span class="tsd-signature-symbol">(</span>route<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ActivatedRouteSnapshot</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/adobe/aem-angular-editable-components/blob/8ae6dd7/src/lib/routing/AemPageRouteReuseStrategy.ts#L19">src/lib/routing/AemPageRouteReuseStrategy.ts:19</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Determines if this route (and its subtree) should be detached to be reused later.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>route: <span class="tsd-signature-type">ActivatedRouteSnapshot</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="shouldreuseroute" class="tsd-anchor"></a>
+					<h3>should<wbr>Reuse<wbr>Route</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">should<wbr>Reuse<wbr>Route<span class="tsd-signature-symbol">(</span>future<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ActivatedRouteSnapshot</span>, curr<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ActivatedRouteSnapshot</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/adobe/aem-angular-editable-components/blob/8ae6dd7/src/lib/routing/AemPageRouteReuseStrategy.ts#L37">src/lib/routing/AemPageRouteReuseStrategy.ts:37</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Determines if a route should be reused</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>future: <span class="tsd-signature-type">ActivatedRouteSnapshot</span></h5>
+								</li>
+								<li>
+									<h5>curr: <span class="tsd-signature-type">ActivatedRouteSnapshot</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="store" class="tsd-anchor"></a>
+					<h3>store</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">store<span class="tsd-signature-symbol">(</span>route<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ActivatedRouteSnapshot</span>, detachedTree<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">DetachedRouteHandle</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/adobe/aem-angular-editable-components/blob/8ae6dd7/src/lib/routing/AemPageRouteReuseStrategy.ts#L24">src/lib/routing/AemPageRouteReuseStrategy.ts:24</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Not storing deteached route.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>route: <span class="tsd-signature-type">ActivatedRouteSnapshot</span></h5>
+								</li>
+								<li>
+									<h5>detachedTree: <span class="tsd-signature-type">DetachedRouteHandle</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../index.html"><em>Globals</em></a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="aemallowedcomponentscontainercomponent.html" class="tsd-kind-icon">AEMAllowed<wbr>Components<wbr>Container<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="aemcomponentdirective.html" class="tsd-kind-icon">AEMComponent<wbr>Directive</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="aemcontainercomponent.html" class="tsd-kind-icon">AEMContainer<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="aemdirectivetestcomponent.html" class="tsd-kind-icon">AEMDirective<wbr>Test<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="aemmodelprovidercomponent.html" class="tsd-kind-icon">AEMModel<wbr>Provider<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="aempagecomponent.html" class="tsd-kind-icon">AEMPage<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="aemresponsivegridcomponent.html" class="tsd-kind-icon">AEMResponsive<wbr>Grid<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="aempagedataresolver.html" class="tsd-kind-icon">Aem<wbr>Page<wbr>Data<wbr>Resolver</a>
+					</li>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class">
+						<a href="aempageroutereusestrategy.html" class="tsd-kind-icon">Aem<wbr>Page<wbr>Route<wbr>Reuse<wbr>Strategy</a>
+						<ul>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="aempageroutereusestrategy.html#retrieve" class="tsd-kind-icon">retrieve</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="aempageroutereusestrategy.html#shouldattach" class="tsd-kind-icon">should<wbr>Attach</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="aempageroutereusestrategy.html#shoulddetach" class="tsd-kind-icon">should<wbr>Detach</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="aempageroutereusestrategy.html#shouldreuseroute" class="tsd-kind-icon">should<wbr>Reuse<wbr>Route</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="aempageroutereusestrategy.html#store" class="tsd-kind-icon">store</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-class">
+						<a href="componentmappingwithconfig.html" class="tsd-kind-icon">Component<wbr>Mapping<wbr>With<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="directivecomponent.html" class="tsd-kind-icon">Directive<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../index.html#allowed_component_placeholder_class_names" class="tsd-kind-icon">ALLOWED_<wbr>COMPONENT_<wbr>PLACEHOLDER_<wbr>CLASS_<wbr>NAMES</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../index.html#allowed_component_title_class_names" class="tsd-kind-icon">ALLOWED_<wbr>COMPONENT_<wbr>TITLE_<wbr>CLASS_<wbr>NAMES</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../index.html#allowed_placeholder_class_names" class="tsd-kind-icon">ALLOWED_<wbr>PLACEHOLDER_<wbr>CLASS_<wbr>NAMES</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../index.html#container_class_names" class="tsd-kind-icon">CONTAINER_<wbr>CLASS_<wbr>NAMES</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../index.html#edit_mode" class="tsd-kind-icon">EDIT_<wbr>MODE</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../index.html#page_model_separator" class="tsd-kind-icon">PAGE_<wbr>MODEL_<wbr>SEPARATOR</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../index.html#placeholder_class_name" class="tsd-kind-icon">PLACEHOLDER_<wbr>CLASS_<wbr>NAME</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../index.html#placeholder_class_names" class="tsd-kind-icon">PLACEHOLDER_<wbr>CLASS_<wbr>NAMES</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../index.html#placeholder_item_name" class="tsd-kind-icon">PLACEHOLDER_<wbr>ITEM_<wbr>NAME</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../index.html#preview_mode" class="tsd-kind-icon">PREVIEW_<wbr>MODE</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../index.html#responsive_grid_type" class="tsd-kind-icon">RESPONSIVE_<wbr>GRID_<wbr>TYPE</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../index.html#wcm_mode_meta_selector" class="tsd-kind-icon">WCM_<wbr>MODE_<wbr>META_<wbr>SELECTOR</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../index.html#componentmapping" class="tsd-kind-icon">component<wbr>Mapping</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../index.html#context" class="tsd-kind-icon">context</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../index.html#require" class="tsd-kind-icon">require</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../index.html#mapto" class="tsd-kind-icon">Map<wbr>To</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../index.html#getwcmmode" class="tsd-kind-icon">getWCMMode</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../index.html#isbrowser" class="tsd-kind-icon">is<wbr>Browser</a>
+					</li>
+					<li class=" tsd-kind-object-literal">
+						<a href="../index.html#constants" class="tsd-kind-icon">Constants</a>
+					</li>
+					<li class=" tsd-kind-object-literal">
+						<a href="../index.html#utils" class="tsd-kind-icon">Utils</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
