@@ -6,7 +6,7 @@
     "url": "https://github.com/adobe/aem-angular-editable-components.git"
   },
   "scripts": {
-    "docs": "npm i && npx typedoc ./src --out ./docs --mode file --ignoreCompilerErrors",
+    "docs": "npm i && npx typedoc ./src --out ./dist/docs --mode file --ignoreCompilerErrors",
     "ng": "ng",
     "start": "ng serve",
     "build": "npm run test && ng build aem-angular-editable-components",
