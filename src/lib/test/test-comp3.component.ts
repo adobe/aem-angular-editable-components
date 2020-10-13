@@ -20,7 +20,9 @@ import { Component, Input } from '@angular/core';
   template: `<div>{{ title }}</div>`
 })
 
-export class Component3 {
-  @Input() title:any;
-  constructor() {}
+export class Test3Component {
+  @Input() title: any;
+  constructor() {
+      // empty
+  }
 }

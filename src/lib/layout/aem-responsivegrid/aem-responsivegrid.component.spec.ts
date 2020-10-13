@@ -19,9 +19,9 @@ import {AEMComponentDirective} from '../aem-component.directive';
 import {AEMModelProviderComponent} from '../aem-model-provider/aem-model-provider.component';
 import {ModelManager} from '@adobe/aem-spa-page-model-manager';
 import {AEMResponsiveGridComponent} from './aem-responsivegrid.component';
-import {Component1} from '../../test/test-comp1.component';
-import {Component2} from '../../test/test-comp2.component';
-import {Component3} from '../../test/test-comp3.component';
+import {Test1Component} from '../../test/test-comp1.component';
+import {Test2Component} from '../../test/test-comp2.component';
+import {Test3Component} from '../../test/test-comp3.component';
 import {Constants} from '../constants';
 import {
   AEMAllowedComponentsContainerComponent, ALLOWED_COMPONENT_TITLE_CLASS_NAMES,
@@ -47,14 +47,14 @@ describe('AEMResponsiveGrid', () => {
       declarations: [ AEMContainerComponent,
         AEMComponentDirective,
         AEMModelProviderComponent,
-        Component1,
-        Component2,
-        Component3,
+        Test1Component,
+        Test2Component,
+        Test3Component,
         AEMAllowedComponentsContainerComponent,
         AEMResponsiveGridComponent ]
     }).overrideModule(BrowserDynamicTestingModule, {
       set: {
-        entryComponents: [Component1, Component2, Component3, AEMResponsiveGridComponent]
+        entryComponents: [Test1Component, Test2Component, Test3Component, AEMResponsiveGridComponent]
       }
     }).compileComponents();
 

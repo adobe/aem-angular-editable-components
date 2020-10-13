@@ -20,10 +20,30 @@ import { CommonModule } from '@angular/common';
 import { AEMAllowedComponentsContainerComponent } from './layout/aem-allowed-components-container/aem-allowed-components-container.component';
 
 @NgModule({
-  imports: [CommonModule],
-
-  declarations: [AEMContainerComponent, AEMAllowedComponentsContainerComponent, AEMResponsiveGridComponent, AEMComponentDirective, AEMModelProviderComponent, AEMPageComponent],
-  exports: [AEMContainerComponent, AEMAllowedComponentsContainerComponent, AEMResponsiveGridComponent, AEMComponentDirective, AEMModelProviderComponent, AEMPageComponent],
-  entryComponents: [AEMContainerComponent, AEMAllowedComponentsContainerComponent, AEMResponsiveGridComponent, AEMPageComponent]
+    imports: [
+        CommonModule
+    ],
+    declarations: [
+        AEMContainerComponent,
+        AEMAllowedComponentsContainerComponent,
+        AEMResponsiveGridComponent,
+        AEMComponentDirective,
+        AEMModelProviderComponent,
+        AEMPageComponent
+    ],
+    exports: [
+        AEMContainerComponent,
+        AEMAllowedComponentsContainerComponent,
+        AEMResponsiveGridComponent,
+        AEMComponentDirective,
+        AEMModelProviderComponent,
+        AEMPageComponent
+    ],
+    entryComponents: [
+        AEMContainerComponent,
+        AEMAllowedComponentsContainerComponent,
+        AEMResponsiveGridComponent,
+        AEMPageComponent
+    ]
 })
-export class SpaAngularEditableComponentsModule { }
+export class SpaAngularEditableComponentsModule {}
