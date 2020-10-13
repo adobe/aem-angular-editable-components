@@ -13,6 +13,9 @@
 import { Component } from '@angular/core';
 import { AEMContainerComponent } from '../aem-container/aem-container.component';
 
+/**
+ * @private
+ */
 const PAGE_MODEL_SEPARATOR = '/jcr:content/';
 
 @Component({

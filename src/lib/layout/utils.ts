@@ -11,22 +11,26 @@
  */
 
 /**
- * Selector that identifies the node that contains the WCM mode state
+ * Selector that identifies the node that contains the WCM mode state.
+ * @private
  */
-const WCM_MODE_META_SELECTOR:string = 'meta[property="cq:wcmmode"]';
+const WCM_MODE_META_SELECTOR = 'meta[property="cq:wcmmode"]';
 
 /**
- * The editor is in one of the edition modes
+ * The editor is in one of the edition modes.
+ * @private
  */
-const EDIT_MODE:string = 'edit';
+const EDIT_MODE = 'edit';
 
 /**
- * The editor is in preview mode
+ * The editor is in preview mode.
+ * @private
  */
-const PREVIEW_MODE:string = 'preview';
+const PREVIEW_MODE = 'preview';
 /**
  * Returns if we are in the browser context or not by checking for the
- * existence of the window object
+ * existence of the window object.
+ * @private
  */
 function isBrowser() {
     try {
@@ -40,6 +44,7 @@ function isBrowser() {
  * Returns the current WCM mode
  *
  * <p>Note that the value isn't, as of the date of this writing, updated by the editor</p>
+ * @private
  */
 function getWCMMode() {
     if (isBrowser()) {

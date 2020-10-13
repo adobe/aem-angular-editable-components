@@ -27,6 +27,9 @@ import { Constants } from './constants';
 import { Utils } from './utils';
 
 
+/**
+ * @private
+ */
 const PLACEHOLDER_CLASS_NAME = 'cq-placeholder';
 
 @Directive({

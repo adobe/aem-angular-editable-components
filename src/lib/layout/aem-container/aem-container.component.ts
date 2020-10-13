@@ -14,8 +14,19 @@ import { Component, Input } from '@angular/core';
 import { Constants } from '../constants';
 import { Utils } from '../utils';
 
+/**
+ * @private
+ */
 const PLACEHOLDER_CLASS_NAMES = Constants.NEW_SECTION_CLASS_NAMES;
+
+/**
+ * @private
+ */
 const PLACEHOLDER_ITEM_NAME = '*';
+
+/**
+ * @private
+ */
 const CONTAINER_CLASS_NAMES = 'aem-container';
 
 @Component({

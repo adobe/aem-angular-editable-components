@@ -14,7 +14,14 @@ import { Component, Input } from '@angular/core';
 import { Constants } from '../constants';
 import {AEMAllowedComponentsContainerComponent} from '../aem-allowed-components-container/aem-allowed-components-container.component';
 
+/**
+ * @private
+ */
 const PLACEHOLDER_CLASS_NAMES = 'aem-Grid-newComponent';
+
+/**
+ * @private
+ */
 const RESPONSIVE_GRID_TYPE = 'wcm/foundation/components/responsivegrid';
 
 @Component({
