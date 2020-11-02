@@ -10,13 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-
-import {BrowserDynamicTestingModule} from '@angular/platform-browser-dynamic/testing';
-import {AEMComponentDirective} from './aem-component.directive';
-import {Component, Input} from '@angular/core';
-import {ComponentMapping, MapTo} from './component-mapping';
-import {Utils} from './utils';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
+import { AEMComponentDirective } from './aem-component.directive';
+import { Component, Input } from '@angular/core';
+import { ComponentMapping, MapTo } from './component-mapping';
+import { Utils } from './utils';
 
 @Component({
   selector: 'test-component',
@@ -29,8 +28,8 @@ class AEMDirectiveTestComponent {
 @Component({
   selector: 'directive-component',
   host: {
-      '[attr.attr1]':'attr1',
-      '[attr.attr2]':'attr2',
+      '[attr.attr1]': 'attr1',
+      '[attr.attr2]': 'attr2',
       '[class]': 'hostClasses'
   },
   template: `<div></div>`
@@ -58,7 +57,7 @@ describe('AEMComponentDirective', () => {
 
   const TEST_EDIT_CONFIG_NOT_EMPTY = {
     emptyLabel: EDIT_CONFIG_EMPTY_LABEL,
-    isEmpty: function () {
+    isEmpty: function() {
       return false;
     }
   };
@@ -77,7 +76,7 @@ describe('AEMComponentDirective', () => {
       declarations: [ AEMDirectiveTestComponent, DirectiveComponent, AEMComponentDirective ]
     }).overrideModule(BrowserDynamicTestingModule, {
       set: {
-        entryComponents: [DirectiveComponent]
+        entryComponents: [ DirectiveComponent ]
       }
     })
     .compileComponents();
@@ -89,32 +88,35 @@ describe('AEMComponentDirective', () => {
   });
 
   it('should correctly pass the inputs', () => {
-    const componentData =  {
-      'attr1': 'Some value',
-      'attr2': 'Another value',
+    const componentData = {
+      attr1: 'Some value',
+      attr2: 'Another value',
       ':type': 'directive/comp'
     };
 
     component.data = componentData;
     fixture.detectChanges();
+
     const element = fixture.nativeElement;
     const dynamicElement = element.firstElementChild;
 
-    expect(dynamicElement.getAttribute("attr1")).toEqual(componentData["attr1"]);
-    expect(dynamicElement.getAttribute("attr2")).toEqual(componentData["attr2"]);
+    expect(dynamicElement.getAttribute('attr1')).toEqual(componentData['attr1']);
+    expect(dynamicElement.getAttribute('attr2')).toEqual(componentData['attr2']);
   });
 
   it('should setup the placeholder', () => {
     isInEditorSpy.and.returnValue(true);
     getEditConfigSpy.and.returnValue(TEST_EDIT_CONFIG_EMPTY);
-    const componentData =  {
-      'attr1': 'Some value',
-      'attr2': 'Another value',
+
+    const componentData = {
+      attr1: 'Some value',
+      attr2: 'Another value',
       ':type': 'directive/comp'
     };
 
     component.data = componentData;
     fixture.detectChanges();
+
     const element = fixture.nativeElement;
     const dynamicElement = element.firstElementChild;
 
@@ -124,14 +126,16 @@ describe('AEMComponentDirective', () => {
   it('should NOT setup the placeholder', () => {
     isInEditorSpy.and.returnValue(true);
     getEditConfigSpy.and.returnValue(TEST_EDIT_CONFIG_NOT_EMPTY);
-    const componentData =  {
-      'attr1': 'Some value',
-      'attr2': 'Another value',
+
+    const componentData = {
+      attr1: 'Some value',
+      attr2: 'Another value',
       ':type': 'directive/comp'
     };
 
     component.data = componentData;
     fixture.detectChanges();
+
     const element = fixture.nativeElement;
     const dynamicElement = element.firstElementChild;
 
@@ -139,19 +143,20 @@ describe('AEMComponentDirective', () => {
   });
 
   it('should correctly update the inputs', () => {
-    const componentData1 =  {
-      'attr2': 'Initial value',
+    const componentData1 = {
+      attr2: 'Initial value',
       ':type': 'directive/comp'
     };
 
-    const componentData2 =  {
-      'attr1': 'New value',
-      'attr2': 'Updated value',
+    const componentData2 = {
+      attr1: 'New value',
+      attr2: 'Updated value',
       ':type': 'directive/comp'
     };
 
     component.data = componentData1;
     fixture.detectChanges();
+
     const element = fixture.nativeElement;
     const dynamicElement = element.firstElementChild;
 

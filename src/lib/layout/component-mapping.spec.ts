@@ -10,23 +10,21 @@
  * governing permissions and limitations under the License.
  */
 
-import { ComponentMapping, MapTo } from "./component-mapping";
+import { ComponentMapping, MapTo } from './component-mapping';
 
-describe("Component Mapping", () => {
+describe('Component Mapping', () => {
+  it('stores configuration', () => {
+    const Component1 = function() { /* void */ };
+    const Component2 = function() { /* void */ };
+    const editConfig1 = { some: 1 };
+    const editConfig2 = { some: 2 };
 
-  it("stores configuration", () => {
-    let Component1 = function(){};
-    let Component2 = function() {};
-    let editConfig1 = { some: "1" };
-    let editConfig2 = { some: "2" };
+    MapTo('component1')(Component1, editConfig1);
+    MapTo('component2')(Component2, editConfig2);
 
-    MapTo("component1")(Component1, editConfig1);
-    MapTo("component2")(Component2, editConfig2);
-
-    expect(ComponentMapping.get("component1")).toBe(Component1);
-    expect(ComponentMapping.get("component2")).toBe(Component2);
-    expect(ComponentMapping.getEditConfig("component1")).toBe(editConfig1);
-    expect(ComponentMapping.getEditConfig("component2")).toBe(editConfig2);
-
+    expect(ComponentMapping.get('component1')).toBe(Component1);
+    expect(ComponentMapping.get('component2')).toBe(Component2);
+    expect(ComponentMapping.getEditConfig('component1')).toBe(editConfig1);
+    expect(ComponentMapping.getEditConfig('component2')).toBe(editConfig2);
   });
 });

@@ -33,7 +33,7 @@ const CONTAINER_CLASS_NAMES = 'aem-container';
   selector: 'aem-container',
   host: {
       '[class]': 'hostClasses',
-      '[attr.data-cq-data-path]':'cqPath'
+      '[attr.data-cq-data-path]': 'cqPath'
   },
   templateUrl: './aem-container.component.html'
 })
@@ -53,11 +53,11 @@ export class AEMContainerComponent {
   /**
    * Path to the model associated with the current instance of the component
    */
-  @Input() cqPath: string = '';
+  @Input() cqPath = '';
   /**
    * Key of the model structure
    */
-  @Input() modelName: string = '';
+  @Input() modelName = '';
   /**
    * Class names of the current component
    */
@@ -66,7 +66,7 @@ export class AEMContainerComponent {
   /**
    * Returns weather of not we are in the editor
    */
-  get isInEditMode() {
+  get isInEditMode(): boolean {
     return Utils.isInEditor();
   }
 
@@ -75,7 +75,7 @@ export class AEMContainerComponent {
    *
    * @param path - the provided path to aggregate with the container path
    */
-  getDataPath(path) {
+  getDataPath(path: string): string {
     return this.cqPath ? this.cqPath + '/' + path : path;
   }
 
@@ -84,33 +84,32 @@ export class AEMContainerComponent {
    *
    * @param itemKey - the itemKey to look for in the items.
    */
-  getItem(itemKey) {
+  getItem(itemKey: string): string {
     return this.cqItems && this.cqItems[itemKey];
   }
 
   /**
    * Returns the class names of the container based on the data from the cqModel
    */
-  getHostClassNames() {
+  getHostClassNames(): string {
     return CONTAINER_CLASS_NAMES;
   }
 
-  get hostClasses () {
+  get hostClasses(): string {
     return this.getHostClassNames();
   }
 
   /**
    * Returns the placeholder classes
    */
-  getPlaceholderClassNames() {
+  getPlaceholderClassNames(): string {
     return PLACEHOLDER_CLASS_NAMES;
   }
 
   /**
    * Returns the placeholder path
    */
-  get placeholderPath() {
+  get placeholderPath(): string {
     return this.cqPath && this.cqPath + '/' + PLACEHOLDER_ITEM_NAME;
   }
 }
-

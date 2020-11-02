@@ -27,6 +27,7 @@ const EDIT_MODE = 'edit';
  * @private
  */
 const PREVIEW_MODE = 'preview';
+
 /**
  * Returns if we are in the browser context or not by checking for the
  * existence of the window object.
@@ -48,21 +49,22 @@ function isBrowser() {
  */
 function getWCMMode() {
     if (isBrowser()) {
-      const wcmModeMeta:any = document.head.querySelector(WCM_MODE_META_SELECTOR);
+      const wcmModeMeta: any = document.head.querySelector(WCM_MODE_META_SELECTOR);
+
       return wcmModeMeta && wcmModeMeta.content;
     }
 }
 
 /**
- * Helper functions for interacting with the AEM environment
+ * Helper functions for interacting with the AEM environment.
  */
 export const Utils = {
-
     /**
-     * Is the app used in the context of the AEM Page editor
+     * Is the app used in the context of the AEM Page editor.
      */
-    isInEditor() {
+    isInEditor(): boolean {
         const wcmMode = getWCMMode();
+
         return wcmMode && (EDIT_MODE === wcmMode || PREVIEW_MODE === wcmMode);
     }
 };

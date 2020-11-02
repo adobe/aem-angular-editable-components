@@ -31,12 +31,12 @@ describe('AemAllowedComponentsContainerComponent', () => {
 
     /**
     * Test the inner DOM structure of an applicable allowed component list
-    * @param componentTitle                              Title of the component
-    * @param elementText                                 Exposed text of the allowed component list
-    * @param allowedComponents                           Data structure relative to the allowed components
-    * @param expectedAllowedComponentPlaceholderCount    Number of expected allowed component placeholders
+    * @param componentTitle Title of the component
+    * @param elementText Exposed text of the allowed component list
+    * @param allowedComponents Data structure relative to the allowed components
+    * @param expectedCount Number of expected allowed component placeholders
     */
-    function testApplicableAllowedComponentList(componentTitle, elementText, allowedComponents, expectedAllowedComponentPlaceholderCount) {
+    function testApplicableAllowedComponentList(componentTitle, elementText, allowedComponents, expectedCount) {
         component.title = componentTitle;
         component.allowedComponents = allowedComponents;
         fixture.detectChanges();
@@ -47,7 +47,7 @@ describe('AemAllowedComponentsContainerComponent', () => {
         expect(element.classList.contains(ALLOWED_PLACEHOLDER_CLASS_NAMES)).toBe(true);
         expect(titleElement).not.toBeNull();
         expect(titleElement.dataset.text).toEqual(elementText);
-        expect(element.querySelectorAll('.aem-AllowedComponent--component.cq-placeholder.placeholder').length).toEqual(expectedAllowedComponentPlaceholderCount);
+        expect(element.querySelectorAll('.aem-AllowedComponent--component.cq-placeholder.placeholder').length).toEqual(expectedCount);
     }
 
     beforeEach(() => {
@@ -82,13 +82,13 @@ describe('AemAllowedComponentsContainerComponent', () => {
     });
 
     it('should create the component with the default title and no allowed component', () => {
-        const expectedAllowedComponentPlaceholderCount = 0;
+        const expectedCount = 0;
         const allowedComponents = {
             applicable: true,
             components: []
         };
 
-        testApplicableAllowedComponentList(TEST_COMPONENT_TITLE, 'No allowed components', allowedComponents, expectedAllowedComponentPlaceholderCount);
+        testApplicableAllowedComponentList(TEST_COMPONENT_TITLE, 'No allowed components', allowedComponents, expectedCount);
     });
 
     it('should create the component with a custom title and allowed components', () => {

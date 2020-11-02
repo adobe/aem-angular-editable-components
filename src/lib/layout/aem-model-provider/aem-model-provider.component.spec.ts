@@ -10,14 +10,11 @@
  * governing permissions and limitations under the License.
  */
 
-import {ComponentFixture, TestBed} from '@angular/core/testing';
-
-import {BrowserDynamicTestingModule} from '@angular/platform-browser-dynamic/testing';
-
-import {AEMModelProviderComponent} from '../aem-model-provider/aem-model-provider.component';
-import {ModelManager} from '@adobe/aem-spa-page-model-manager';
-import {AEMComponentDirective} from '../aem-component.directive';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
+import { AEMModelProviderComponent } from '../aem-model-provider/aem-model-provider.component';
+import { Model, ModelManager } from '@adobe/aem-spa-page-model-manager';
+import { AEMComponentDirective } from '../aem-component.directive';
 import '../../test/mapping';
 
 describe('AEMModelProviderComponent', () => {
@@ -31,13 +28,13 @@ describe('AEMModelProviderComponent', () => {
   let getDataSpy;
 
   beforeEach(() => {
-    getDataSpy = spyOn(ModelManager, 'getData').and.returnValue(Promise.resolve(TEST_MODEL_DATA));
+    getDataSpy = spyOn(ModelManager, 'getData').and.returnValue(Promise.resolve(TEST_MODEL_DATA as Model));
 
     TestBed.configureTestingModule({
       declarations: [ AEMComponentDirective, AEMModelProviderComponent ]
     }).overrideModule(BrowserDynamicTestingModule, {
       set: {
-        entryComponents: [AEMModelProviderComponent]
+        entryComponents: [ AEMModelProviderComponent ]
       }
     }).compileComponents();
 

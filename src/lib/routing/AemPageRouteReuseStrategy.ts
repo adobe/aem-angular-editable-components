@@ -9,7 +9,10 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
+
 import { ActivatedRouteSnapshot, RouteReuseStrategy, DetachedRouteHandle } from '@angular/router';
+
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
 /**
  * Implements RouteReuseStrategy to customize route reuse.
@@ -21,7 +24,7 @@ export class AemPageRouteReuseStrategy implements RouteReuseStrategy {
   }
 
   /** Not storing deteached route. */
-  store(route: ActivatedRouteSnapshot, detachedTree: DetachedRouteHandle): void {}
+  store(route: ActivatedRouteSnapshot, detachedTree: DetachedRouteHandle): void { /* void */ }
 
   /** Determines if this route (and its subtree) should be reattached. */
   shouldAttach(route: ActivatedRouteSnapshot): boolean {

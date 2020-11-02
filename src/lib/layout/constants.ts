@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-import {Constants as PMConstants} from '@adobe/aem-spa-page-model-manager';
+import { Constants as PMConstants } from '@adobe/aem-spa-page-model-manager';
 
 export const Constants = {
 
