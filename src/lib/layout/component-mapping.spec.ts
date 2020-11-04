@@ -13,8 +13,7 @@
 import { ComponentMapping, MapTo, MappedComponentProperties, EditConfig, AbstractMappedComponent } from "./component-mapping";
 import { Component, Input } from '@angular/core';
 
-
-interface TestProperties extends MappedComponentProperties{
+export interface TestProperties extends MappedComponentProperties{
    some: string;
 }
 
@@ -43,3 +42,4 @@ describe("Component Mapping", () => {
 
   });
 });
+

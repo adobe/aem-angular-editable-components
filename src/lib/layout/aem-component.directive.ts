@@ -11,28 +11,30 @@
  */
 
 import {
-  Directive,
-  Input,
-  Renderer2,
-  ViewContainerRef,
+  AfterViewInit,
+  ChangeDetectorRef, Compiler,
+  ComponentFactory,
   ComponentFactoryResolver,
   ComponentRef,
-  AfterViewInit,
+  Directive, Injector,
+  Input,
+  OnChanges,
+  OnDestroy,
   OnInit,
-  OnDestroy, ChangeDetectorRef, OnChanges
+  Renderer2,
+  Type,
+  ViewContainerRef
 } from '@angular/core';
 
-import { ComponentMapping } from './component-mapping';
-import { Constants } from './constants';
-import { Utils } from './utils';
-
+import {ComponentMapping, MappedComponentProperties} from './component-mapping';
+import {Constants} from './constants';
+import {Utils} from './utils';
 
 const PLACEHOLDER_CLASS_NAME = 'cq-placeholder';
 
 @Directive({
   selector: '[aemComponent]'
 })
-
 /**
  * The current directive provides advanced capabilities among which are
  *
@@ -78,17 +80,49 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
    */
   @Input() itemAttrs: object;
 
+  @Input() loaded: boolean;
+
   @Input() aemComponent;
 
   constructor(
+    private compiler: Compiler,
+    private injector: Injector,
     private renderer: Renderer2,
     private viewContainer: ViewContainerRef,
     private factoryResolver: ComponentFactoryResolver,
     private _changeDetectorRef: ChangeDetectorRef) {
   }
 
-  ngOnInit() {
-    this.renderComponent(ComponentMapping.get(this.type));
+  async ngOnInit() {
+
+    let mappedFn = ComponentMapping.get(this.type);
+
+    if(!!mappedFn){
+      //check first if we got the component in the normal registry. if yes, use that
+
+      if(mappedFn instanceof Object && !!mappedFn["__esModule"]){
+        const cqItemElement = this.cqItem["angularDynamicComponent"];
+        this.renderComponent(mappedFn[cqItemElement]);
+      }else{
+        this.renderComponent(mappedFn);
+      }
+
+    }else{
+      //ok we don't have it. let's see if it's in the lazyload registry instead and use that.
+      const lazyPromise:Promise<any> = ComponentMapping.lazyGet(this.type);
+
+      if(!!lazyPromise){
+        const Module = await lazyPromise;
+
+        // @ts-ignore
+        const cqItemElement = this.cqItem.angularDynamicComponent;
+
+        this.renderComponent(Module[cqItemElement]);
+        this.loaded = true;
+        this._changeDetectorRef.detectChanges();
+      }
+    }
+
   }
 
   ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
@@ -108,12 +142,18 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
    * @param componentDefinition The component definition to render
    */
   private renderComponent(componentDefinition: any) {
-    if (componentDefinition) {
+    if (!!componentDefinition) {
       const factory = this.factoryResolver.resolveComponentFactory(componentDefinition);
-      this.viewContainer.clear();
-      this._component = this.viewContainer.createComponent(factory);
-      this.updateComponentData();
+      this.renderWithFactory(factory);
+    }else{
+      throw new Error("No component definition!!");
     }
+  }
+
+  private renderWithFactory(factory:ComponentFactory<any>){
+    this.viewContainer.clear();
+    this._component = this.viewContainer.createComponent(factory);
+    this.updateComponentData();
   }
 
   /**

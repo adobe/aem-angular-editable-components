@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import { ComponentMapping as SPAComponentMapping } from '@adobe/aem-spa-component-mapping';
-import {Input, Type} from '@angular/core';
+import {ComponentMapping as SPAComponentMapping} from '@adobe/aem-spa-component-mapping';
+import {Component, Input, Type} from '@angular/core';
 
 /**
  * Indicated whether force reload is turned on, forcing the model to be refetched on every MapTo instantiation.
@@ -36,50 +36,74 @@ export interface MappedComponentProperties extends ReloadForceAble {
 }
 
 export interface EditConfig<P extends MappedComponentProperties> {
-  emptyLabel?: string;
-  isEmpty(props: P): boolean;
+    emptyLabel?: string;
+
+    isEmpty(props: P): boolean;
 }
 
-export abstract class AbstractMappedComponent implements MappedComponentProperties{
-  @Input() isInEditor = false;
-  @Input() cqPath = '';
+@Component({template: ''})
+export class AbstractMappedComponent implements MappedComponentProperties {
+    @Input() isInEditor;
+    @Input() cqPath;
 }
+
+export type DynamicImportFunction = () => Promise<any>;
+export type MappedType<T extends MappedComponentProperties> = | DynamicImportFunction;
+
 
 /**
  * The current class extends the @adobe/cq-spa-component-mapping#Mapto library and features with Angular specifics such as
  *
  * - Storing the editing configurations for each resource type
  */
-export class ComponentMappingWithConfig{
-  /**
-   * Store of EditConfig structures
+export class ComponentMappingWithConfig {
+    /**
+     * Store of EditConfig structures
    */
   private editConfigMap : { [key: string]: EditConfig<MappedComponentProperties>; } = {}
 
   constructor(private spaMapping:SPAComponentMapping) {}
 
-  /**
-   * Stores a component class for the given resource types and also allows to provide an EditConfig object
-   * @param resourceTypes - List of resource types
-   * @param clazz - Component class to be stored
-   * @param [editConfig] - Edit configuration to be stored for the given resource types
-   */
-  map<P extends MappedComponentProperties>(resourceTypes, clazz, editConfig:EditConfig<P> = null) {
-      let innerClass = clazz;
+    /**
+     * Stores a component class for the given resource types and also allows to provide an EditConfig object
+     * @param resourceTypes - List of resource types
+     * @param clazz - Component class to be stored
+     * @param [editConfig] - Edit configuration to be stored for the given resource types
+     */
+    map<P extends MappedComponentProperties>(resourceTypes, clazz: Type<P>, editConfig: EditConfig<P> = null) {
+        let innerClass = clazz;
 
-      if (editConfig) {
-          this.editConfigMap[resourceTypes] = editConfig;
-      }
-      this.spaMapping.map(resourceTypes, innerClass);
-  };
+        if (editConfig) {
+            this.editConfigMap[resourceTypes] = editConfig;
+        }
+        this.spaMapping.map(resourceTypes, innerClass);
+    };
 
-  /**
-   * Returns the component class for the given resourceType
-   * @param resourceType - Resource type for which the component class has been stored
-   */
-  get(resourceType:string):Type<MappedComponentProperties>{
-    return this.spaMapping.get(resourceType);
-  }
+    lazyMap<P extends MappedComponentProperties>(resourceTypes, clazz: () => Promise<unknown>, editConfig: EditConfig<P> = null) {
+        let innerClass = clazz;
+
+        if (editConfig) {
+            this.editConfigMap[resourceTypes] = editConfig;
+        }
+        this.spaMapping.lazyMap(resourceTypes, innerClass);
+    };
+
+
+    /**
+     * Returns the component class for the given resourceType
+     * @param resourceType - Resource type for which the component class has been stored
+     */
+    get(resourceType: string): Type<MappedComponentProperties> {
+        return this.spaMapping.get(resourceType);
+    }
+
+    /**
+     * Returns the component class for the given resourceType
+     * @param resourceType - Resource type for which the component class has been stored
+     */
+    lazyGet(resourceType: string): Promise<Type<MappedComponentProperties>> {
+        return this.spaMapping.getLazy(resourceType);
+    }
 
   /**
    * Returns the EditConfig structure for the given type
@@ -87,16 +111,22 @@ export class ComponentMappingWithConfig{
    */
   getEditConfig(resourceType:string):EditConfig<MappedComponentProperties> {
       return this.editConfigMap[resourceType];
-  } 
+  }
 }
 
 let componentMapping = new ComponentMappingWithConfig(SPAComponentMapping);
 
-function MapTo <M extends MappedComponentProperties> (resourceTypes) {
-    return (clazz:Type<M>, editConfig:EditConfig<M> = null) => {
-        return componentMapping.map(resourceTypes, clazz, editConfig);
+function MapTo<M extends MappedComponentProperties>(resourceTypes) {
+    return (clazz: Type<M>, editConfig: EditConfig<M> = null) => {
+        return componentMapping.map<M>(resourceTypes, clazz, editConfig);
+    };
+}
+
+function LazyMapTo<M extends MappedComponentProperties>(resourceTypes) {
+    return (clazz: ()=> Promise<unknown>, editConfig: EditConfig<M> = null) => {
+        return componentMapping.lazyMap<M>(resourceTypes, clazz, editConfig);
     };
 }
 
 
-export { componentMapping as ComponentMapping, MapTo };
+export {componentMapping as ComponentMapping, MapTo, LazyMapTo};

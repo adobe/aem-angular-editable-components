@@ -18,11 +18,12 @@ import { AEMPageComponent } from './layout/aem-page/aem-page.component';
 import { AEMResponsiveGridComponent } from './layout/aem-responsivegrid/aem-responsivegrid.component';
 import { CommonModule } from '@angular/common';
 import { AEMAllowedComponentsContainerComponent } from './layout/aem-allowed-components-container/aem-allowed-components-container.component';
+import {AbstractMappedComponent} from "./layout/component-mapping";
 
 @NgModule({
   imports: [CommonModule],
 
-  declarations: [AEMContainerComponent, AEMAllowedComponentsContainerComponent, AEMResponsiveGridComponent, AEMComponentDirective, AEMModelProviderComponent, AEMPageComponent],
+  declarations: [AbstractMappedComponent,AEMContainerComponent, AEMAllowedComponentsContainerComponent, AEMResponsiveGridComponent, AEMComponentDirective, AEMModelProviderComponent, AEMPageComponent],
   exports: [AEMContainerComponent, AEMAllowedComponentsContainerComponent, AEMResponsiveGridComponent, AEMComponentDirective, AEMModelProviderComponent, AEMPageComponent],
   entryComponents: [AEMContainerComponent, AEMAllowedComponentsContainerComponent, AEMResponsiveGridComponent, AEMPageComponent]
 })
