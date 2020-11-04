@@ -1,3 +1,11 @@
+## [1.0.4](https://github.com/adobe/aem-angular-editable-components/compare/v1.0.3...v1.0.4) (2020-11-04)
+
+
+### Bug Fixes
+
+* **eslint:** adapt code according to eslint reports ([6fa889c](https://github.com/adobe/aem-angular-editable-components/commit/6fa889c2d45682d65ef48b00c5773890a6b3df95))
+* **package.json:** cleanup ([e22e411](https://github.com/adobe/aem-angular-editable-components/commit/e22e411087e2aeef90a72179a10bd1c2f413a134))
+
 ## [1.0.3](https://github.com/adobe/aem-angular-editable-components/compare/v1.0.2...v1.0.3) (2020-09-03)
 
 
