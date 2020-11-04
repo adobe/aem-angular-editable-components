@@ -1,40 +1,51 @@
 {
   "name": "@adobe/aem-angular-editable-components",
   "version": "1.0.1",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/adobe/aem-angular-editable-components.git"
+  "description": "Provides Angular components and integration layer with Adobe Experience Manager Page Editor.",
+  "keywords": [
+    "spa",
+    "aem",
+    "angular",
+    "adobe"
+  ],
+  "author": "Adobe Systems Inc. <sitexpci@adobe.com>",
+  "license": "Apache-2.0",
+  "repository": "github:adobe/aem-angular-editable-components",
+  "homepage": "https://docs.adobe.com/content/help/en/experience-manager-65/developing/headless/spas/spa-reference-materials.html",
+  "bugs": {
+    "url": "https://github.com/adobe/aem-angular-editable-components/issues"
+  },
+  "engines": {
+    "npm": ">=6.14.4",
+    "node": ">=12.16.2"
   },
   "scripts": {
-    "docs": "npm i && npx typedoc ./src --out ./docs --mode file --ignoreCompilerErrors",
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "npm run test && ng build aem-angular-editable-components",
     "build:production": "npm run test && ng build aem-angular-editable-components --prod",
-    "test": "ng test aem-angular-editable-components",
+    "build": "npm run test && ng build aem-angular-editable-components",
+    "clean": "rm -rf dist/",
+    "docs": "npm i && npx typedoc --excludePrivate ./src --out ./dist/docs --mode file --exclude '**/test/**/* --exclude '**/*.spec.ts' --exclude src/test.ts",
+    "e2e": "ng e2e",
+    "linter": "eslint .",
+    "ng": "ng",
+    "semantic-release": "semantic-release",
+    "start": "ng serve",
     "test:coverage": "ng test aem-angular-editable-components --code-coverage",
     "test:debug": "ng test aem-angular-editable-components --watch=true --code-coverage",
-    "linter": "ng lint",
-    "e2e": "ng e2e",
-    "publish-lib": "ng build aem-angular-editable-components && cd dist/aem-angular-editable-components && npm publish",
-    "preversion": "npm run test && npm run build:production",
-    "version": "cp README.md dist/aem-angular-editable-components/ && git add -A",
-    "postversion": "git push && git push --tags",
-    "semantic-release": "semantic-release"
+    "test": "ng test aem-angular-editable-components"
   },
-  "author": "Adobe Systems Inc.",
-  "license": "Apache-2.0",
   "peerDependencies": {
-    "@adobe/aem-spa-component-mapping": "~1.0.5",
-    "@adobe/aem-spa-page-model-manager": "~1.2.0",
+    "@adobe/aem-spa-component-mapping": "~1.0.7",
+    "@adobe/aem-spa-page-model-manager": "~1.2.3",
     "@angular/common": "^9.1.9",
     "@angular/core": "^9.1.9"
   },
   "devDependencies": {
-    "@adobe/aem-spa-component-mapping": "~1.0.5",
-    "@adobe/aem-spa-page-model-manager": "^1.0.3",
+    "@adobe/aem-spa-component-mapping": "~1.0.7",
+    "@adobe/aem-spa-page-model-manager": "^1.2.3",
+    "@adobe/eslint-config-editorxp": "^1.0.7",
     "@angular-devkit/build-angular": "~0.901.12",
     "@angular-devkit/build-ng-packagr": "~0.901.12",
+    "@angular-eslint/eslint-plugin": "^0.5.0-beta.3",
     "@angular/cli": "^9.1.7",
     "@angular/common": "^9.1.9",
     "@angular/compiler": "^9.1.9",
@@ -52,10 +63,16 @@
     "@types/jasmine": "^3.5.10",
     "@types/jasminewd2": "~2.0.8",
     "@types/node": "^14.0.11",
+    "@typescript-eslint/eslint-plugin": "^4.4.1",
+    "@typescript-eslint/parser": "^4.4.1",
     "codelyzer": "^5.2.2",
     "commitizen": "^4.2.1",
     "core-js": "^3.6.5",
     "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^7.11.0",
+    "eslint-plugin-angular": "^4.0.1",
+    "eslint-plugin-header": "^3.1.0",
+    "eslint-plugin-json": "^2.1.2",
     "jasmine-core": "^3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "^5.0.9",
@@ -72,12 +89,18 @@
     "tslib": "^1.10.0",
     "tslint": "^6.1.2",
     "typedoc": "^0.19.1",
-    "typescript": "^3.8.3",
+    "typescript": "3.6.4",
     "zone.js": "~0.11.0"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "@adobe/eslint-config-editorxp/angular"
+    ]
   }
 }

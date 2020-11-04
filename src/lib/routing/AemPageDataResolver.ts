@@ -9,12 +9,13 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
+
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 
 @Injectable()
 export class AemPageDataResolver implements Resolve < string > {
-  constructor() {}
+  constructor() { /* empty */ }
 
   /**
    * Returns the absolute resource path without extension.
@@ -24,7 +25,7 @@ export class AemPageDataResolver implements Resolve < string > {
    * @param route - route
    * @returns absolute resource path without extension
    */
-  resolve(route: ActivatedRouteSnapshot) {
+  resolve(route: ActivatedRouteSnapshot): string {
     return '/' + route.url.join('/').replace(/\.[^/.]+$/, '');
   }
 }

@@ -9,9 +9,9 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
+
 import { ActivatedRouteSnapshot, DetachedRouteHandle } from '@angular/router';
 import { AemPageRouteReuseStrategy } from './AemPageRouteReuseStrategy';
-
 
 describe('AemPageRouteReuseStrategy', () => {
   let aemPageRouteReuseStrategy: AemPageRouteReuseStrategy;

@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {Component, Input, ViewChild} from '@angular/core';
-import { ModelManager } from "@adobe/aem-spa-page-model-manager";
-import {AEMComponentDirective} from "../aem-component.directive";
+import { Component, Input, ViewChild } from '@angular/core';
+import { ModelManager } from '@adobe/aem-spa-page-model-manager';
+import { AEMComponentDirective } from '../aem-component.directive';
 
 @Component({
   selector: 'aem-model-provider,[aemModelProvider]',
@@ -39,25 +39,23 @@ export class AEMModelProviderComponent {
 
   @ViewChild(AEMComponentDirective) aemComponent: AEMComponentDirective;
 
-  constructor() {
-  }
+  constructor() { /* void */ }
 
   /**
    * Updates the item data
    */
-  updateItem() {
-    ModelManager.getData({path: this.cqPath}).then(model => {
+  updateItem(): void {
+    ModelManager.getData({ path: this.cqPath }).then(model => {
       this.cqItem = model;
       this.aemComponent.changeDetectorRef.markForCheck();
     });
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     ModelManager.addListener(this.cqPath, this.updateItem.bind(this));
   }
 
-  ngDestroy() {
+  ngDestroy(): void {
     ModelManager.removeListener(this.cqPath, this.updateItem.bind(this));
   }
 }
-

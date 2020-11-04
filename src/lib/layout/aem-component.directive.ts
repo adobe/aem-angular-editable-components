@@ -26,7 +26,9 @@ import { ComponentMapping } from './component-mapping';
 import { Constants } from './constants';
 import { Utils } from './utils';
 
-
+/**
+ * @private
+ */
 const PLACEHOLDER_CLASS_NAME = 'cq-placeholder';
 
 @Directive({
@@ -50,14 +52,14 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
   /**
    * Model item that corresponds to the current component
    */
-  private _cqItem: object;
+  private _cqItem: any;
 
-  get cqItem(): object {
+  get cqItem(): any {
     return this._cqItem;
   }
 
   @Input()
-  set cqItem(value: object) {
+  set cqItem(value: any) {
     this._cqItem = value;
   }
 
@@ -69,14 +71,16 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
    * Path to the model structure associated with the current component
    */
   @Input() cqPath: string;
+
   /**
    * Name of the current instance of the component
    */
   @Input() itemName: string;
+
   /**
    * HtmlElement attributes for the current instance of the component
    */
-  @Input() itemAttrs: object;
+  @Input() itemAttrs: any;
 
   @Input() aemComponent;
 
@@ -87,18 +91,18 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
     private _changeDetectorRef: ChangeDetectorRef) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.renderComponent(ComponentMapping.get(this.type));
   }
 
-  ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
+  ngOnChanges(): void {
     this.updateComponentData();
   }
 
   /**
    * Returns the type of the cqItem if exists.
    */
-  get type() {
+  get type(): string | undefined {
     return this.cqItem && this.cqItem[Constants.TYPE_PROP];
   }
 
@@ -110,6 +114,7 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
   private renderComponent(componentDefinition: any) {
     if (componentDefinition) {
       const factory = this.factoryResolver.resolveComponentFactory(componentDefinition);
+
       this.viewContainer.clear();
       this._component = this.viewContainer.createComponent(factory);
       this.updateComponentData();
@@ -133,6 +138,7 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
         // Transformation of internal properties namespaced with [:] to [cq]
         // :myProperty => cqMyProperty
         const tempKey = propKey.substr(1);
+
         propKey = 'cq' + tempKey.substr(0, 1).toUpperCase() + tempKey.substr(1);
       }
 
@@ -141,7 +147,9 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
 
     this._component.instance.cqPath = this.cqPath;
     this._component.instance.itemName = this.itemName;
+
     const editConfig = ComponentMapping.getEditConfig(this.type);
+
     if (editConfig && Utils.isInEditor) {
       this.setupPlaceholder(editConfig);
     }
@@ -159,6 +167,7 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
       keys.forEach((key) => {
         if (key === 'class') {
           const classes = this.itemAttrs[key].split(' ');
+
           classes.forEach((itemClass) => {
             this.renderer.addClass(this._component.location.nativeElement, itemClass);
           });
@@ -193,12 +202,11 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
     }
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.setupItemAttrs();
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this._component && this._component.destroy();
   }
-
 }
