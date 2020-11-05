@@ -1,3 +1,10 @@
+## [1.0.6](https://github.com/adobe/aem-angular-editable-components/compare/v1.0.5...v1.0.6) (2020-11-05)
+
+
+### Bug Fixes
+
+* docs generation command typo, releasing from dist directory ([78bde15](https://github.com/adobe/aem-angular-editable-components/commit/78bde15d29405ea9c82c0cdfa99ab7f3394662fb))
+
 ## [1.0.5](https://github.com/adobe/aem-angular-editable-components/compare/v1.0.4...v1.0.5) (2020-11-05)
 
 
