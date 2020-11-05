@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/adobe/aem-angular-editable-components/compare/v1.0.4...v1.0.5) (2020-11-05)
+
+
+### Bug Fixes
+
+* proper pkgRoot for semantic-release ([9051a12](https://github.com/adobe/aem-angular-editable-components/commit/9051a128453218fa403d1e93f9300fe48fe92137))
+
 ## [1.0.4](https://github.com/adobe/aem-angular-editable-components/compare/v1.0.3...v1.0.4) (2020-11-04)
 
 
