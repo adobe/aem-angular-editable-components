@@ -22,6 +22,7 @@ module.exports = {
     '@semantic-release/npm',
     [
       '@semantic-release/github', {
+        pkgRoot: "dist/aem-angular-editable-components/",
         assets: [
           'package.json',
           'CHANGELOG.md'
