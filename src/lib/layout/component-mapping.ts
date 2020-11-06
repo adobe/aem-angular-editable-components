@@ -47,8 +47,7 @@ export class AbstractMappedComponent implements MappedComponentProperties {
     @Input() cqPath;
 }
 
-export type DynamicImportFunction = () => Promise<any>;
-export type MappedType<T extends MappedComponentProperties> = | DynamicImportFunction;
+export type DynamicImportFunction = () => Promise<Type<MappedComponentProperties>>;
 
 
 /**
@@ -79,7 +78,7 @@ export class ComponentMappingWithConfig {
         this.spaMapping.map(resourceTypes, innerClass);
     };
 
-    lazyMap<P extends MappedComponentProperties>(resourceTypes, clazz: () => Promise<unknown>, editConfig: EditConfig<P> = null) {
+    lazyMap<P extends MappedComponentProperties>(resourceTypes, clazz: () => Promise<Type<P>>, editConfig: EditConfig<P> = null) {
         let innerClass = clazz;
 
         if (editConfig) {
@@ -123,7 +122,7 @@ function MapTo<M extends MappedComponentProperties>(resourceTypes) {
 }
 
 function LazyMapTo<M extends MappedComponentProperties>(resourceTypes) {
-    return (clazz: ()=> Promise<unknown>, editConfig: EditConfig<M> = null) => {
+    return (clazz: ()=> Promise<Type<M>>, editConfig: EditConfig<M> = null) => {
         return componentMapping.lazyMap<M>(resourceTypes, clazz, editConfig);
     };
 }

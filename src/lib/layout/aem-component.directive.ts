@@ -99,25 +99,15 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
 
     if(!!mappedFn){
       //check first if we got the component in the normal registry. if yes, use that
-
-      if(mappedFn instanceof Object && !!mappedFn["__esModule"]){
-        const cqItemElement = this.cqItem["angularDynamicComponent"];
-        this.renderComponent(mappedFn[cqItemElement]);
-      }else{
-        this.renderComponent(mappedFn);
-      }
+      this.renderComponent(mappedFn);
 
     }else{
       //ok we don't have it. let's see if it's in the lazyload registry instead and use that.
       const lazyPromise:Promise<any> = ComponentMapping.lazyGet(this.type);
 
       if(!!lazyPromise){
-        const Module = await lazyPromise;
-
-        // @ts-ignore
-        const cqItemElement = this.cqItem.angularDynamicComponent;
-
-        this.renderComponent(Module[cqItemElement]);
+        const Component = await lazyPromise;
+        this.renderComponent(Component);
         this.loaded = true;
         this._changeDetectorRef.detectChanges();
       }
@@ -141,7 +131,7 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
    *
    * @param componentDefinition The component definition to render
    */
-  private renderComponent(componentDefinition: any) {
+  private renderComponent(componentDefinition: Type<MappedComponentProperties>) {
     if (!!componentDefinition) {
       const factory = this.factoryResolver.resolveComponentFactory(componentDefinition);
       this.renderWithFactory(factory);
