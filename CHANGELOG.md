@@ -1,3 +1,10 @@
+## [1.0.7](https://github.com/adobe/aem-angular-editable-components/compare/v1.0.6...v1.0.7) (2021-01-05)
+
+
+### Bug Fixes
+
+* **docs:** remove --mode from docs build after a typedoc breaking change ([3baa981](https://github.com/adobe/aem-angular-editable-components/commit/3baa98167627213a193fce4794dc0ef4a17a699b))
+
 ## [1.0.6](https://github.com/adobe/aem-angular-editable-components/compare/v1.0.5...v1.0.6) (2020-11-05)
 
 
