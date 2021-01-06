@@ -26,8 +26,7 @@ class ComponentTest2 extends AbstractMappedComponent{
 }
 
 
-describe("Component Mapping", () => {
-
+describe('Component Mapping', () => {
   it("stores configuration", () => {
 
     let editConfig1:EditConfig<TestProperties> = { isEmpty: (props) => !!props.some };
@@ -41,5 +40,7 @@ describe("Component Mapping", () => {
     expect(ComponentMapping.getEditConfig("component1")).toBe(editConfig1);
     expect(ComponentMapping.getEditConfig("component2")).toBe(editConfig2);
 
+    expect(ComponentMapping.getEditConfig('component1')).toBe(editConfig1);
+    expect(ComponentMapping.getEditConfig('component2')).toBe(editConfig2);
   });
 });

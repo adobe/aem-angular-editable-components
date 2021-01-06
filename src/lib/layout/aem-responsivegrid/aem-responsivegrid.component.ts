@@ -12,18 +12,25 @@
 
 import { Component, Input } from '@angular/core';
 import { Constants } from '../constants';
-import {AEMAllowedComponentsContainerComponent} from '../aem-allowed-components-container/aem-allowed-components-container.component';
+import { AEMAllowedComponentsContainerComponent } from '../aem-allowed-components-container/aem-allowed-components-container.component';
 
+/**
+ * @private
+ */
 const PLACEHOLDER_CLASS_NAMES = 'aem-Grid-newComponent';
+
+/**
+ * @private
+ */
 const RESPONSIVE_GRID_TYPE = 'wcm/foundation/components/responsivegrid';
 
 @Component({
   selector: 'aem-responsivegrid',
   host: {
       '[class]': 'hostClasses',
-      '[attr.data-cq-data-path]':'cqPath'
+      '[attr.data-cq-data-path]': 'cqPath'
   },
-  templateUrl: './aem-responsivegrid.component.html',
+  templateUrl: './aem-responsivegrid.component.html'
 })
 /**
  * The current class carries the base presentational logic of the AEM Layout Container (aka. Responsive grid)
@@ -36,7 +43,7 @@ export class AEMResponsiveGridComponent extends AEMAllowedComponentsContainerCom
   /**
    * Map of class names corresponding to each child of the current responsive grid
    */
-  @Input() columnClassNames: Object;
+  @Input() columnClassNames: any;
   /**
    * Class names of the current component
    */
@@ -50,25 +57,25 @@ export class AEMResponsiveGridComponent extends AEMAllowedComponentsContainerCom
    * Returns the column class names for a given column
    * @param itemKey - The key of the column item
    */
-  getColumnClassNames(itemKey:string) {
+  getColumnClassNames(itemKey: string): string {
     return this.columnClassNames && this.columnClassNames[itemKey];
   }
 
   /**
    * Returns the placeholder classes
    */
-  getPlaceholderClassNames() {
+  getPlaceholderClassNames(): string {
     return super.getPlaceholderClassNames() + ' ' + PLACEHOLDER_CLASS_NAMES;
   }
 
   /**
    * Returns the class names of the responsive grid based on the data from the cqModel
    */
-  getHostClassNames() {
+  getHostClassNames(): string {
     let classNames = super.getHostClassNames();
 
     if (this.classNames) {
-        classNames += ' ' + (this.classNames || '') ;
+        classNames += ' ' + (this.classNames || '');
     }
 
     return classNames + ' ' + this.gridClassNames;
@@ -79,8 +86,9 @@ export class AEMResponsiveGridComponent extends AEMAllowedComponentsContainerCom
    *
    * @param path - the provided path to aggregate with the container path
    */
-  getAttrDataPath(path) {
-    let item = this.getItem(path);
+  getAttrDataPath(path: string): string | null {
+    const item = this.getItem(path);
+
     if (item && item[Constants.TYPE_PROP] === RESPONSIVE_GRID_TYPE) {
       // We don't want to add the path for the wrapper for a reponsivegrid
       // The reponsivegrid adds the path on it's own

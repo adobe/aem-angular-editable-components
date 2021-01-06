@@ -21,7 +21,7 @@ import { AbstractMappedComponent } from '../layout/component-mapping';
   template: `<div>{{ title }}</div>`
 })
 
-export class Component1 extends AbstractMappedComponent{
+export class Test1Component extends AbstractMappedComponent {
   @Input() title:any;
 
   constructor() {

@@ -1,5 +1,5 @@
 name: Continuous Integration
-on: pull_request
+on: [ pull_request, pull_request_target ]
 
 jobs:
   test:
@@ -43,3 +43,5 @@ jobs:
             -Dsonar.organization=adobeinc
             -Dsonar.projectKey=adobe_aem-angular-editable-components
             -Dsonar.sources=src
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+            -Dsonar.coverage.exclusions=src/public_api.ts,src/test.ts,src/lib/aem-angular-editable-components.module.ts,**/*.spec.ts

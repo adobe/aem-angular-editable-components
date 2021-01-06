@@ -35,6 +35,14 @@
     "enableIvy": false
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "e2e/**/*",
+    "*.js",
+    ".*.js",
+    ".*/**/*.json",
+    "**/*.json"
+  ],
+  "exclude": [
+    "tsconfig.json"
   ]
 }

@@ -1,3 +1,32 @@
+## [1.0.7](https://github.com/adobe/aem-angular-editable-components/compare/v1.0.6...v1.0.7) (2021-01-05)
+
+
+### Bug Fixes
+
+* **docs:** remove --mode from docs build after a typedoc breaking change ([3baa981](https://github.com/adobe/aem-angular-editable-components/commit/3baa98167627213a193fce4794dc0ef4a17a699b))
+
+## [1.0.6](https://github.com/adobe/aem-angular-editable-components/compare/v1.0.5...v1.0.6) (2020-11-05)
+
+
+### Bug Fixes
+
+* docs generation command typo, releasing from dist directory ([78bde15](https://github.com/adobe/aem-angular-editable-components/commit/78bde15d29405ea9c82c0cdfa99ab7f3394662fb))
+
+## [1.0.5](https://github.com/adobe/aem-angular-editable-components/compare/v1.0.4...v1.0.5) (2020-11-05)
+
+
+### Bug Fixes
+
+* proper pkgRoot for semantic-release ([9051a12](https://github.com/adobe/aem-angular-editable-components/commit/9051a128453218fa403d1e93f9300fe48fe92137))
+
+## [1.0.4](https://github.com/adobe/aem-angular-editable-components/compare/v1.0.3...v1.0.4) (2020-11-04)
+
+
+### Bug Fixes
+
+* **eslint:** adapt code according to eslint reports ([6fa889c](https://github.com/adobe/aem-angular-editable-components/commit/6fa889c2d45682d65ef48b00c5773890a6b3df95))
+* **package.json:** cleanup ([e22e411](https://github.com/adobe/aem-angular-editable-components/commit/e22e411087e2aeef90a72179a10bd1c2f413a134))
+
 ## [1.0.3](https://github.com/adobe/aem-angular-editable-components/compare/v1.0.2...v1.0.3) (2020-09-03)
 
 

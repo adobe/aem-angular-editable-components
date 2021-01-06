@@ -65,19 +65,20 @@ export class ComponentMappingWithConfig{
    * @param [editConfig] - Edit configuration to be stored for the given resource types
    */
   map<P extends MappedComponentProperties>(resourceTypes, clazz, editConfig:EditConfig<P> = null) {
-      let innerClass = clazz;
+      const innerClass = clazz;
 
       if (editConfig) {
           this.editConfigMap[resourceTypes] = editConfig;
       }
+
       this.spaMapping.map(resourceTypes, innerClass);
-  };
+  }
 
   /**
    * Returns the component class for the given resourceType
    * @param resourceType - Resource type for which the component class has been stored
    */
-  get(resourceType:string):Type<MappedComponentProperties>{
+  get(resourceType:string):Type<MappedComponentProperties> {
     return this.spaMapping.get(resourceType);
   }
 
@@ -90,13 +91,12 @@ export class ComponentMappingWithConfig{
   } 
 }
 
-let componentMapping = new ComponentMappingWithConfig(SPAComponentMapping);
+const componentMapping = new ComponentMappingWithConfig(SPAComponentMapping);
 
 function MapTo <M extends MappedComponentProperties> (resourceTypes) {
     return (clazz:Type<M>, editConfig:EditConfig<M> = null) => {
         return componentMapping.map(resourceTypes, clazz, editConfig);
     };
 }
-
 
 export { componentMapping as ComponentMapping, MapTo };
