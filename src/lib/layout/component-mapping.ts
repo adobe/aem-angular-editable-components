@@ -34,27 +34,43 @@ export class ComponentMappingWithConfig {
   map(resourceTypes, clazz, editConfig = null) {
       const innerClass = clazz;
 
-      if (editConfig) {
-          this.editConfigMap[resourceTypes] = editConfig;
-      }
+        if (editConfig) {
+            this.editConfigMap[resourceTypes] = editConfig;
+        }
+        this.spaMapping.map(resourceTypes, innerClass);
+    }
 
-      this.spaMapping.map(resourceTypes, innerClass);
-  }
+    lazyMap(resourceTypes, clazz: () => Promise<unknown>, editConfig = null) {
+        const innerClass = clazz;
+
+        if (editConfig) {
+            this.editConfigMap[resourceTypes] = editConfig;
+        }
+        this.spaMapping.lazyMap(resourceTypes, innerClass);
+    }
 
   /**
    * Returns the component class for the given resourceType
    * @param resourceType - Resource type for which the component class has been stored
    */
-  get(resourceType: string): any {
+  get(resourceType: string): unknown {
     return this.spaMapping.get(resourceType);
   }
+
+  /**
+     * Returns the component class for the given resourceType
+     * @param resourceType - Resource type for which the component class has been stored
+     */
+    lazyGet(resourceType: string): Promise<unknown> {
+        return this.spaMapping.getLazy(resourceType);
+    }
 
   /**
    * Returns the EditConfig structure for the given type
    * @param resourceType - Resource type for which the configuration has been stored
    */
-  getEditConfig(resourceType) {
-    return this.editConfigMap[resourceType];
+  getEditConfig(resourceType:string) {
+      return this.editConfigMap[resourceType];
   }
 }
 
@@ -66,4 +82,10 @@ function MapTo(resourceTypes) {
     };
 }
 
-export { componentMapping as ComponentMapping, MapTo };
+function LazyMapTo(resourceTypes) {
+    return (clazz: ()=> Promise<unknown>, editConfig = null) => {
+        return componentMapping.lazyMap(resourceTypes, clazz, editConfig);
+    };
+}
+
+export { componentMapping as ComponentMapping, MapTo, LazyMapTo };

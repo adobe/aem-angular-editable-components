@@ -9,21 +9,5 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-
-import { Component, Input } from '@angular/core';
-
-@Component({
-  selector: 'test-comp1',
-  host: {
-    '[attr.data-title]': 'title'
-  },
-  template: `<div>{{ title }}</div>`
-})
-
-export class Test1Component {
-  @Input() title: string;
-
-  constructor() {
-      // empty
-  }
-}
+export * from './lazy.module';
+export * from './lazy.component';

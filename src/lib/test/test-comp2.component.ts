@@ -21,7 +21,7 @@ import { Component, Input } from '@angular/core';
 })
 
 export class Test2Component {
-  @Input() title:any;
+  @Input() title: string;
 
   constructor() {
       // empty

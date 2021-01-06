@@ -10,10 +10,11 @@
  * governing permissions and limitations under the License.
  */
 
-import { ComponentMapping, MapTo } from './component-mapping';
+import { ComponentMapping, LazyMapTo, MapTo } from './component-mapping';
+import LazyComponent from '../test/lazy-component-wrapper/lazy.component';
 
 describe('Component Mapping', () => {
-  it('stores configuration', () => {
+  it('stores configuration', async () => {
     const Component1 = function() { /* void */ };
     const Component2 = function() { /* void */ };
     const editConfig1 = { some: 1 };
@@ -21,9 +22,19 @@ describe('Component Mapping', () => {
 
     MapTo('component1')(Component1, editConfig1);
     MapTo('component2')(Component2, editConfig2);
+    LazyMapTo('lazycomponent3')(() => new Promise<unknown>((resolve, reject) => {
+      import('../test/lazy-component-wrapper/lazy.component')
+          .then((Module) => { resolve(Module.LazyComponent); })
+          .catch(reject);
+    }));
 
     expect(ComponentMapping.get('component1')).toBe(Component1);
     expect(ComponentMapping.get('component2')).toBe(Component2);
+
+    const LoadedComp = await ComponentMapping.lazyGet('lazycomponent3');
+
+    expect(LoadedComp).toBe(LazyComponent);
+
     expect(ComponentMapping.getEditConfig('component1')).toBe(editConfig1);
     expect(ComponentMapping.getEditConfig('component2')).toBe(editConfig2);
   });

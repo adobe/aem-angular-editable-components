@@ -13,17 +13,17 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'test-comp1',
-  host: {
-    '[attr.data-title]': 'title'
-  },
-  template: `<div>{{ title }}</div>`
+    selector: 'lazy-comp',
+    template: `<div>{{ some }}</div>`
 })
+/**
+ * The current class carries the base presentational logic of the AEM Layout Container (aka. Responsive grid)
+ */
+export class LazyComponent {
+    @Input() cqPath: string;
+    @Input() isInEditor: boolean;
+    @Input() some: string;
 
-export class Test1Component {
-  @Input() title: string;
-
-  constructor() {
-      // empty
-  }
 }
+
+export default LazyComponent;
