@@ -10,6 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
+
 import { ComponentMapping, MapTo, MappedComponentProperties, EditConfig, AbstractMappedComponent } from "./component-mapping";
 import { Component, Input } from '@angular/core';
 
@@ -25,7 +26,7 @@ class ComponentTest2 extends AbstractMappedComponent{
 }
 
 
-describe("Component Mapping", () => {
+describe('Component Mapping', () => {
 
   it("stores configuration", () => {
 

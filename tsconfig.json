@@ -4,7 +4,7 @@
     "baseUrl": "./",
     "downlevelIteration": true,
     "importHelpers": true,
-    "module": "es2020",
+    "module": "esnext",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -35,6 +35,14 @@
     "enableIvy": false
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "e2e/**/*",
+    "*.js",
+    ".*.js",
+    ".*/**/*.json",
+    "**/*.json"
+  ],
+  "exclude": [
+    "tsconfig.json"
   ]
 }

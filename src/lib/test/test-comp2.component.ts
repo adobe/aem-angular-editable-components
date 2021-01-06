@@ -20,8 +20,7 @@ import { AbstractMappedComponent } from '../layout/component-mapping';
   },
   template: `<div>{{ title }}</div>`
 })
-
-export class Component2 extends AbstractMappedComponent {
+export class Test2Component extends AbstractMappedComponent {
   @Input() title:any;
 
   constructor() {

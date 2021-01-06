@@ -13,13 +13,16 @@
 import { Component } from '@angular/core';
 import { AEMContainerComponent } from '../aem-container/aem-container.component';
 
+/**
+ * @private
+ */
 const PAGE_MODEL_SEPARATOR = '/jcr:content/';
 
 @Component({
   selector: 'aem-page',
   host: {
       '[class]': 'hostClasses',
-      '[attr.data-cq-data-path]':'cqPath'
+      '[attr.data-cq-data-path]': 'cqPath'
   },
   templateUrl: '../aem-container/aem-container.component.html'
 })
@@ -32,9 +35,7 @@ export class AEMPageComponent extends AEMContainerComponent {
    *
    * @param path - the provided path to aggregate with the container path
    */
-  getDataPath(path) {
+  getDataPath(path: string): string {
     return this.cqPath ? this.cqPath + PAGE_MODEL_SEPARATOR + path : path;
   }
-
 }
-

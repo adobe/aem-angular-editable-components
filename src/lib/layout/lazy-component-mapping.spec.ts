@@ -1,4 +1,5 @@
 import {EditConfig, LazyMapTo, MappedComponentProperties, MapTo} from "./component-mapping";
+import {ComponentMapping as SPAComponentMapping} from '@adobe/aem-spa-component-mapping';
 import {TestProperties} from "./component-mapping.spec";
 
 import {ComponentFixture, TestBed} from '@angular/core/testing';
@@ -12,7 +13,7 @@ import {AEMContainerComponent} from "./aem-container/aem-container.component";
 import {
     AEMAllowedComponentsContainerComponent
 } from "./aem-allowed-components-container/aem-allowed-components-container.component";
-import {Component1} from '../test/test-comp1.component';
+import {Test1Component} from '../test/test-comp1.component';
 import LazyComponent from "../test/lazy-component-wrapper/lazy.component";
 
 describe("Dynamic Component Mapping", () => {
@@ -23,20 +24,20 @@ describe("Dynamic Component Mapping", () => {
     let isInEditorSpy;
 
     const cqItems = {
-        // 'test1': {
-        //     ':type': 'adobe/component1',
-        //     'cqType': 'adobe/component1',
-        //     'some': 'test1'
-        // },
+        'test1': {
+            ':type': 'adobe/component1',
+            'cqType': 'adobe/component1',
+            'some': 'test1'
+        },
         'test2': {
             ':type': 'adobe/component2',
             'cqType': 'adobe/component2',
             'title': 'test2',
             'angularDynamicComponent': 'LazyComponent',
-            'some': 'Bla'
+            'some': 'Feike'
         }
     };
-    const cqItemsOrder = ['test2'];
+    const cqItemsOrder = ['test1','test2'];
 
     beforeEach(() => {
         spyOn(ModelManager, 'addListener').and.returnValue(undefined);
@@ -46,12 +47,13 @@ describe("Dynamic Component Mapping", () => {
             declarations: [AEMContainerComponent,
                 AEMComponentDirective,
                 AEMModelProviderComponent,
-                Component1,
+                Test1Component,
+                LazyComponent,
                 AEMAllowedComponentsContainerComponent,
                 AEMResponsiveGridComponent]
         }).overrideModule(BrowserDynamicTestingModule, {
             set: {
-                entryComponents: [AEMResponsiveGridComponent, Component1]
+                entryComponents: [AEMResponsiveGridComponent, Test1Component, LazyComponent]
             }
         }).compileComponents();
 
@@ -60,30 +62,43 @@ describe("Dynamic Component Mapping", () => {
         fixture.detectChanges();
     });
 
-    it("should map and show lazyComponents", () => {
+    it("should map and show lazyComponents", async () => {
 
-        let editConfig1: EditConfig<TestProperties> = {isEmpty: (props) => !!props.some};
+        let editConfig1: EditConfig<TestProperties> = {emptyLabel: 'CustomText', isEmpty: (props) => !!props.some};
 
         isInEditorSpy.and.returnValue(true);
         component.cqItemsOrder = cqItemsOrder;
         component.cqItems = cqItems;
 
+        const imported = () => new Promise<any>((resolve, reject) => {
+            import('../test/lazy-component-wrapper/lazy.entry').then((Module) => {
+                resolve(Module.LazyComponent);
+            }).catch(reject);
+        });
 
-        //MapTo('adobe/component1')(Component1);
+        MapTo<MappedComponentProperties>("adobe/component1")(Test1Component);
+        LazyMapTo<TestProperties>("adobe/component2")(imported,editConfig1);
 
-        const imported = () => import('../test/lazy-component-wrapper/lazy.entry');
+        const mappedComponentPromise = SPAComponentMapping.getLazy("adobe/component2");
+        let resolved = false;
+        if(!!mappedComponentPromise){
+            await mappedComponentPromise.then((Component) => {
+                expect(Component).toBe(LazyComponent);
+                resolved = true;
+            }).catch(fail);
+        }else{
+            fail("No mapped promise found!");
+        }
 
-        //@ts-ignore
-        LazyMapTo("adobe/component2")(imported);
-
-
-
-
-        //make sure the import is completed so it's immediately executed.
+        expect(resolved).toBeTrue();
 
         fixture.detectChanges();
 
-        console.log(fixture.nativeElement);
+        expect(fixture.nativeElement.querySelector('test-comp1')).toBeDefined();
+        expect(fixture.nativeElement.querySelector('lazy-comp')).toBeDefined();
+        expect(fixture.nativeElement.querySelector('lazy-comp.cq-placeholder[data-emptytext="CustomText"] div').innerText).toEqual('Feike');
+
+
 
     });
 
