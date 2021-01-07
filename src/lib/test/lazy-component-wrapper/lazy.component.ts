@@ -11,19 +11,19 @@
  */
 
 import { Component, Input } from '@angular/core';
-import { AbstractMappedComponent } from '../layout/component-mapping';
 
 @Component({
-  selector: 'test-comp2',
-  host: {
-    '[attr.data-title]': 'title'
-  },
-  template: `<div>{{ title }}</div>`
+    selector: 'lazy-comp',
+    template: `<div>{{ some }}</div>`
 })
-export class Test2Component extends AbstractMappedComponent {
-  @Input() title: string;
+/**
+ * The current class carries the base presentational logic of the AEM Layout Container (aka. Responsive grid)
+ */
+export class LazyComponent {
+    @Input() cqPath: string;
+    @Input() isInEditor: boolean;
+    @Input() some: string;
 
-  constructor() {
-    super();
-  }
 }
+
+export default LazyComponent;

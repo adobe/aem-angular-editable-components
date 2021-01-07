@@ -67,20 +67,36 @@ export class ComponentMappingWithConfig{
   map<P extends MappedComponentProperties>(resourceTypes, clazz, editConfig:EditConfig<P> = null) {
       const innerClass = clazz;
 
-      if (editConfig) {
-          this.editConfigMap[resourceTypes] = editConfig;
-      }
+        if (editConfig) {
+            this.editConfigMap[resourceTypes] = editConfig;
+        }
+        this.spaMapping.map(resourceTypes, innerClass);
+    }
 
-      this.spaMapping.map(resourceTypes, innerClass);
-  }
+    lazyMap(resourceTypes, clazz: () => Promise<unknown>, editConfig = null) {
+        const innerClass = clazz;
+
+        if (editConfig) {
+            this.editConfigMap[resourceTypes] = editConfig;
+        }
+        this.spaMapping.lazyMap(resourceTypes, innerClass);
+    }
 
   /**
    * Returns the component class for the given resourceType
    * @param resourceType - Resource type for which the component class has been stored
    */
   get(resourceType:string):Type<MappedComponentProperties> {
-    return this.spaMapping.get(resourceType);
+    return this.spaMapping.get(resourceType) as Type<MappedComponentProperties>;
   }
+
+  /**
+     * Returns the component class for the given resourceType
+     * @param resourceType - Resource type for which the component class has been stored
+     */
+    lazyGet(resourceType: string): Promise<unknown> {
+        return this.spaMapping.getLazy(resourceType);
+    }
 
   /**
    * Returns the EditConfig structure for the given type
@@ -88,7 +104,7 @@ export class ComponentMappingWithConfig{
    */
   getEditConfig(resourceType:string):EditConfig<MappedComponentProperties> {
       return this.editConfigMap[resourceType];
-  } 
+  }
 }
 
 const componentMapping = new ComponentMappingWithConfig(SPAComponentMapping);
@@ -99,4 +115,10 @@ function MapTo <M extends MappedComponentProperties> (resourceTypes) {
     };
 }
 
-export { componentMapping as ComponentMapping, MapTo };
+function LazyMapTo(resourceTypes) {
+    return (clazz: ()=> Promise<unknown>, editConfig = null) => {
+        return componentMapping.lazyMap(resourceTypes, clazz, editConfig);
+    };
+}
+
+export { componentMapping as ComponentMapping, MapTo, LazyMapTo };

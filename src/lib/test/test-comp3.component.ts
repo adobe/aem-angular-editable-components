@@ -21,9 +21,9 @@ import { TestCompProperties } from './test-comp.type';
   },
   template: `<div>{{ title }}</div>`
 })
-
 export class Test3Component  extends AbstractMappedComponent implements TestCompProperties{
-  @Input() title:any;
+  @Input() title: string;
+
   constructor() {
     super();
   }

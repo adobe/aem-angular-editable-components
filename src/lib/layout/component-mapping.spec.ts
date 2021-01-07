@@ -10,8 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import { ComponentMapping, MapTo, MappedComponentProperties, EditConfig, AbstractMappedComponent } from "./component-mapping";
+import {ComponentMapping, MapTo, MappedComponentProperties, EditConfig, AbstractMappedComponent, LazyMapTo} from "./component-mapping";
 import { Component, Input } from '@angular/core';
+import LazyComponent from '../test/lazy-component-wrapper/lazy.component';
 
 
 interface TestProperties extends MappedComponentProperties{
@@ -27,13 +28,21 @@ class ComponentTest2 extends AbstractMappedComponent{
 
 
 describe('Component Mapping', () => {
-  it("stores configuration", () => {
+  it("stores configuration", async () => {
 
     let editConfig1:EditConfig<TestProperties> = { isEmpty: (props) => !!props.some };
     let editConfig2:EditConfig<TestProperties> = { isEmpty: (props) => !!props.some  };
 
     MapTo<TestProperties>("component1")(ComponentTest1, editConfig1);
     MapTo<TestProperties>("component2")(ComponentTest2, editConfig2);
+    LazyMapTo('lazycomponent3')(() => new Promise<unknown>((resolve, reject) => {
+      import('../test/lazy-component-wrapper/lazy.component')
+          .then((Module) => { resolve(Module.LazyComponent); })
+          .catch(reject);
+    }));
+
+    const LoadedComp = await ComponentMapping.lazyGet('lazycomponent3');
+    expect(LoadedComp).toBe(LazyComponent);
 
     expect(ComponentMapping.get("component1")).toBe(ComponentTest1);
     expect(ComponentMapping.get("component2")).toBe(ComponentTest2);
