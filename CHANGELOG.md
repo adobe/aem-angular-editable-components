@@ -1,3 +1,9 @@
+
+
+## Features
+
+* BREAKING CHANGE: MapTo and LazyMapTo are now typed with a generic extending MappedComponentProperties. Use the interface MappedComponentProperties, abstract class AbstractMappedComponent or any type to fix your build.
+
 ## [1.0.7](https://github.com/adobe/aem-angular-editable-components/compare/v1.0.6...v1.0.7) (2021-01-05)
 
 
