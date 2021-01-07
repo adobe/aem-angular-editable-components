@@ -43,7 +43,7 @@ export class AEMResponsiveGridComponent extends AEMAllowedComponentsContainerCom
   /**
    * Map of class names corresponding to each child of the current responsive grid
    */
-  @Input() columnClassNames: any;
+  @Input() columnClassNames: {[key: string]: string};
   /**
    * Class names of the current component
    */

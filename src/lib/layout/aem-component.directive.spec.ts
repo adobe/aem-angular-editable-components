@@ -34,7 +34,7 @@ class AEMDirectiveTestComponent {
   },
   template: `<div></div>`
 })
-class DirectiveComponent extends AbstractMappedComponent{
+class DirectiveComponent extends AbstractMappedComponent {
   @Input() attr1;
   @Input() attr2;
 

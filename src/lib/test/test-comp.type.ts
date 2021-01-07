@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import { MappedComponentProperties } from "../layout/component-mapping";
+import { MappedComponentProperties } from '../layout/component-mapping';
 
 export interface TestCompProperties extends MappedComponentProperties{
-    title:any;
+    title: string;
 }

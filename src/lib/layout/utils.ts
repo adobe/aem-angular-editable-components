@@ -49,7 +49,7 @@ function isBrowser() {
  */
 function getWCMMode() {
     if (isBrowser()) {
-      const wcmModeMeta: any = document.head.querySelector(WCM_MODE_META_SELECTOR);
+      const wcmModeMeta: HTMLMetaElement = document.head.querySelector(WCM_MODE_META_SELECTOR);
 
       return wcmModeMeta && wcmModeMeta.content;
     }

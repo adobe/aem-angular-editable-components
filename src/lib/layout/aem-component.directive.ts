@@ -23,11 +23,11 @@ import {
     OnChanges,
     OnDestroy,
     OnInit,
-    Renderer2,
+    Renderer2, Type,
     ViewContainerRef
 } from '@angular/core';
 
-import { ComponentMapping } from './component-mapping';
+import { ComponentMapping, MappedComponentProperties } from './component-mapping';
 import { Constants } from './constants';
 import { Utils } from './utils';
 
@@ -52,18 +52,18 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
     /**
      * Dynamically created component
      */
-    private _component: ComponentRef<any>;
+    private _component: ComponentRef<MappedComponentProperties>;
     /**
      * Model item that corresponds to the current component
      */
-    private _cqItem: any;
+    private _cqItem: MappedComponentProperties;
 
-    get cqItem(): any {
+    get cqItem(): MappedComponentProperties {
         return this._cqItem;
     }
 
     @Input()
-    set cqItem(value: any) {
+    set cqItem(value: MappedComponentProperties) {
         this._cqItem = value;
     }
 
@@ -84,7 +84,7 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
     /**
      * HtmlElement attributes for the current instance of the component
      */
-    @Input() itemAttrs: any;
+    @Input() itemAttrs: unknown;
 
     @Input() loaded: boolean;
 
@@ -99,9 +99,9 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
         private _changeDetectorRef: ChangeDetectorRef) {
     }
 
-    async ngOnInit() {
+    async ngOnInit(): Promise<void> {
 
-        if (!!this.type) {
+        if (this.type) {
             const mappedFn = ComponentMapping.get(this.type);
 
             if (mappedFn) {
@@ -109,9 +109,9 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
                 this.renderComponent(mappedFn);
             } else {
                 //ok we don't have it. let's see if it's in the lazyload registry instead and use that.
-                const lazyPromise:Promise<unknown> = ComponentMapping.lazyGet(this.type);
+                const lazyPromise:Promise<Type<MappedComponentProperties>> = ComponentMapping.lazyGet(this.type);
 
-                await lazyPromise.then((Component:unknown) => {
+                await lazyPromise.then((Component:Type<MappedComponentProperties>) => {
                     this.renderComponent(Component);
                     this.loaded = true;
                     this._changeDetectorRef.detectChanges();
@@ -120,11 +120,9 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
                 });
 
             }
-        }else{
+        } else {
             console.warn('no type on ' + this.cqPath);
         }
-
-
 
     }
 
@@ -144,7 +142,7 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
      *
      * @param componentDefinition The component definition to render
      */
-    private renderComponent(componentDefinition: any) {
+    private renderComponent(componentDefinition: Type<MappedComponentProperties>) {
         if (componentDefinition) {
             const factory = this.factoryResolver.resolveComponentFactory(componentDefinition);
 
@@ -154,7 +152,7 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
         }
     }
 
-    private renderWithFactory(factory:ComponentFactory<any>) {
+    private renderWithFactory(factory:ComponentFactory<MappedComponentProperties>) {
         this.viewContainer.clear();
         this._component = this.viewContainer.createComponent(factory);
         this.updateComponentData();
@@ -177,6 +175,7 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
                 // Transformation of internal properties namespaced with [:] to [cq]
                 // :myProperty => cqMyProperty
                 const tempKey = propKey.substr(1);
+
                 propKey = 'cq' + tempKey.substr(0, 1).toUpperCase() + tempKey.substr(1);
             }
 
