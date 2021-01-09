@@ -23,7 +23,7 @@ export class ComponentMappingWithConfig {
    */
   private editConfigMap = {};
 
-  constructor(private spaMapping:SPAComponentMapping) {}
+  constructor(private spaMapping: SPAComponentMapping) {}
 
   /**
    * Stores a component class for the given resource types and also allows to provide an EditConfig object
@@ -75,7 +75,7 @@ export class ComponentMappingWithConfig {
    * Returns the EditConfig structure for the given type
    * @param resourceType - Resource type for which the configuration has been stored
    */
-  getEditConfig(resourceType:string) {
+  getEditConfig(resourceType: string) {
       return this.editConfigMap[resourceType];
   }
 }
@@ -89,7 +89,7 @@ function MapTo(resourceTypes) {
 }
 
 function LazyMapTo(resourceTypes) {
-    return (clazz: ()=> Promise<unknown>, editConfig = null) => {
+    return (clazz: () => Promise<unknown>, editConfig = null) => {
         return componentMapping.lazyMap(resourceTypes, clazz, editConfig);
     };
 }
