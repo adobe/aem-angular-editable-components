@@ -1,7 +1,3 @@
-## Features
-
-* LazyMapTo support : Now you can lazy load your code splitted components on demand using a Promise
-
 ## [1.0.7](https://github.com/adobe/aem-angular-editable-components/compare/v1.0.6...v1.0.7) (2021-01-05)
 
 
