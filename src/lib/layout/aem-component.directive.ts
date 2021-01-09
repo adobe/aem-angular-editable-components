@@ -140,17 +140,17 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
   }
 
   /**
-  * Returns the type of the cqItem if exists.
-  */
+   * Returns the type of the cqItem if exists.
+   */
   get type(): string | undefined {
    return this.cqItem && this.cqItem[Constants.TYPE_PROP];
   }
 
   /**
-  * Renders a component dynamically based on the component definition
-  *
-  * @param componentDefinition The component definition to render
-  */
+   * Renders a component dynamically based on the component definition
+   *
+   * @param componentDefinition The component definition to render
+   */
   private renderComponent(componentDefinition: any) {
    if (componentDefinition) {
     const factory = this.factoryResolver.resolveComponentFactory(componentDefinition);
@@ -168,8 +168,8 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
   }
 
   /**
-  * Updates the data of the component based the data of the directive
-  */
+   * Updates the data of the component based the data of the directive
+   */
   private updateComponentData() {
    if (!this._component || !this._component.instance) {
     return;
@@ -204,8 +204,8 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
   }
 
   /**
-  * Adds the specified item attributes to the element
-  */
+   * Adds the specified item attributes to the element
+   */
   private setupItemAttrs() {
    if (this.itemAttrs) {
     const keys = Object.getOwnPropertyNames(this.itemAttrs);
@@ -225,19 +225,19 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
   }
 
   /**
-  * Determines if the placeholder should e displayed.
-  *
-  * @param editConfig - the edit config of the directive
-  */
+   * Determines if the placeholder should e displayed.
+   *
+   * @param editConfig - the edit config of the directive
+   */
   private usePlaceholder(editConfig) {
    return editConfig.isEmpty && typeof editConfig.isEmpty === 'function' && editConfig.isEmpty(this.cqItem);
   }
 
   /**
-  * Setups the placeholder of needed for the AEM editor
-  *
-  * @param editConfig - the editConfig, which will dictate the classes to be added on.
-  */
+   * Setups the placeholder of needed for the AEM editor
+   *
+   * @param editConfig - the editConfig, which will dictate the classes to be added on.
+   */
   private setupPlaceholder(editConfig) {
    if (this.usePlaceholder(editConfig)) {
     this.renderer.addClass(this._component.location.nativeElement, PLACEHOLDER_CLASS_NAME);
