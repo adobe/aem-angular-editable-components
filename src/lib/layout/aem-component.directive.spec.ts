@@ -14,7 +14,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { AEMComponentDirective } from './aem-component.directive';
 import { Component, Input } from '@angular/core';
-import { ComponentMapping, MapTo } from './component-mapping';
+import { ComponentMapping, MapTo, LazyMapTo} from './component-mapping';
 import { Utils } from './utils';
 
 @Component({
@@ -43,6 +43,7 @@ class DirectiveComponent {
   }
 }
 MapTo('directive/comp')(DirectiveComponent);
+LazyMapTo('some/lazy/comp')(() => import('../test/lazy-component-wrapper/lazy.component').then((m) => m.LazyComponent));
 
 describe('AEMComponentDirective', () => {
 
@@ -103,6 +104,20 @@ describe('AEMComponentDirective', () => {
     expect(dynamicElement.getAttribute('attr1')).toEqual(componentData['attr1']);
     expect(dynamicElement.getAttribute('attr2')).toEqual(componentData['attr2']);
   });
+  it('should correctly pass the inputs for lazy component', async() => {
+    const componentData = {
+      some: 'Some value',
+      ':type': 'some/lazy/comp'
+    };
+
+    component.data = componentData;
+
+    await import('../test/lazy-component-wrapper/lazy.component');
+    fixture.detectChanges();
+
+  });
+
+
 
   it('should setup the placeholder', () => {
     isInEditorSpy.and.returnValue(true);

@@ -47,7 +47,7 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: [ 'ChromeCI' ],
-    singleRun: true,
+    singleRun: false,
     customLaunchers
   });
 };
