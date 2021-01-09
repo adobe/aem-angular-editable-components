@@ -211,15 +211,15 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
       const keys = Object.getOwnPropertyNames(this.itemAttrs);
 
       keys.forEach((key) => {
-         if (key === 'class') {
-           const classes = this.itemAttrs[key].split(' ');
+        if (key === 'class') {
+          const classes = this.itemAttrs[key].split(' ');
 
-           classes.forEach((itemClass) => {
-             this.renderer.addClass(this._component.location.nativeElement, itemClass);
-           });
-           } else {
-             this.renderer.setAttribute(this._component.location.nativeElement, key, this.itemAttrs[key]);
-           }
+          classes.forEach((itemClass) => {
+            this.renderer.addClass(this._component.location.nativeElement, itemClass);
+          });
+        } else {
+          this.renderer.setAttribute(this._component.location.nativeElement, key, this.itemAttrs[key]);
+        }
       });
    }
   }
