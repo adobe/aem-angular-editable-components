@@ -59,16 +59,16 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
   private _cqItem: any;
 
   get cqItem(): any {
-   return this._cqItem;
+    return this._cqItem;
   }
 
   @Input()
   set cqItem(value: any) {
-   this._cqItem = value;
+    this._cqItem = value;
   }
 
   get changeDetectorRef(): ChangeDetectorRef {
-   return this._changeDetectorRef;
+    return this._changeDetectorRef;
   }
 
   /**
@@ -181,46 +181,46 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
       let propKey = key;
 
       if (propKey.startsWith(':')) {
-       // Transformation of internal properties namespaced with [:] to [cq]
-       // :myProperty => cqMyProperty
-       const tempKey = propKey.substr(1);
+        // Transformation of internal properties namespaced with [:] to [cq]
+        // :myProperty => cqMyProperty
+        const tempKey = propKey.substr(1);
 
-       propKey = 'cq' + tempKey.substr(0, 1).toUpperCase() + tempKey.substr(1);
+        propKey = 'cq' + tempKey.substr(0, 1).toUpperCase() + tempKey.substr(1);
+     }
+
+     this._component.instance[propKey] = this.cqItem[key];
+    });
+
+    this._component.instance.cqPath = this.cqPath;
+    this._component.instance.itemName = this.itemName;
+
+    const editConfig = ComponentMapping.getEditConfig(this.type);
+
+    if (editConfig && Utils.isInEditor) {
+      this.setupPlaceholder(editConfig);
     }
 
-    this._component.instance[propKey] = this.cqItem[key];
-   });
-
-   this._component.instance.cqPath = this.cqPath;
-   this._component.instance.itemName = this.itemName;
-
-   const editConfig = ComponentMapping.getEditConfig(this.type);
-
-   if (editConfig && Utils.isInEditor) {
-    this.setupPlaceholder(editConfig);
-   }
-
-   this._changeDetectorRef.detectChanges();
+    this._changeDetectorRef.detectChanges();
   }
 
   /**
    * Adds the specified item attributes to the element
    */
   private setupItemAttrs() {
-   if (this.itemAttrs) {
-    const keys = Object.getOwnPropertyNames(this.itemAttrs);
+    if (this.itemAttrs) {
+      const keys = Object.getOwnPropertyNames(this.itemAttrs);
 
-    keys.forEach((key) => {
-     if (key === 'class') {
-    const classes = this.itemAttrs[key].split(' ');
+      keys.forEach((key) => {
+         if (key === 'class') {
+           const classes = this.itemAttrs[key].split(' ');
 
-    classes.forEach((itemClass) => {
-      this.renderer.addClass(this._component.location.nativeElement, itemClass);
-    });
-     } else {
-    this.renderer.setAttribute(this._component.location.nativeElement, key, this.itemAttrs[key]);
-     }
-    });
+           classes.forEach((itemClass) => {
+             this.renderer.addClass(this._component.location.nativeElement, itemClass);
+           });
+           } else {
+             this.renderer.setAttribute(this._component.location.nativeElement, key, this.itemAttrs[key]);
+           }
+      });
    }
   }
 
@@ -230,7 +230,7 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
    * @param editConfig - the edit config of the directive
    */
   private usePlaceholder(editConfig) {
-   return editConfig.isEmpty && typeof editConfig.isEmpty === 'function' && editConfig.isEmpty(this.cqItem);
+    return editConfig.isEmpty && typeof editConfig.isEmpty === 'function' && editConfig.isEmpty(this.cqItem);
   }
 
   /**
@@ -249,10 +249,10 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
   }
 
   ngAfterViewInit(): void {
-   this.setupItemAttrs();
+    this.setupItemAttrs();
   }
 
   ngOnDestroy(): void {
-   this._component && this._component.destroy();
+    this._component && this._component.destroy();
   }
 }
