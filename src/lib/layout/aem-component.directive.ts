@@ -50,12 +50,12 @@ const PLACEHOLDER_CLASS_NAME = 'cq-placeholder';
 export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, OnChanges {
 
   /**
-  * Dynamically created component
-  */
+   * Dynamically created component
+   */
   private _component: ComponentRef<any>;
   /**
-  * Model item that corresponds to the current component
-  */
+   * Model item that corresponds to the current component
+   */
   private _cqItem: any;
 
   get cqItem(): any {
@@ -72,18 +72,18 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
   }
 
   /**
-  * Path to the model structure associated with the current component
-  */
+   * Path to the model structure associated with the current component
+   */
   @Input() cqPath: string;
 
   /**
-  * Name of the current instance of the component
-  */
+   * Name of the current instance of the component
+   */
   @Input() itemName: string;
 
   /**
-  * HtmlElement attributes for the current instance of the component
-  */
+   * HtmlElement attributes for the current instance of the component
+   */
   @Input() itemAttrs: any;
 
   @Input() loaded: boolean;
@@ -120,18 +120,18 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
    const lazyMappedPromise: Promise<unknown> = ComponentMapping.lazyGet(this.type);
 
    try {
-    const LazyResolvedComponent = await lazyMappedPromise;
+     const LazyResolvedComponent = await lazyMappedPromise;
 
-    if (LazyResolvedComponent['default']) {
-     this.renderComponent(LazyResolvedComponent['default']);
-    } else {
-     this.renderComponent(LazyResolvedComponent);
-    }
+     if (LazyResolvedComponent['default']) {
+       this.renderComponent(LazyResolvedComponent['default']);
+     } else {
+       this.renderComponent(LazyResolvedComponent);
+     }
 
-    this.loaded = true;
-    this._changeDetectorRef.detectChanges();
+     this.loaded = true;
+     this._changeDetectorRef.detectChanges();
    } catch (err) {
-    console.warn(err);
+     console.warn(err);
    }
   }
 
@@ -143,7 +143,7 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
    * Returns the type of the cqItem if exists.
    */
   get type(): string | undefined {
-   return this.cqItem && this.cqItem[Constants.TYPE_PROP];
+    return this.cqItem && this.cqItem[Constants.TYPE_PROP];
   }
 
   /**
@@ -152,40 +152,40 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
    * @param componentDefinition The component definition to render
    */
   private renderComponent(componentDefinition: any) {
-   if (componentDefinition) {
-    const factory = this.factoryResolver.resolveComponentFactory(componentDefinition);
+    if (componentDefinition) {
+      const factory = this.factoryResolver.resolveComponentFactory(componentDefinition);
 
-    this.renderWithFactory(factory);
-   } else {
-    throw new Error('No component definition!!');
-   }
+      this.renderWithFactory(factory);
+    } else {
+      throw new Error('No component definition!!');
+    }
   }
 
   private renderWithFactory(factory: ComponentFactory<any>) {
-   this.viewContainer.clear();
-   this._component = this.viewContainer.createComponent(factory);
-   this.updateComponentData();
+    this.viewContainer.clear();
+    this._component = this.viewContainer.createComponent(factory);
+    this.updateComponentData();
   }
 
   /**
    * Updates the data of the component based the data of the directive
    */
   private updateComponentData() {
-   if (!this._component || !this._component.instance) {
-    return;
-   }
+    if (!this._component || !this._component.instance) {
+      return;
+    }
 
-   const keys = Object.getOwnPropertyNames(this.cqItem);
+    const keys = Object.getOwnPropertyNames(this.cqItem);
 
-   keys.forEach((key) => {
-    let propKey = key;
+    keys.forEach((key) => {
+      let propKey = key;
 
-    if (propKey.startsWith(':')) {
-     // Transformation of internal properties namespaced with [:] to [cq]
-     // :myProperty => cqMyProperty
-     const tempKey = propKey.substr(1);
+      if (propKey.startsWith(':')) {
+       // Transformation of internal properties namespaced with [:] to [cq]
+       // :myProperty => cqMyProperty
+       const tempKey = propKey.substr(1);
 
-     propKey = 'cq' + tempKey.substr(0, 1).toUpperCase() + tempKey.substr(1);
+       propKey = 'cq' + tempKey.substr(0, 1).toUpperCase() + tempKey.substr(1);
     }
 
     this._component.instance[propKey] = this.cqItem[key];
