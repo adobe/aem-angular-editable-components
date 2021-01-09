@@ -101,32 +101,37 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
 
     async ngOnInit() {
 
-        if (!!this.type) {
+        if (this.type) {
             const mappedFn = ComponentMapping.get(this.type);
 
             if (mappedFn) {
-                //check first if we got the component in the normal registry. if yes, use that
                 this.renderComponent(mappedFn);
-
             } else {
-                //ok we don't have it. let's see if it's in the lazyload registry instead and use that.
-                const lazyPromise:Promise<unknown> = ComponentMapping.lazyGet(this.type);
-
-                await lazyPromise.then((Component:unknown) => {
-                    this.renderComponent(Component);
-                    this.loaded = true;
-                    this._changeDetectorRef.detectChanges();
-                }).catch((error:string) => {
-                    console.warn(error);
-                });
-
+                await this.initializeAsync();
             }
-        }else{
+        } else {
             console.warn('no type on ' + this.cqPath);
         }
 
+    }
 
+    async initializeAsync() {
+        const lazyMappedPromise:Promise<unknown> = ComponentMapping.lazyGet(this.type);
 
+        try {
+            const LazyResolvedComponent = await lazyMappedPromise;
+
+            if (LazyResolvedComponent['default']) {
+                this.renderComponent(LazyResolvedComponent['default']);
+            } else {
+                this.renderComponent(LazyResolvedComponent);
+            }
+
+            this.loaded = true;
+            this._changeDetectorRef.detectChanges();
+        } catch (err) {
+            console.warn(err);
+        }
     }
 
     ngOnChanges(): void {

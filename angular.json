@@ -48,7 +48,10 @@
           "options": {
             "main": "src/test.ts",
             "tsConfig": "tsconfig.spec.json",
-            "codeCoverageExclude": ["src/test.ts", "src/lib/test/**/*"],
+            "codeCoverageExclude": [
+              "src/test.ts",
+              "src/lib/test/**/*"
+            ],
             "karmaConfig": "karma.conf.js"
           }
         },
@@ -67,5 +70,8 @@
       }
     }
   },
-  "defaultProject": "spa-angular-editable-components"
+  "defaultProject": "spa-angular-editable-components",
+  "cli": {
+    "analytics": false
+  }
 }

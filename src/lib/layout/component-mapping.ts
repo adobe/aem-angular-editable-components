@@ -40,6 +40,12 @@ export class ComponentMappingWithConfig {
         this.spaMapping.map(resourceTypes, innerClass);
     }
 
+    /**
+     * Stores a clazz the lazy way for dynamic imports / code splitting.function that returns a promise
+     * @param resourceTypes - List of resource types
+     * @param clazz - A function that returns a promise that resolves a Component class
+     * @param [editConfig] - Edit configuration to be stored for the given resource types
+     */
     lazyMap(resourceTypes, clazz: () => Promise<unknown>, editConfig = null) {
         const innerClass = clazz;
 
