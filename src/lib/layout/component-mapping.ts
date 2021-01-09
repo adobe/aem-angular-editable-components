@@ -43,16 +43,16 @@ export class ComponentMappingWithConfig {
     /**
      * Stores a clazz the lazy way for dynamic imports / code splitting.function that returns a promise
      * @param resourceTypes - List of resource types
-     * @param clazz - A function that returns a promise that resolves a Component class
+     * @param lazyClassFunction - A function that returns a promise that resolves a Component class
      * @param [editConfig] - Edit configuration to be stored for the given resource types
      */
-    lazyMap(resourceTypes, clazz: () => Promise<unknown>, editConfig = null) {
-        const innerClass = clazz;
+    lazyMap(resourceTypes, lazyClassFunction: () => Promise<unknown>, editConfig = null) {
+        const innerFunction = lazyClassFunction;
 
         if (editConfig) {
             this.editConfigMap[resourceTypes] = editConfig;
         }
-        this.spaMapping.lazyMap(resourceTypes, innerClass);
+        this.spaMapping.lazyMap(resourceTypes, innerFunction);
     }
 
   /**
@@ -82,15 +82,31 @@ export class ComponentMappingWithConfig {
 
 const componentMapping = new ComponentMappingWithConfig(SPAComponentMapping);
 
+/**
+ * Stores a component class for the given resource types and also allows to provide an EditConfig object
+ * @param resourceTypes - List of resource types
+ */
 function MapTo(resourceTypes) {
+    /**
+     * @param clazz - Component class to be stored
+     * @param [editConfig] - Edit configuration to be stored for the given resource types
+     */
     return (clazz, editConfig = null): any => {
         return componentMapping.map(resourceTypes, clazz, editConfig);
     };
 }
 
+/**
+ * Stores a clazz the lazy way for dynamic imports / code splitting.function that returns a promise
+ * @param resourceTypes - List of resource types
+ */
 function LazyMapTo(resourceTypes) {
-    return (clazz: () => Promise<unknown>, editConfig = null) => {
-        return componentMapping.lazyMap(resourceTypes, clazz, editConfig);
+    /**
+     * @param lazyClassPromise - Function that returns a promise resolving a class
+     * @param [editConfig] - Edit configuration to be stored for the given resource types
+     */
+    return (lazyClassFunction: () => Promise<unknown>, editConfig = null) => {
+        return componentMapping.lazyMap(resourceTypes, lazyClassFunction, editConfig);
     };
 }
 
