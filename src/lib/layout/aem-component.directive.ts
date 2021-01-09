@@ -121,12 +121,8 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
 
    try {
      const LazyResolvedComponent = await lazyMappedPromise;
-
-     if (LazyResolvedComponent['default']) {
-       this.renderComponent(LazyResolvedComponent['default']);
-     } else {
-       this.renderComponent(LazyResolvedComponent);
-     }
+     
+     this.renderComponent(LazyResolvedComponent);
 
      this.loaded = true;
      this._changeDetectorRef.detectChanges();

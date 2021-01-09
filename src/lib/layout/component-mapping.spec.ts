@@ -27,7 +27,7 @@ describe('Component Mapping', () => {
           .then((Module) => { resolve(Module.LazyComponent); })
           .catch(reject);
     }));
-    LazyMapTo('lazycomponent4')(() => import('../test/lazy-component-wrapper/lazy.component'));
+    LazyMapTo('lazycomponent4')(() => import('../test/lazy-component-wrapper/lazy.component').then((m) => m.LazyComponent));
 
     expect(ComponentMapping.get('component1')).toBe(Component1);
     expect(ComponentMapping.get('component2')).toBe(Component2);
@@ -38,7 +38,7 @@ describe('Component Mapping', () => {
 
     const DefaultComp = await ComponentMapping.lazyGet('lazycomponent4');
 
-    expect(DefaultComp['default']).toBe(LazyComponent);
+    expect(DefaultComp).toBe(LazyComponent);
 
     expect(ComponentMapping.getEditConfig('component1')).toBe(editConfig1);
     expect(ComponentMapping.getEditConfig('component2')).toBe(editConfig2);
