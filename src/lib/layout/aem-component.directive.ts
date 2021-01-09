@@ -239,13 +239,13 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
    * @param editConfig - the editConfig, which will dictate the classes to be added on.
    */
   private setupPlaceholder(editConfig) {
-   if (this.usePlaceholder(editConfig)) {
-    this.renderer.addClass(this._component.location.nativeElement, PLACEHOLDER_CLASS_NAME);
-    this.renderer.setAttribute(this._component.location.nativeElement, 'data-emptytext', editConfig.emptyLabel);
-   } else {
-    this.renderer.removeClass(this._component.location.nativeElement, PLACEHOLDER_CLASS_NAME);
-    this.renderer.removeAttribute(this._component.location.nativeElement, 'data-emptytext');
-   }
+    if (this.usePlaceholder(editConfig)) {
+      this.renderer.addClass(this._component.location.nativeElement, PLACEHOLDER_CLASS_NAME);
+      this.renderer.setAttribute(this._component.location.nativeElement, 'data-emptytext', editConfig.emptyLabel);
+    } else {
+      this.renderer.removeClass(this._component.location.nativeElement, PLACEHOLDER_CLASS_NAME);
+      this.renderer.removeAttribute(this._component.location.nativeElement, 'data-emptytext');
+    }
   }
 
   ngAfterViewInit(): void {
