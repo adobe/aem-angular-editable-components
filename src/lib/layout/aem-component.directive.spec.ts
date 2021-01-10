@@ -14,8 +14,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { AEMComponentDirective } from './aem-component.directive';
 import { Component, Input } from '@angular/core';
-import { AbstractMappedComponent, ComponentMapping, MapTo } from './component-mapping';
+import {ComponentMapping, MapTo, LazyMapTo, AbstractMappedComponent, MappedComponentProperties} from './component-mapping';
 import { Utils } from './utils';
+import {LazyComponentType} from "../test/lazy-component-wrapper/lazy.component";
 
 @Component({
   selector: 'test-component',
@@ -24,6 +25,8 @@ import { Utils } from './utils';
 class AEMDirectiveTestComponent {
   @Input() data;
 }
+
+
 
 @Component({
   selector: 'directive-component',
@@ -42,7 +45,8 @@ class DirectiveComponent extends AbstractMappedComponent {
     return 'component-class';
   }
 }
-MapTo('directive/comp')(DirectiveComponent);
+MapTo<DirectiveComponent>('directive/comp')(DirectiveComponent);
+LazyMapTo<LazyComponentType>('some/lazy/comp')(() => import('../test/lazy-component-wrapper/lazy.component').then((m) => m.LazyComponent));
 
 describe('AEMComponentDirective', () => {
 
@@ -103,6 +107,20 @@ describe('AEMComponentDirective', () => {
     expect(dynamicElement.getAttribute('attr1')).toEqual(componentData['attr1']);
     expect(dynamicElement.getAttribute('attr2')).toEqual(componentData['attr2']);
   });
+  it('should correctly pass the inputs for lazy component', async() => {
+    const componentData = {
+      some: 'Some value',
+      ':type': 'some/lazy/comp'
+    };
+
+    component.data = componentData;
+
+    await import('../test/lazy-component-wrapper/lazy.component');
+    fixture.detectChanges();
+
+  });
+
+
 
   it('should setup the placeholder', () => {
     isInEditorSpy.and.returnValue(true);
