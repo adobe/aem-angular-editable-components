@@ -187,6 +187,7 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
 
     this._component.instance.cqPath = this.cqPath;
     this._component.instance.itemName = this.itemName;
+    this._component.instance.isInEditor = Utils.isInEditor();
 
     const editConfig = ComponentMapping.getEditConfig(this.type);
 
