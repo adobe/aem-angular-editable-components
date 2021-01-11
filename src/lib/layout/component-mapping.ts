@@ -23,7 +23,7 @@ export class ComponentMappingWithConfig {
    */
   private editConfigMap = {};
 
-  constructor(private spaMapping:SPAComponentMapping) {}
+  constructor(private spaMapping: SPAComponentMapping) {}
 
   /**
    * Stores a component class for the given resource types and also allows to provide an EditConfig object
@@ -34,36 +34,80 @@ export class ComponentMappingWithConfig {
   map(resourceTypes, clazz, editConfig = null) {
       const innerClass = clazz;
 
-      if (editConfig) {
-          this.editConfigMap[resourceTypes] = editConfig;
-      }
+        if (editConfig) {
+            this.editConfigMap[resourceTypes] = editConfig;
+        }
+        this.spaMapping.map(resourceTypes, innerClass);
+    }
 
-      this.spaMapping.map(resourceTypes, innerClass);
-  }
+    /**
+     * Stores a clazz the lazy way for dynamic imports / code splitting.function that returns a promise
+     * @param resourceTypes - List of resource types
+     * @param lazyClassFunction - A function that returns a promise that resolves a Component class
+     * @param [editConfig] - Edit configuration to be stored for the given resource types
+     */
+    lazyMap(resourceTypes, lazyClassFunction: () => Promise<unknown>, editConfig = null) {
+        const innerFunction = lazyClassFunction;
+
+        if (editConfig) {
+            this.editConfigMap[resourceTypes] = editConfig;
+        }
+        this.spaMapping.lazyMap(resourceTypes, innerFunction);
+    }
 
   /**
    * Returns the component class for the given resourceType
    * @param resourceType - Resource type for which the component class has been stored
    */
-  get(resourceType: string): any {
+  get(resourceType: string): unknown {
     return this.spaMapping.get(resourceType);
   }
+
+  /**
+     * Returns the component class for the given resourceType
+     * @param resourceType - Resource type for which the component class has been stored
+     */
+    lazyGet(resourceType: string): Promise<unknown> {
+        return this.spaMapping.getLazy(resourceType);
+    }
 
   /**
    * Returns the EditConfig structure for the given type
    * @param resourceType - Resource type for which the configuration has been stored
    */
-  getEditConfig(resourceType) {
-    return this.editConfigMap[resourceType];
+  getEditConfig(resourceType: string) {
+      return this.editConfigMap[resourceType];
   }
 }
 
 const componentMapping = new ComponentMappingWithConfig(SPAComponentMapping);
 
+/**
+ * Stores a component class for the given resource types and also allows to provide an EditConfig object
+ * @param resourceTypes - List of resource types
+ */
 function MapTo(resourceTypes) {
+    /**
+     * @param clazz - Component class to be stored
+     * @param [editConfig] - Edit configuration to be stored for the given resource types
+     */
     return (clazz, editConfig = null): any => {
         return componentMapping.map(resourceTypes, clazz, editConfig);
     };
 }
 
-export { componentMapping as ComponentMapping, MapTo };
+/**
+ * Stores a clazz the lazy way for dynamic imports / code splitting.function that returns a promise
+ * @param resourceTypes - List of resource types
+ */
+function LazyMapTo(resourceTypes) {
+    /**
+     * @param lazyClassPromise - Function that returns a promise resolving a class
+     * @param [editConfig] - Edit configuration to be stored for the given resource types
+     */
+    return (lazyClassFunction: () => Promise<unknown>, editConfig = null) => {
+        return componentMapping.lazyMap(resourceTypes, lazyClassFunction, editConfig);
+    };
+}
+
+export { componentMapping as ComponentMapping, MapTo, LazyMapTo };

@@ -11,15 +11,20 @@
  */
 
 import {
-  Directive,
-  Input,
-  Renderer2,
-  ViewContainerRef,
+  AfterViewInit,
+  ChangeDetectorRef,
+  Compiler,
+  ComponentFactory,
   ComponentFactoryResolver,
   ComponentRef,
-  AfterViewInit,
+  Directive,
+  Injector,
+  Input,
+  OnChanges,
+  OnDestroy,
   OnInit,
-  OnDestroy, ChangeDetectorRef, OnChanges
+  Renderer2,
+  ViewContainerRef
 } from '@angular/core';
 
 import { ComponentMapping } from './component-mapping';
@@ -34,7 +39,6 @@ const PLACEHOLDER_CLASS_NAME = 'cq-placeholder';
 @Directive({
   selector: '[aemComponent]'
 })
-
 /**
  * The current directive provides advanced capabilities among which are
  *
@@ -82,17 +86,47 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
    */
   @Input() itemAttrs: any;
 
+  @Input() loaded: boolean;
+
   @Input() aemComponent;
+
 
   constructor(
     private renderer: Renderer2,
     private viewContainer: ViewContainerRef,
+    private compiler: Compiler,
+    private injector: Injector,
     private factoryResolver: ComponentFactoryResolver,
     private _changeDetectorRef: ChangeDetectorRef) {
   }
 
-  ngOnInit(): void {
-    this.renderComponent(ComponentMapping.get(this.type));
+  async ngOnInit() {
+
+   if (this.type) {
+    const mappedFn = ComponentMapping.get(this.type);
+
+    if (mappedFn) {
+     this.renderComponent(mappedFn);
+    } else {
+     await this.initializeAsync();
+    }
+   } else {
+    console.warn('no type on ' + this.cqPath);
+   }
+
+  }
+
+  async initializeAsync() {
+   const lazyMappedPromise: Promise<unknown> = ComponentMapping.lazyGet(this.type);
+
+   try {
+     const LazyResolvedComponent = await lazyMappedPromise;
+     this.renderComponent(LazyResolvedComponent);
+     this.loaded = true;
+     this._changeDetectorRef.detectChanges();
+   } catch (err) {
+     console.warn(err);
+   }
   }
 
   ngOnChanges(): void {
@@ -115,10 +149,16 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
     if (componentDefinition) {
       const factory = this.factoryResolver.resolveComponentFactory(componentDefinition);
 
-      this.viewContainer.clear();
-      this._component = this.viewContainer.createComponent(factory);
-      this.updateComponentData();
+      this.renderWithFactory(factory);
+    } else {
+      throw new Error('No component definition!!');
     }
+  }
+
+  private renderWithFactory(factory: ComponentFactory<any>) {
+    this.viewContainer.clear();
+    this._component = this.viewContainer.createComponent(factory);
+    this.updateComponentData();
   }
 
   /**

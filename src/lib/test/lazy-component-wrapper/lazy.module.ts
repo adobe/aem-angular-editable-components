@@ -9,21 +9,17 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
+import { LazyComponent } from './lazy.component';
 
-import { Component, Input } from '@angular/core';
-
-@Component({
-  selector: 'test-comp1',
-  host: {
-    '[attr.data-title]': 'title'
-  },
-  template: `<div>{{ title }}</div>`
+@NgModule({
+    imports: [ CommonModule, BrowserModule, RouterModule ],
+    declarations: [
+        LazyComponent
+    ]
 })
-
-export class Test1Component {
-  @Input() title: string;
-
-  constructor() {
-      // empty
-  }
+export class LazyModule {
 }
