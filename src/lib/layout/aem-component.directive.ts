@@ -130,7 +130,7 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
   }
 
   ngOnChanges(): void {
-   this.updateComponentData();
+    this.updateComponentData();
   }
 
   /**
@@ -215,7 +215,7 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
           this.renderer.setAttribute(this._component.location.nativeElement, key, this.itemAttrs[key]);
         }
       });
-   }
+    }
   }
 
   /**
