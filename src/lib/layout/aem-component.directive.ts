@@ -92,12 +92,12 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
 
 
   constructor(
-    private renderer: Renderer2,
-    private viewContainer: ViewContainerRef,
-    private compiler: Compiler,
-    private injector: Injector,
-    private factoryResolver: ComponentFactoryResolver,
-    private _changeDetectorRef: ChangeDetectorRef) {
+     private renderer: Renderer2,
+     private viewContainer: ViewContainerRef,
+     private compiler: Compiler,
+     private injector: Injector,
+     private factoryResolver: ComponentFactoryResolver,
+     private _changeDetectorRef: ChangeDetectorRef) {
   }
 
   async ngOnInit() {
