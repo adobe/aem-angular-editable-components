@@ -40,11 +40,28 @@ export interface MappedComponentProperties extends ReloadForceAble {
   itemName: string;
 }
 
+/**
+ * EditConfiguration for a MappedComponent
+ * @type <P> Type  of the MappedComponent, used in isEmpty
+ */
 export interface EditConfig<P extends MappedComponentProperties = any> {
+  /**
+  * Label to display if the component is considered empty in author mode
+  */
   emptyLabel?: string;
+
+  /**
+  * Return whether the component should be considered 'empty'.
+  * If empty, the component will not be rendered. In author mode, the empty label will be displayed.
+  * @param props
+    @type <P> Type of the MappedComponent
+  */
   isEmpty(props: P): boolean;
 }
 
+/**
+ * Provides standard implementation for the MappedComponentProperties using @Input
+ */
 export abstract class AbstractMappedComponent implements MappedComponentProperties {
   @Input() isInEditor = false;
   @Input() cqPath = '';

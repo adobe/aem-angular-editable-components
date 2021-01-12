@@ -12,7 +12,10 @@
 
 import { Component, Input } from '@angular/core';
 import { Constants } from '../constants';
-import { AEMAllowedComponentsContainerComponent } from '../aem-allowed-components-container/aem-allowed-components-container.component';
+import {
+  AEMAllowedComponentsContainerComponent,
+  AEMAllowedComponentsContainerComponentProperties
+} from '../aem-allowed-components-container/aem-allowed-components-container.component';
 
 /**
  * @private
@@ -23,6 +26,26 @@ const PLACEHOLDER_CLASS_NAMES = 'aem-Grid-newComponent';
  * @private
  */
 const RESPONSIVE_GRID_TYPE = 'wcm/foundation/components/responsivegrid';
+
+/**
+ * Properties corresponding to the AEMResponsiveGridComponent
+ */
+export interface AEMResponsiveGridComponentProperties extends AEMAllowedComponentsContainerComponentProperties {
+  /**
+   * Class names associated with the current responsive grid
+   */
+  gridClassNames: string;
+  /**
+   * Map of class names corresponding to each child of the current responsive grid
+   */
+  columnClassNames: { [key: string]: string };
+
+  /**
+   * Current number of columns of the grid
+   */
+  columnCount: number;
+}
+
 
 @Component({
   selector: 'aem-responsivegrid',
@@ -35,23 +58,12 @@ const RESPONSIVE_GRID_TYPE = 'wcm/foundation/components/responsivegrid';
 /**
  * The current class carries the base presentational logic of the AEM Layout Container (aka. Responsive grid)
  */
-export class AEMResponsiveGridComponent extends AEMAllowedComponentsContainerComponent {
-  /**
-   * Class names associated with the current responsive grid
-   */
-  @Input() gridClassNames: string;
-  /**
-   * Map of class names corresponding to each child of the current responsive grid
-   */
-  @Input() columnClassNames: {[key: string]: string};
-  /**
-   * Class names of the current component
-   */
-  @Input() classNames: string;
-  /**
-   * Current number of columns of the grid
-   */
-  @Input() columnCount: number;
+export class AEMResponsiveGridComponent extends AEMAllowedComponentsContainerComponent implements AEMResponsiveGridComponentProperties{
+
+  @Input() gridClassNames;
+  @Input() columnClassNames;
+  @Input() classNames;
+  @Input() columnCount;
 
   /**
    * Returns the column class names for a given column

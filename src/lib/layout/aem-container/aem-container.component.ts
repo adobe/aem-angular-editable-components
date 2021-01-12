@@ -13,7 +13,8 @@
 import { Component, Input } from '@angular/core';
 import { Constants } from '../constants';
 import { Utils } from '../utils';
-import { AbstractMappedComponent } from '../component-mapping';
+import {AbstractMappedComponent, ComponentMapping, MappedComponentProperties} from '../component-mapping';
+import {Model} from "@adobe/aem-spa-page-model-manager";
 
 /**
  * @private
@@ -30,6 +31,25 @@ const PLACEHOLDER_ITEM_NAME = '*';
  */
 const CONTAINER_CLASS_NAMES = 'aem-container';
 
+/**
+ * Properties corresponding to the AEMContainerComponent
+ */
+export interface AEMContainerProperties extends MappedComponentProperties {
+  componentMapping?: typeof ComponentMapping;
+  /**
+   * Map of model items included in the current container
+   */
+  cqItems: { [key: string]: Model };
+  /**
+   * Array of model item keys
+   */
+  cqItemsOrder: string[];
+  /**
+   * Class names of the current component
+   */
+  classNames: string;
+}
+
 @Component({
   selector: 'aem-container',
   host: {
@@ -42,27 +62,17 @@ const CONTAINER_CLASS_NAMES = 'aem-container';
  * The current component provides the base presentational logic common to containers such as a grid or a page.
  * Container have in common the notion of item holders. Items are represented in the model by the fields _:items_ and _:itemsOrder_
  */
-export class AEMContainerComponent extends AbstractMappedComponent {
-  /**
-   * Map of model items included in the current container
-   */
+export class AEMContainerComponent extends AbstractMappedComponent implements AEMContainerProperties{
+
   @Input() cqItems;
-  /**
-   * Array of model item keys
-   */
+
   @Input() cqItemsOrder;
-  /**
-   * Path to the model associated with the current instance of the component
-   */
-  @Input() cqPath = '';
+
+  @Input() classNames;
   /**
    * Key of the model structure
    */
   @Input() modelName = '';
-  /**
-   * Class names of the current component
-   */
-  @Input() classNames: string;
 
   /**
    * Returns weather of not we are in the editor
