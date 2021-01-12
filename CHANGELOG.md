@@ -1,8 +1,9 @@
+# [1.1.0](https://github.com/adobe/aem-angular-editable-components/compare/v1.0.7...v1.1.0) (2021-01-11)
 
 
-## Features
+### Features
 
-* BREAKING CHANGE: MapTo and LazyMapTo are now typed with a generic extending MappedComponentProperties. Use the interface MappedComponentProperties, abstract class AbstractMappedComponent or any type to fix your build.
+* support lazy loading ([55452ff](https://github.com/adobe/aem-angular-editable-components/commit/55452ff211270be440bd178aab91c08b711bd0c2))
 
 ## [1.0.7](https://github.com/adobe/aem-angular-editable-components/compare/v1.0.6...v1.0.7) (2021-01-05)
 

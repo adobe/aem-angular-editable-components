@@ -23,7 +23,8 @@ import {
   OnChanges,
   OnDestroy,
   OnInit,
-  Renderer2, Type,
+  Renderer2,
+  Type,
   ViewContainerRef
 } from '@angular/core';
 

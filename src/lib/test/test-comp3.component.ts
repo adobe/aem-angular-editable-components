@@ -23,8 +23,4 @@ import { TestCompProperties } from './test-comp.type';
 })
 export class Test3Component extends AbstractMappedComponent implements TestCompProperties {
   @Input() title: string;
-
-  constructor() {
-    super();
-  }
 }

@@ -31,17 +31,19 @@
     "start": "ng serve",
     "test:coverage": "ng test aem-angular-editable-components --code-coverage",
     "test:debug": "ng test aem-angular-editable-components --watch=true --code-coverage",
-    "test": "ng test aem-angular-editable-components"
+    "test": "ng test aem-angular-editable-components",
+    "bla": "ngcc",
+    "bla2": "ngcc -s ./dist"
   },
   "peerDependencies": {
-    "@adobe/aem-spa-component-mapping": "~1.0.7",
-    "@adobe/aem-spa-page-model-manager": "~1.3.0",
+    "@adobe/aem-spa-component-mapping": "file:../aem-spa-component-mapping",
+    "@adobe/aem-spa-page-model-manager": "file:../aem-spa-page-model-manager",
     "@angular/common": "^9.1.9",
     "@angular/core": "^9.1.9"
   },
   "devDependencies": {
-    "@adobe/aem-spa-component-mapping": "~1.0.7",
-    "@adobe/aem-spa-page-model-manager": "^1.2.3",
+    "@adobe/aem-spa-component-mapping": "file:../aem-spa-component-mapping",
+    "@adobe/aem-spa-page-model-manager": "file:../aem-spa-page-model-manager",
     "@adobe/eslint-config-editorxp": "^1.0.7",
     "@angular-devkit/build-angular": "~0.901.12",
     "@angular-devkit/build-ng-packagr": "~0.901.12",
