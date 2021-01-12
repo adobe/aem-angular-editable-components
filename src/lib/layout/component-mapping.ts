@@ -25,10 +25,6 @@ export interface ReloadForceAble {
 * Properties given to every component runtime by the SPA editor.
 */
 export interface MappedComponentProperties extends ReloadForceAble {
-    /*
-    Is the component being viewed in an editor context
-     */
-  isInEditor: boolean;
     /**
      * Path to the model associated with the current instance of the component
      */
