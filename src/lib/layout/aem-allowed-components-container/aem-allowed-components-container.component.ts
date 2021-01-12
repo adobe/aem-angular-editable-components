@@ -11,7 +11,7 @@
  */
 
 import { Component, Input } from '@angular/core';
-import {AEMContainerComponent, AEMContainerProperties} from '../aem-container/aem-container.component';
+import {AEMContainerComponent, AEMContainerComponentProperties} from '../aem-container/aem-container.component';
 
 /**
  * @private
@@ -58,7 +58,7 @@ export interface AllowedComponents {
 /**
  * Properties for the allowed components container
  */
-export interface AEMAllowedComponentsContainerComponentProperties extends AEMContainerProperties {
+export interface AEMAllowedComponentsContainerComponentProperties extends AEMContainerComponentProperties {
   /**
    * List of allowed components for the container
    */

@@ -34,7 +34,7 @@ const CONTAINER_CLASS_NAMES = 'aem-container';
 /**
  * Properties corresponding to the AEMContainerComponent
  */
-export interface AEMContainerProperties extends MappedComponentProperties {
+export interface AEMContainerComponentProperties extends MappedComponentProperties {
   componentMapping?: typeof ComponentMapping;
   /**
    * Map of model items included in the current container
@@ -62,7 +62,7 @@ export interface AEMContainerProperties extends MappedComponentProperties {
  * The current component provides the base presentational logic common to containers such as a grid or a page.
  * Container have in common the notion of item holders. Items are represented in the model by the fields _:items_ and _:itemsOrder_
  */
-export class AEMContainerComponent extends AbstractMappedComponent implements AEMContainerProperties{
+export class AEMContainerComponent extends AbstractMappedComponent implements AEMContainerComponentProperties{
 
   @Input() cqItems;
 
