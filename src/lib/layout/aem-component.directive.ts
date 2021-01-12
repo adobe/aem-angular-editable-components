@@ -181,7 +181,7 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
         const tempKey = propKey.substr(1);
 
          propKey = 'cq' + tempKey.substr(0, 1).toUpperCase() + tempKey.substr(1);
-     }
+      }
 
       this._component.instance[propKey] = this.cqItem[key];
     });

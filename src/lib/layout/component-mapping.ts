@@ -77,10 +77,10 @@ export class ComponentMappingWithConfig {
       const resourceList = (typeof resourceTypes === 'string') ? [ resourceTypes ] : resourceTypes;
 
       resourceList.forEach((entry) => {
-          if (editConfig) {
-              this.editConfigMap[entry] = editConfig;
-          }
-          this.spaMapping.map(entry, innerClass);
+        if (editConfig) {
+            this.editConfigMap[entry] = editConfig;
+        }
+        this.spaMapping.map(entry, innerClass);
       });
 
     }
