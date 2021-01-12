@@ -11,7 +11,7 @@
  */
 
 import { Component, Input } from '@angular/core';
-import {AEMContainerComponent, AEMContainerComponentProperties} from '../aem-container/aem-container.component';
+import { AEMContainerComponent, AEMContainerComponentProperties } from '../aem-container/aem-container.component';
 
 /**
  * @private

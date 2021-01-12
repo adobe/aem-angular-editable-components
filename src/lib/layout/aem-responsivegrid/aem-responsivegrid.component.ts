@@ -28,7 +28,8 @@ const PLACEHOLDER_CLASS_NAMES = 'aem-Grid-newComponent';
 const RESPONSIVE_GRID_TYPE = 'wcm/foundation/components/responsivegrid';
 
 /**
- * Properties corresponding to the AEMResponsiveGridComponent
+ * Properties corresponding to the AEMResponsiveGridComponent.
+ * The AEMResponsiveGridComponent carries the base presentational logic of the AEM Layout Container.
  */
 export interface AEMResponsiveGridComponentProperties extends AEMAllowedComponentsContainerComponentProperties {
   /**

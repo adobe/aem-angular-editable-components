@@ -13,8 +13,8 @@
 import { Component, Input } from '@angular/core';
 import { Constants } from '../constants';
 import { Utils } from '../utils';
-import {AbstractMappedComponent, ComponentMapping, MappedComponentProperties} from '../component-mapping';
-import {Model} from "@adobe/aem-spa-page-model-manager";
+import { AbstractMappedComponent, ComponentMapping, MappedComponentProperties } from '../component-mapping';
+import { Model } from "@adobe/aem-spa-page-model-manager";
 
 /**
  * @private

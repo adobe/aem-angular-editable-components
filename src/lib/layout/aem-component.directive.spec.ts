@@ -14,7 +14,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { AEMComponentDirective } from './aem-component.directive';
 import { Component, Input } from '@angular/core';
-import { ComponentMapping, MapTo, LazyMapTo, AbstractMappedComponent, MappedComponentProperties } from './component-mapping';
+import { ComponentMapping, MapTo, LazyMapTo, AbstractMappedComponent } from './component-mapping';
 import { Utils } from './utils';
 import { LazyComponentType } from "../test/lazy-component-wrapper/lazy.component";
 
@@ -25,7 +25,6 @@ import { LazyComponentType } from "../test/lazy-component-wrapper/lazy.component
 class AEMDirectiveTestComponent {
   @Input() data;
 }
-
 
 
 @Component({

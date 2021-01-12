@@ -12,6 +12,6 @@
 
 import { MappedComponentProperties } from '../layout/component-mapping';
 
-export interface TestCompProperties extends MappedComponentProperties{
+export interface TestCompProperties extends MappedComponentProperties {
     title: string;
 }
