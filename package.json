@@ -31,9 +31,7 @@
     "start": "ng serve",
     "test:coverage": "ng test aem-angular-editable-components --code-coverage",
     "test:debug": "ng test aem-angular-editable-components --watch=true --code-coverage",
-    "test": "ng test aem-angular-editable-components",
-    "bla": "ngcc",
-    "bla2": "ngcc -s ./dist"
+    "test": "ng test aem-angular-editable-components"
   },
   "peerDependencies": {
     "@adobe/aem-spa-component-mapping": "file:../aem-spa-component-mapping",
