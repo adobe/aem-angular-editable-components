@@ -25,7 +25,7 @@
     "clean": "rm -rf dist/",
     "docs": "npm i && npx typedoc --excludePrivate ./src --out ./dist/docs --exclude '**/test/**/*' --exclude '**/*.spec.ts' --exclude src/test.ts",
     "e2e": "ng e2e",
-    "linter": "eslint . --fix",
+    "linter": "eslint .",
     "ng": "ng",
     "semantic-release": "semantic-release",
     "start": "ng serve",

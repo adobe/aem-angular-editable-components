@@ -28,7 +28,7 @@ import {
   ViewContainerRef
 } from '@angular/core';
 
-import {ComponentMapping, MappedComponentProperties} from './component-mapping';
+import { ComponentMapping, MappedComponentProperties } from './component-mapping';
 import { Constants } from './constants';
 import { Utils } from './utils';
 
@@ -93,12 +93,12 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
 
 
   constructor(
-   private compiler: Compiler,
-   private injector: Injector,
-   private renderer: Renderer2,
-   private viewContainer: ViewContainerRef,
-   private factoryResolver: ComponentFactoryResolver,
-   private _changeDetectorRef: ChangeDetectorRef) {
+    private compiler: Compiler,
+    private injector: Injector,
+    private renderer: Renderer2,
+    private viewContainer: ViewContainerRef,
+    private factoryResolver: ComponentFactoryResolver,
+    private _changeDetectorRef: ChangeDetectorRef) {
   }
 
   async ngOnInit() {
@@ -131,7 +131,7 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
   }
 
   ngOnChanges(): void {
-   this.updateComponentData();
+    this.updateComponentData();
   }
 
   /**
@@ -180,10 +180,10 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
         // :myProperty => cqMyProperty
         const tempKey = propKey.substr(1);
 
-        propKey = 'cq' + tempKey.substr(0, 1).toUpperCase() + tempKey.substr(1);
+         propKey = 'cq' + tempKey.substr(0, 1).toUpperCase() + tempKey.substr(1);
      }
 
-     this._component.instance[propKey] = this.cqItem[key];
+      this._component.instance[propKey] = this.cqItem[key];
     });
 
     this._component.instance.cqPath = this.cqPath;
@@ -217,7 +217,7 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
           this.renderer.setAttribute(this._component.location.nativeElement, key, this.itemAttrs[key]);
         }
       });
-   }
+    }
   }
 
   /**

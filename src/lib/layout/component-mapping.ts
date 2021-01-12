@@ -76,19 +76,19 @@ export class ComponentMappingWithConfig {
 
       const resourceList = (typeof resourceTypes === 'string') ? [ resourceTypes ] : resourceTypes;
 
-          resourceList.forEach((entry) => {
-              if (editConfig) {
-                  this.editConfigMap[entry] = editConfig;
-              }
-              this.spaMapping.map(entry, innerClass);
-          });
+      resourceList.forEach((entry) => {
+          if (editConfig) {
+              this.editConfigMap[entry] = editConfig;
+          }
+          this.spaMapping.map(entry, innerClass);
+      });
 
     }
 
     /**
      * Stores a  component class for the given resource types and also allows to provide an EditConfig object in a Lazy Manner
      * @param resourceTypes - List of resource types
-     * @param lazyClassFunction a function that returns a promise to give back the designated type / class
+     * @param lazyClassFunction - A function that returns a promise to give back the designated type / class
      * @param [editConfig] - Edit configuration to be stored for the given resource types
      * @type Model - The Model interface / class type bound to the editconfig object.
      */
@@ -110,7 +110,7 @@ export class ComponentMappingWithConfig {
     return this.spaMapping.get(resourceType) as Type<Model>;
   }
 
-    /**
+  /**
      * Returns the component class Promise for the given resourceType
      * @param resourceType - Resource type for which the component class has been stored
      * @type Model - The Model interface / class type bound to the editconfig object.
@@ -134,7 +134,6 @@ const componentMapping = new ComponentMappingWithConfig(SPAComponentMapping);
 /**
  * Stores a component class for the given resource types and also allows to provide an EditConfig object
  * @param resourceTypes - List of resource types
- <<<<<<< HEAD
  * @type Model - The Model interface / class type that will be Mapped. Bound to the EditConfig configuration.
  */
 function MapTo<Model extends MappedComponentProperties = any>(resourceTypes: string | string[]) {
@@ -160,4 +159,4 @@ function LazyMapTo<Model extends MappedComponentProperties = any>(resourceTypes:
         componentMapping.lazyMap(resourceTypes, lazyClassFunction, editConfig);
 }
 
-export {componentMapping as ComponentMapping, MapTo, LazyMapTo};
+export { componentMapping as ComponentMapping, MapTo, LazyMapTo };
