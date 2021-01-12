@@ -11,6 +11,7 @@
  */
 
 import { Component, Input } from '@angular/core';
+import { AbstractMappedComponent } from '../layout/component-mapping';
 
 @Component({
   selector: 'test-comp1',
@@ -19,11 +20,10 @@ import { Component, Input } from '@angular/core';
   },
   template: `<div>{{ title }}</div>`
 })
-
-export class Test1Component {
+export class Test1Component extends AbstractMappedComponent {
   @Input() title: string;
 
   constructor() {
-      // empty
+    super();
   }
 }

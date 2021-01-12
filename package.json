@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@adobe/aem-spa-component-mapping": "~1.1.0",
-    "@adobe/aem-spa-page-model-manager": "^1.2.3",
+    "@adobe/aem-spa-page-model-manager": "~1.3.0",
     "@adobe/eslint-config-editorxp": "^1.0.7",
     "@angular-devkit/build-angular": "~0.901.12",
     "@angular-devkit/build-ng-packagr": "~0.901.12",

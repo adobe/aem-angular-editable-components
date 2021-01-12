@@ -11,7 +11,7 @@
  */
 
 import { Component, Input } from '@angular/core';
-import { AEMContainerComponent } from '../aem-container/aem-container.component';
+import { AEMContainerComponent, AEMContainerComponentProperties } from '../aem-container/aem-container.component';
 
 /**
  * @private
@@ -28,12 +28,59 @@ export const ALLOWED_COMPONENT_TITLE_CLASS_NAMES = 'aem-AllowedComponent--title'
  */
 export const ALLOWED_COMPONENT_PLACEHOLDER_CLASS_NAMES = 'aem-AllowedComponent--component cq-placeholder placeholder';
 
+/**
+ * Component that is allowed to be used on the page by the editor
+ */
+export interface AllowedComponent {
+  /**
+   * Path to the component under apps
+   */
+  path: string;
+
+  /**
+   * Title of the component
+   */
+  title: string;
+}
+
+/**
+ * AllowedComponents collection
+ */
+export interface AllowedComponents {
+  applicable: boolean;
+
+  /**
+   * List of allowed components
+   */
+  components: AllowedComponent[];
+}
+
+/**
+ * Properties for the allowed components container
+ */
+export interface AEMAllowedComponentsContainerComponentProperties extends AEMContainerComponentProperties {
+  /**
+   * List of allowed components for the container
+   */
+  allowedComponents: AllowedComponents;
+
+  /**
+   *  Label to display when there are no allowed components
+   */
+  _allowedComponentPlaceholderListEmptyLabel?: string;
+
+  /**
+   * Title of the placeholder list
+   */
+  title: string;
+}
+
 @Component({
   selector: 'aem-allowed-components-container',
   templateUrl: './aem-allowed-components-container.component.html',
   styleUrls: [ './aem-allowed-components-container.component.css' ]
 })
-export class AEMAllowedComponentsContainerComponent extends AEMContainerComponent {
+export class AEMAllowedComponentsContainerComponent extends AEMContainerComponent implements AEMAllowedComponentsContainerComponentProperties{
 
   @Input() title: string;
 

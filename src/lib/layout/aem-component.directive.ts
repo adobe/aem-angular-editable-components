@@ -24,10 +24,11 @@ import {
   OnDestroy,
   OnInit,
   Renderer2,
+  Type,
   ViewContainerRef
 } from '@angular/core';
 
-import { ComponentMapping } from './component-mapping';
+import { ComponentMapping, MappedComponentProperties } from './component-mapping';
 import { Constants } from './constants';
 import { Utils } from './utils';
 
@@ -52,7 +53,7 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
   /**
    * Dynamically created component
    */
-  private _component: ComponentRef<any>;
+  private _component: ComponentRef<MappedComponentProperties>;
   /**
    * Model item that corresponds to the current component
    */
@@ -103,7 +104,7 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
   async ngOnInit() {
 
    if (this.type) {
-    const mappedFn = ComponentMapping.get(this.type);
+    const mappedFn:Type<MappedComponentProperties> = ComponentMapping.get<MappedComponentProperties>(this.type);
 
     if (mappedFn) {
      this.renderComponent(mappedFn);
@@ -117,7 +118,7 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
   }
 
   async initializeAsync() {
-   const lazyMappedPromise: Promise<unknown> = ComponentMapping.lazyGet(this.type);
+   const lazyMappedPromise: Promise<Type<MappedComponentProperties>> = ComponentMapping.lazyGet<MappedComponentProperties>(this.type);
 
    try {
      const LazyResolvedComponent = await lazyMappedPromise;
@@ -145,7 +146,7 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
    *
    * @param componentDefinition The component definition to render
    */
-  private renderComponent(componentDefinition: any) {
+  private renderComponent(componentDefinition: Type<MappedComponentProperties>) {
     if (componentDefinition) {
       const factory = this.factoryResolver.resolveComponentFactory(componentDefinition);
 

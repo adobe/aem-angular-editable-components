@@ -14,8 +14,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { AEMComponentDirective } from './aem-component.directive';
 import { Component, Input } from '@angular/core';
-import { ComponentMapping, MapTo, LazyMapTo} from './component-mapping';
+import { ComponentMapping, MapTo, LazyMapTo, AbstractMappedComponent } from './component-mapping';
 import { Utils } from './utils';
+import { LazyComponentType } from "../test/lazy-component-wrapper/lazy.component";
 
 @Component({
   selector: 'test-component',
@@ -24,6 +25,7 @@ import { Utils } from './utils';
 class AEMDirectiveTestComponent {
   @Input() data;
 }
+
 
 @Component({
   selector: 'directive-component',
@@ -34,7 +36,7 @@ class AEMDirectiveTestComponent {
   },
   template: `<div></div>`
 })
-class DirectiveComponent {
+class DirectiveComponent extends AbstractMappedComponent {
   @Input() attr1;
   @Input() attr2;
 
@@ -42,8 +44,8 @@ class DirectiveComponent {
     return 'component-class';
   }
 }
-MapTo('directive/comp')(DirectiveComponent);
-LazyMapTo('some/lazy/comp')(() => import('../test/lazy-component-wrapper/lazy.component').then((m) => m.LazyComponent));
+MapTo<DirectiveComponent>('directive/comp')(DirectiveComponent);
+LazyMapTo<LazyComponentType>('some/lazy/comp')(() => import('../test/lazy-component-wrapper/lazy.component').then((m) => m.LazyComponent));
 
 describe('AEMComponentDirective', () => {
 

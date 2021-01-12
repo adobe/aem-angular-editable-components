@@ -10,20 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import { Component, Input } from '@angular/core';
-import { AbstractMappedComponent } from '../layout/component-mapping';
+import { MappedComponentProperties } from '../layout/component-mapping';
 
-@Component({
-  selector: 'test-comp2',
-  host: {
-    '[attr.data-title]': 'title'
-  },
-  template: `<div>{{ title }}</div>`
-})
-export class Test2Component extends AbstractMappedComponent {
-  @Input() title: string;
-
-  constructor() {
-    super();
-  }
+export interface TestCompProperties extends MappedComponentProperties {
+    title: string;
 }

@@ -10,14 +10,19 @@
  * governing permissions and limitations under the License.
  */
 
-import { MapTo } from '../layout/component-mapping';
+import { MapTo, EditConfig } from '../layout/component-mapping';
 
 import { Test1Component } from './test-comp1.component';
 import { Test2Component } from './test-comp2.component';
 import { Test3Component } from './test-comp3.component';
 import { AEMResponsiveGridComponent } from '../layout/aem-responsivegrid/aem-responsivegrid.component';
+import { TestCompProperties } from './test-comp.type';
 
-MapTo('app/components/comp1')(Test1Component);
-MapTo('app/components/comp2')(Test2Component);
-MapTo('app/components/comp3')(Test3Component);
-MapTo('wcm/foundation/components/responsivegrid')(AEMResponsiveGridComponent);
+const config:EditConfig<TestCompProperties> = {
+    isEmpty: (props) => !! props.title
+};
+
+MapTo<TestCompProperties>('app/components/comp1')(Test1Component, config);
+MapTo<TestCompProperties>('app/components/comp2')(Test2Component, config);
+MapTo<TestCompProperties>('app/components/comp3')(Test3Component, config);
+MapTo<TestCompProperties>('wcm/foundation/components/responsivegrid')(AEMResponsiveGridComponent);
