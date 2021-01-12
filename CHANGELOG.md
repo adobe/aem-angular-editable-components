@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/adobe/aem-angular-editable-components/compare/v1.1.0...v1.2.0) (2021-01-12)
+
+
+### Features
+
+* Typed MapTo / LazyMapTo ([a2f2e6b](https://github.com/adobe/aem-angular-editable-components/commit/a2f2e6b4e5482bee73ab411342080be66beda742))
+
 # [1.1.0](https://github.com/adobe/aem-angular-editable-components/compare/v1.0.7...v1.1.0) (2021-01-11)
 
 
