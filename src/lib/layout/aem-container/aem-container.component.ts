@@ -95,7 +95,7 @@ export class AEMContainerComponent extends AbstractMappedComponent implements AE
    *
    * @param itemKey - the itemKey to look for in the items.
    */
-  getItem(itemKey: string): string {
+  getItem(itemKey: string): Model {
     return this.cqItems && this.cqItems[itemKey];
   }
 
