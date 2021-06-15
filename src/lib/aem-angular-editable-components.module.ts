@@ -18,6 +18,7 @@ import { AEMPageComponent } from './layout/aem-page/aem-page.component';
 import { AEMResponsiveGridComponent } from './layout/aem-responsivegrid/aem-responsivegrid.component';
 import { CommonModule } from '@angular/common';
 import { AEMAllowedComponentsContainerComponent } from './layout/aem-allowed-components-container/aem-allowed-components-container.component';
+import {AbstractMappedComponent} from "./layout/component-mapping";
 
 @NgModule({
     imports: [
@@ -29,6 +30,7 @@ import { AEMAllowedComponentsContainerComponent } from './layout/aem-allowed-com
         AEMResponsiveGridComponent,
         AEMComponentDirective,
         AEMModelProviderComponent,
+        AbstractMappedComponent,
         AEMPageComponent
     ],
     exports: [
@@ -37,13 +39,15 @@ import { AEMAllowedComponentsContainerComponent } from './layout/aem-allowed-com
         AEMResponsiveGridComponent,
         AEMComponentDirective,
         AEMModelProviderComponent,
-        AEMPageComponent
+        AEMPageComponent,
+        AbstractMappedComponent
     ],
     entryComponents: [
         AEMContainerComponent,
         AEMAllowedComponentsContainerComponent,
         AEMResponsiveGridComponent,
-        AEMPageComponent
+        AEMPageComponent,
+        AbstractMappedComponent
     ]
 })
 export class SpaAngularEditableComponentsModule {}

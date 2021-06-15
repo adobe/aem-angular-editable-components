@@ -16,7 +16,7 @@ import { AEMComponentDirective } from './aem-component.directive';
 import { Component, Input } from '@angular/core';
 import { ComponentMapping, MapTo, LazyMapTo, AbstractMappedComponent } from './component-mapping';
 import { Utils } from './utils';
-import { LazyComponentType } from "../test/lazy-component-wrapper/lazy.component";
+import LazyComponent, { LazyComponentType } from "../test/lazy-component-wrapper/lazy.component";
 
 @Component({
   selector: 'test-component',
@@ -76,10 +76,10 @@ describe('AEMComponentDirective', () => {
     getEditConfigSpy = spyOn(ComponentMapping, 'getEditConfig').and.returnValue(undefined);
 
     TestBed.configureTestingModule({
-      declarations: [ AEMDirectiveTestComponent, DirectiveComponent, AEMComponentDirective ]
+      declarations: [ AEMDirectiveTestComponent, LazyComponent, AbstractMappedComponent, DirectiveComponent, AEMComponentDirective ]
     }).overrideModule(BrowserDynamicTestingModule, {
       set: {
-        entryComponents: [ DirectiveComponent ]
+        entryComponents: [ LazyComponent, DirectiveComponent,AbstractMappedComponent ]
       }
     })
     .compileComponents();

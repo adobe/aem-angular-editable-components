@@ -24,7 +24,7 @@ const plugins = [
 const customLaunchers = {
   ChromeCI: {
     base: 'ChromeHeadless',
-    flags: [ '--no-sandbox', '--headless' ]
+    flags: [ '--no-sandbox', '--headless' , '--disable-gpu']
   }
 };
 

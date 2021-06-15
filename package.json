@@ -29,9 +29,9 @@
     "ng": "ng",
     "semantic-release": "semantic-release",
     "start": "ng serve",
-    "test:coverage": "ng test aem-angular-editable-components --code-coverage",
-    "test:debug": "ng test aem-angular-editable-components --watch=true --code-coverage",
-    "test": "ng test aem-angular-editable-components"
+    "test:coverage": "ng test aem-angular-editable-components  --browsers=ChromeCI --code-coverage",
+    "test:debug": "ng test aem-angular-editable-components  --browsers=ChromeCI --watch=true --code-coverage",
+    "test": "ng test aem-angular-editable-components --browsers=ChromeCI"
   },
   "peerDependencies": {
     "@adobe/aem-spa-component-mapping": "~1.1.0",
@@ -87,7 +87,8 @@
     "tslint": "~6.1.0",
     "typedoc": "^0.20.0",
     "typescript": "4.1.5",
-    "zone.js": "~0.11.0"
+    "zone.js": "~0.11.0",
+    "puppeteer": "^10.0.0"
   },
   "config": {
     "commitizen": {

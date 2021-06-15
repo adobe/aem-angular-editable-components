@@ -19,6 +19,9 @@ import { LazyComponent } from './lazy.component';
     imports: [ CommonModule, BrowserModule, RouterModule ],
     declarations: [
         LazyComponent
+    ],
+    exports: [
+      LazyComponent
     ]
 })
 export class LazyModule {
