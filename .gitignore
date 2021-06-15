@@ -3,3 +3,6 @@ dist/
 .scannerwork/
 **/*.log
 *.tgz
+.idea
+coverage
+*.iml
