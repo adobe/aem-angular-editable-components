@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { AEMComponentDirective } from './aem-component.directive';
 import { Component, Input } from '@angular/core';
@@ -71,7 +71,7 @@ describe('AEMComponentDirective', () => {
   let isInEditorSpy;
   let getEditConfigSpy;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     isInEditorSpy = spyOn(Utils, 'isInEditor').and.returnValue(false);
     getEditConfigSpy = spyOn(ComponentMapping, 'getEditConfig').and.returnValue(undefined);
 

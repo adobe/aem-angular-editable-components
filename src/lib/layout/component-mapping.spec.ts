@@ -11,7 +11,7 @@
  */
 
 import { ComponentMapping, MapTo, MappedComponentProperties, EditConfig, AbstractMappedComponent, LazyMapTo } from './component-mapping';
-import { Input, Type } from '@angular/core';
+import { Input, Type, Directive } from '@angular/core';
 import LazyComponent, { LazyComponentType } from '../test/lazy-component-wrapper/lazy.component';
 
 interface TestProperties extends MappedComponentProperties {
@@ -23,10 +23,12 @@ interface TestProperties2 {
 }
 
 
+@Directive()
 class ComponentTest1 extends AbstractMappedComponent implements TestProperties {
   @Input() some = 'defaultValue';
 }
 
+@Directive()
 class ComponentTest2 extends AbstractMappedComponent implements  TestProperties2 {
   @Input() some = 'otherDefaultValue';
 }
