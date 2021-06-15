@@ -21,6 +21,7 @@ const plugins = [
   require('@angular-devkit/build-angular/plugins/karma')
 ];
 
+
 const customLaunchers = {
   ChromeCI: {
     base: 'ChromeHeadless',
