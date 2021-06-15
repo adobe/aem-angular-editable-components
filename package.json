@@ -19,6 +19,7 @@
     "npm": ">=6.14.4",
     "node": ">=12.16.2"
   },
+  
   "scripts": {
     "build:production": "npm run test && ng build aem-angular-editable-components --prod",
     "build": "npm run test && ng build aem-angular-editable-components",
