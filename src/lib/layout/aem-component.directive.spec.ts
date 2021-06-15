@@ -106,6 +106,36 @@ describe('AEMComponentDirective', () => {
     expect(dynamicElement.getAttribute('attr1')).toEqual(componentData['attr1']);
     expect(dynamicElement.getAttribute('attr2')).toEqual(componentData['attr2']);
   });
+  it('should not render anything', () => {
+    const componentData = {
+      attr1: 'Some value',
+      attr2: 'Another value',
+      ':type': 'missing/directive/comp'
+    };
+
+    component.data = componentData;
+    fixture.detectChanges();
+
+    const element = fixture.nativeElement;
+    const dynamicElement = element.firstElementChild;
+
+    expect(dynamicElement).toBeNull();
+  });
+  it('should render the fallback component', () => {
+    const componentData = {
+      attr1: 'Some value',
+      attr2: 'Another value',
+      ':type': 'missing/directive/comp'
+    };
+
+    component.data = componentData;
+    fixture.detectChanges();
+
+    const element = fixture.nativeElement;
+    const dynamicElement = element.firstElementChild;
+
+    expect(dynamicElement).toBeNull();
+  });
   it('should correctly pass the inputs for lazy component', async() => {
     const componentData = {
       some: 'Some value',
