@@ -105,7 +105,7 @@ export class AEMAllowedComponentsContainerComponent extends AEMContainerComponen
     return hasComponents ? this.title : this.emptyLabel;
   }
 
-  getAllowedComponents(): string[] {
+  getAllowedComponents(): AllowedComponent[] {
     return this.allowedComponents && this.allowedComponents.components || [];
   }
 
