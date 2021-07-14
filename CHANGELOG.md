@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/adobe/aem-angular-editable-components/compare/v1.2.0...v1.2.1) (2021-07-14)
+
+
+### Bug Fixes
+
+* **types:** fixing some wrong return types on aemallowedcontainercomponent and aemcontainer component ([47a3505](https://github.com/adobe/aem-angular-editable-components/commit/47a35055df74cd521138fd0f562427da5cbeaac7))
+
 # [1.2.0](https://github.com/adobe/aem-angular-editable-components/compare/v1.1.0...v1.2.0) (2021-01-12)
 
 
