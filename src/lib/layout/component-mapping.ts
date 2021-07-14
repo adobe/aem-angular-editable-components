@@ -64,12 +64,16 @@ export abstract class AbstractMappedComponent implements MappedComponentProperti
   @Input() itemName = '';
 }
 
+export interface ComponentMappingProvider {
+  get(resourceType:string):Type<unknown>
+  lazyGet(resourceType: string): Promise<Type<unknown>>
+}
 /**
  * The current class extends the @adobe/cq-spa-component-mapping#Mapto library and features with Angular specifics such as
  *
  * - Storing the editing configurations for each resource type
  */
-export class ComponentMappingWithConfig {
+export class ComponentMappingWithConfig implements ComponentMappingProvider{
   /**
    * Store of EditConfig structures
    */

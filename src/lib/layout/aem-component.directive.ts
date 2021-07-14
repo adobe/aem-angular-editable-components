@@ -28,7 +28,12 @@ import {
   ViewContainerRef
 } from '@angular/core';
 
-import { ComponentMapping, MappedComponentProperties } from './component-mapping';
+import {
+  ComponentMapping,
+  ComponentMappingProvider,
+  ComponentMappingWithConfig,
+  MappedComponentProperties
+} from './component-mapping';
 import { Constants } from './constants';
 import { Utils } from './utils';
 
@@ -93,18 +98,18 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
 
 
   constructor(
-    private renderer: Renderer2,
-    private viewContainer: ViewContainerRef,
-    private compiler: Compiler,
-    private injector: Injector,
-    private factoryResolver: ComponentFactoryResolver,
-    private _changeDetectorRef: ChangeDetectorRef) {
+    protected renderer: Renderer2,
+    protected viewContainer: ViewContainerRef,
+    protected compiler: Compiler,
+    protected injector: Injector,
+    protected factoryResolver: ComponentFactoryResolver,
+    protected _changeDetectorRef: ChangeDetectorRef) {
   }
 
   async ngOnInit() {
 
-   if (this.type) {
-    const mappedFn:Type<MappedComponentProperties> = ComponentMapping.get<MappedComponentProperties>(this.type);
+   if (this.getType()) {
+    const mappedFn:Type<unknown> = this.getComponentMappingProvider().get(this.getType());
 
     if (mappedFn) {
      this.renderComponent(mappedFn);
@@ -118,15 +123,23 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
   }
 
   async initializeAsync() {
-   const lazyMappedPromise: Promise<Type<MappedComponentProperties>> = ComponentMapping.lazyGet<MappedComponentProperties>(this.type);
-
    try {
+     const lazyMappedPromise: Promise<Type<unknown>> = this.getComponentMappingProvider().lazyGet(this.getType());
      const LazyResolvedComponent = await lazyMappedPromise;
      this.renderComponent(LazyResolvedComponent);
      this.loaded = true;
      this._changeDetectorRef.detectChanges();
    } catch (err) {
-     console.warn(err);
+
+     if(!!this.getFallbackComponent()){
+       this.renderComponent(this.getFallbackComponent());
+       this.loaded = true;
+       this._changeDetectorRef.detectChanges();
+       console.info("loaded fallback component. cause:", err);
+     }else{
+       console.warn(err);
+     }
+
    }
   }
 
@@ -134,10 +147,17 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
     this.updateComponentData();
   }
 
+  protected getFallbackComponent():Type<unknown> | null{
+    return null;
+  }
+
+  protected getComponentMappingProvider():ComponentMappingProvider  {
+    return ComponentMapping;
+  }
   /**
    * Returns the type of the cqItem if exists.
    */
-  get type(): string | undefined {
+  protected getType(): string | undefined {
     return this.cqItem && this.cqItem[Constants.TYPE_PROP];
   }
 
@@ -146,7 +166,7 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
    *
    * @param componentDefinition The component definition to render
    */
-  private renderComponent(componentDefinition: Type<MappedComponentProperties>) {
+  private renderComponent(componentDefinition: Type<unknown>) {
     if (componentDefinition) {
       const factory = this.factoryResolver.resolveComponentFactory(componentDefinition);
 
@@ -189,7 +209,7 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
     this._component.instance.cqPath = this.cqPath;
     this._component.instance.itemName = this.itemName;
 
-    const editConfig = ComponentMapping.getEditConfig(this.type);
+    const editConfig = ComponentMapping.getEditConfig(this.getType());
 
     if (editConfig && Utils.isInEditor) {
       this.setupPlaceholder(editConfig);
