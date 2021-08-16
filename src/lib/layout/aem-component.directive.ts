@@ -91,7 +91,6 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
 
   @Input() aemComponent;
 
-
   constructor(
     private renderer: Renderer2,
     private viewContainer: ViewContainerRef,
@@ -188,6 +187,7 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
 
     this._component.instance.cqPath = this.cqPath;
     this._component.instance.itemName = this.itemName;
+    this.includeAppliedCSSClasses();
 
     const editConfig = ComponentMapping.getEditConfig(this.type);
 
@@ -196,6 +196,17 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
     }
 
     this._changeDetectorRef.detectChanges();
+  }
+
+  /**
+   * Adds the applied css class names in to the element
+   */
+  private includeAppliedCSSClasses() {
+    const appliedCssClassNames = this.cqItem[Constants.APPLIED_CLASS_NAMES] || '';
+
+    if (appliedCssClassNames && this._component) {
+      this.renderer.setAttribute(this._component.location.nativeElement, 'class', appliedCssClassNames);
+    }
   }
 
   /**
@@ -248,6 +259,8 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
   }
 
   ngOnDestroy(): void {
-    this._component && this._component.destroy();
+    if (this._component) {
+      this._component.destroy();
+    }
   }
 }

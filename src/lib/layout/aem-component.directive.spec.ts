@@ -26,23 +26,19 @@ class AEMDirectiveTestComponent {
   @Input() data;
 }
 
-
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'directive-component',
+  // tslint:disable-next-line:no-host-metadata-property
   host: {
       '[attr.attr1]': 'attr1',
-      '[attr.attr2]': 'attr2',
-      '[class]': 'hostClasses'
+      '[attr.attr2]': 'attr2'
   },
   template: `<div></div>`
 })
 class DirectiveComponent extends AbstractMappedComponent {
   @Input() attr1;
   @Input() attr2;
-
-  get hostClasses() {
-    return 'component-class';
-  }
 }
 MapTo<DirectiveComponent>('directive/comp')(DirectiveComponent);
 LazyMapTo<LazyComponentType>('some/lazy/comp')(() => import('../test/lazy-component-wrapper/lazy.component').then((m) => m.LazyComponent));
@@ -94,7 +90,8 @@ describe('AEMComponentDirective', () => {
     const componentData = {
       attr1: 'Some value',
       attr2: 'Another value',
-      ':type': 'directive/comp'
+      ':type': 'directive/comp',
+      appliedCssClassNames: 'applied-css-class1'
     };
 
     component.data = componentData;
@@ -105,6 +102,8 @@ describe('AEMComponentDirective', () => {
 
     expect(dynamicElement.getAttribute('attr1')).toEqual(componentData['attr1']);
     expect(dynamicElement.getAttribute('attr2')).toEqual(componentData['attr2']);
+    expect(dynamicElement.getAttribute('class')).toEqual(componentData['appliedCssClassNames']);
+
   });
   it('should correctly pass the inputs for lazy component', async() => {
     const componentData = {
@@ -118,8 +117,6 @@ describe('AEMComponentDirective', () => {
     fixture.detectChanges();
 
   });
-
-
 
   it('should setup the placeholder', () => {
     isInEditorSpy.and.returnValue(true);
