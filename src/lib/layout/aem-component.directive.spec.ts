@@ -105,6 +105,25 @@ describe('AEMComponentDirective', () => {
     expect(dynamicElement.getAttribute('class')).toEqual(componentData['appliedCssClassNames']);
 
   });
+
+  it('should not resolve if incoming type is non existing', () => {
+    const componentData = {
+      attr1: 'Some value',
+      attr2: 'Another value',
+      ':type': 'directive/unknown-comp',
+      appliedCssClassNames: 'applied-css-class1'
+    };
+
+    component.data = componentData;
+    fixture.detectChanges();
+
+    const element = fixture.nativeElement;
+    const dynamicElement = element.firstElementChild;
+
+    expect(dynamicElement).toBeNull();
+
+  });
+
   it('should correctly pass the inputs for lazy component', async() => {
     const componentData = {
       some: 'Some value',
