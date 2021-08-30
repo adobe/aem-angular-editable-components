@@ -10,13 +10,15 @@
  * governing permissions and limitations under the License.
  */
 
-import { Component, Input, ViewChild } from '@angular/core';
-import { ModelManager } from '@adobe/aem-spa-page-model-manager';
+import { Component, Input, Output, ViewChild, EventEmitter } from '@angular/core';
+import { ModelManager, PathUtils } from '@adobe/aem-spa-page-model-manager';
 import { AEMComponentDirective } from '../aem-component.directive';
+import { Constants } from '../constants';
+import { Utils } from '../utils';
 
 @Component({
   selector: 'aem-model-provider,[aemModelProvider]',
-  template: `<ng-container aemComponent [cqItem]='cqItem' [cqPath]='cqPath' [itemName]='itemName'></ng-container>`
+  template: `<ng-container *ngIf="cqItemLoaded | async" aemComponent [cqItem]='cqItem' [cqPath]='cqPath' [itemName]='itemName'></ng-container>`
 })
 /**
  * The current component is responsible for providing access to the ModelManager and the model of a component
@@ -37,6 +39,14 @@ export class AEMModelProviderComponent {
 
   @Input() aemModelProvider;
 
+  @Input() pagePath;
+
+  @Input() itemPath;
+
+  @Output() updateDataPath = new EventEmitter();
+
+  cqItemLoaded: Promise<boolean>;
+
   @ViewChild(AEMComponentDirective) aemComponent: AEMComponentDirective;
 
   constructor() { /* void */ }
@@ -46,12 +56,23 @@ export class AEMModelProviderComponent {
    */
   updateItem(): void {
     ModelManager.getData({ path: this.cqPath }).then(model => {
+      this.cqItemLoaded = Promise.resolve(true);
       this.cqItem = model;
+      if (this.pagePath && Utils.isInEditor()) {
+        PathUtils.dispatchGlobalCustomEvent(Constants.ASYNC_CONTENT_LOADED_EVENT, {});
+      }
       this.aemComponent.changeDetectorRef.markForCheck();
     });
   }
 
   ngOnInit(): void {
+    if (!this.cqItem && this.pagePath) {
+      this.cqPath = Utils.getCQPath(this.pagePath, this.itemPath);
+      this.updateDataPath.emit({ cqPath: this.cqPath });
+      this.updateItem();
+    } else {
+      this.cqItemLoaded = Promise.resolve(true);
+    }
     ModelManager.addListener(this.cqPath, this.updateItem.bind(this));
   }
 

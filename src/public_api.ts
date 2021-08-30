@@ -24,3 +24,4 @@ export * from './lib/layout/utils';
 export * from './lib/aem-angular-editable-components.module';
 export * from './lib/routing/AemPageDataResolver';
 export * from './lib/routing/AemPageRouteReuseStrategy';
+export * from './lib/layout/aem-remote/aem-remote.component';

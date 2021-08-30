@@ -91,7 +91,6 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
 
   @Input() aemComponent;
 
-
   constructor(
     private renderer: Renderer2,
     private viewContainer: ViewContainerRef,
@@ -103,17 +102,17 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
 
   async ngOnInit() {
 
-   if (this.type) {
-    const mappedFn:Type<MappedComponentProperties> = ComponentMapping.get<MappedComponentProperties>(this.type);
+    if (this.type) {
+      const mappedFn:Type<MappedComponentProperties> = ComponentMapping.get<MappedComponentProperties>(this.type);
 
-    if (mappedFn) {
-     this.renderComponent(mappedFn);
+      if (mappedFn) {
+        this.renderComponent(mappedFn);
+      } else {
+        await this.initializeAsync();
+      }
     } else {
-     await this.initializeAsync();
+      console.warn('no type on ' + this.cqPath);
     }
-   } else {
-    console.warn('no type on ' + this.cqPath);
-   }
 
   }
 
@@ -122,6 +121,7 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
 
    try {
      const LazyResolvedComponent = await lazyMappedPromise;
+
      this.renderComponent(LazyResolvedComponent);
      this.loaded = true;
      this._changeDetectorRef.detectChanges();
@@ -166,7 +166,7 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
    * Updates the data of the component based the data of the directive
    */
   private updateComponentData() {
-    if (!this._component || !this._component.instance) {
+    if (!this._component || !this._component.instance || !this.cqItem) {
       return;
     }
 
@@ -187,7 +187,7 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
     });
 
     this._component.instance.cqPath = this.cqPath;
-    this._component.instance.itemName = this.itemName;
+    this._component.instance.itemName = this.itemName || (this.cqItem && this.cqItem.id);
 
     const editConfig = ComponentMapping.getEditConfig(this.type);
 

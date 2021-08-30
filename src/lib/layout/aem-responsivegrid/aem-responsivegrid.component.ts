@@ -59,7 +59,7 @@ export interface AEMResponsiveGridComponentProperties extends AEMAllowedComponen
 /**
  * The current class carries the base presentational logic of the AEM Layout Container (aka. Responsive grid)
  */
-export class AEMResponsiveGridComponent extends AEMAllowedComponentsContainerComponent implements AEMResponsiveGridComponentProperties{
+export class AEMResponsiveGridComponent extends AEMAllowedComponentsContainerComponent implements AEMResponsiveGridComponentProperties {
 
   @Input() gridClassNames;
   @Input() columnClassNames;

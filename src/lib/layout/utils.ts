@@ -9,7 +9,7 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-
+// import { normalize } from 'path';
 /**
  * Selector that identifies the node that contains the WCM mode state.
  * @private
@@ -66,5 +66,19 @@ export const Utils = {
         const wcmMode = getWCMMode();
 
         return wcmMode && (EDIT_MODE === wcmMode || PREVIEW_MODE === wcmMode);
+    },
+
+    /**
+     * Determines the cqPath of a component given its props
+     *
+     * @private
+     * @returns cqPath of the component
+     */
+     getCQPath(pagePath: string, itemPath?: string): string {
+        let path = (itemPath ? `${pagePath}/jcr:content/${itemPath}` : pagePath);
+
+        path = path.replace(/\/+/g, '/');
+
+        return path;
     }
 };

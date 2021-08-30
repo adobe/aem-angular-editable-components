@@ -55,5 +55,10 @@ export const Constants = {
     /**
      * Hierarchical type of the item
      */
-    HIERARCHY_TYPE_PROP: PMConstants.HIERARCHY_TYPE_PROP
+    HIERARCHY_TYPE_PROP: PMConstants.HIERARCHY_TYPE_PROP,
+
+    /**
+     * Event which indicates that content of remote component has been fetched and loaded in the app
+     */
+     ASYNC_CONTENT_LOADED_EVENT: 'cq-async-content-loaded'
 };
