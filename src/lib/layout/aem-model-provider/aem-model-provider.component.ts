@@ -61,7 +61,9 @@ export class AEMModelProviderComponent {
       if (this.pagePath && Utils.isInEditor()) {
         PathUtils.dispatchGlobalCustomEvent(Constants.ASYNC_CONTENT_LOADED_EVENT, {});
       }
-      this.aemComponent.changeDetectorRef.markForCheck();
+      if (this.aemComponent) {
+        this.aemComponent.changeDetectorRef.markForCheck();
+      }
     });
   }
 
