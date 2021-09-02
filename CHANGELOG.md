@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/adobe/aem-angular-editable-components/compare/v1.2.1...v1.3.0) (2021-09-02)
+
+
+### Features
+
+* **stylesytem:** StyleSystem Support ([3816ec1](https://github.com/adobe/aem-angular-editable-components/commit/3816ec12f578dce4e7f199a2cebc66033cd74c18))
+
 ## [1.2.1](https://github.com/adobe/aem-angular-editable-components/compare/v1.2.0...v1.2.1) (2021-07-14)
 
 
