@@ -20,6 +20,11 @@ export const Constants = {
      */
     NEW_SECTION_CLASS_NAMES: 'new section',
 
+    /**
+     *  CSS Class names applied to a component.
+     */
+    APPLIED_CLASS_NAMES: 'appliedCssClassNames',
+
     TYPE_PROP: PMConstants.TYPE_PROP,
 
     /**
