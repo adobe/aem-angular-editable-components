@@ -103,18 +103,18 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
   async ngOnInit() {
 
     if (this.type) {
-      const mappedFn:Type<MappedComponentProperties> = ComponentMapping.get<MappedComponentProperties>(this.type);
-
-      if (mappedFn) {
-        this.renderComponent(mappedFn);
-      } else {
-        await this.initializeAsync();
-      }
+     const mappedFn:Type<MappedComponentProperties> = ComponentMapping.get<MappedComponentProperties>(this.type);
+ 
+     if (mappedFn) {
+      this.renderComponent(mappedFn);
+     } else {
+      await this.initializeAsync();
+     }
     } else {
-      console.warn('no type on ' + this.cqPath);
+     console.warn('no type on ' + this.cqPath);
     }
-
-  }
+ 
+   }
 
   async initializeAsync() {
    const lazyMappedPromise: Promise<Type<MappedComponentProperties>> = ComponentMapping.lazyGet<MappedComponentProperties>(this.type);
