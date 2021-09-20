@@ -102,25 +102,26 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
 
   async ngOnInit() {
 
-   if (this.type) {
-    const mappedFn:Type<MappedComponentProperties> = ComponentMapping.get<MappedComponentProperties>(this.type);
-
-    if (mappedFn) {
-     this.renderComponent(mappedFn);
+    if (this.type) {
+     const mappedFn:Type<MappedComponentProperties> = ComponentMapping.get<MappedComponentProperties>(this.type);
+ 
+     if (mappedFn) {
+      this.renderComponent(mappedFn);
+     } else {
+      await this.initializeAsync();
+     }
     } else {
-     await this.initializeAsync();
+     console.warn('no type on ' + this.cqPath);
     }
-   } else {
-    console.warn('no type on ' + this.cqPath);
+ 
    }
-
-  }
 
   async initializeAsync() {
    const lazyMappedPromise: Promise<Type<MappedComponentProperties>> = ComponentMapping.lazyGet<MappedComponentProperties>(this.type);
 
    try {
      const LazyResolvedComponent = await lazyMappedPromise;
+
      this.renderComponent(LazyResolvedComponent);
      this.loaded = true;
      this._changeDetectorRef.detectChanges();
@@ -165,7 +166,7 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
    * Updates the data of the component based the data of the directive
    */
   private updateComponentData() {
-    if (!this._component || !this._component.instance) {
+    if (!this._component || !this._component.instance || !this.cqItem) {
       return;
     }
 
@@ -186,7 +187,7 @@ export class AEMComponentDirective implements AfterViewInit, OnInit, OnDestroy, 
     });
 
     this._component.instance.cqPath = this.cqPath;
-    this._component.instance.itemName = this.itemName;
+    this._component.instance.itemName = this.itemName || (this.cqItem && this.cqItem.id);
     this.includeAppliedCSSClasses();
 
     const editConfig = ComponentMapping.getEditConfig(this.type);

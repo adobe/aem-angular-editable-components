@@ -66,5 +66,19 @@ export const Utils = {
         const wcmMode = getWCMMode();
 
         return wcmMode && (EDIT_MODE === wcmMode || PREVIEW_MODE === wcmMode);
+    },
+
+    /**
+     * Determines the cqPath of a component given its props
+     *
+     * @private
+     * @returns cqPath of the component
+     */
+     getCQPath(pagePath: string, itemPath?: string): string {
+        let path = (itemPath ? `${pagePath}/jcr:content/${itemPath}` : pagePath);
+
+        path = path.replace(/\/+/g, '/');
+
+        return path;
     }
 };

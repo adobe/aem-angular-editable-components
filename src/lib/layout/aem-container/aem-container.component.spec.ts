@@ -77,45 +77,47 @@ describe('AEMContainerComponent', () => {
         component.cqPath = layout[Constants.PATH_PROP];
         fixture.detectChanges();
 
-        let element = fixture.nativeElement;
+        fixture.whenStable().then(() => {
+            let element = fixture.nativeElement;
 
-        element = checkComponent(element.firstElementChild.firstElementChild,
-            'aem-responsivegrid', 'root', '.aem-container.test-class-names.aem-Grid\\/root');
+            element = checkComponent(element.firstElementChild.firstElementChild,
+                'aem-responsivegrid', 'root', '.aem-container.test-class-names.aem-Grid\\/root');
 
-        element = checkComponent(element.firstElementChild.firstElementChild, 'aem-responsivegrid',
-            'root/responsivegrid', '.aem-container.aem-Grid\\/root\\/responsivegrid');
+            element = checkComponent(element.firstElementChild.firstElementChild, 'aem-responsivegrid',
+                'root/responsivegrid', '.aem-container.aem-Grid\\/root\\/responsivegrid');
 
-        element = checkComponent(element.firstElementChild, 'div',
-            'root/responsivegrid/component1',
-            '.aem-GridColumn\\/root\\/responsivegrid\\/component1');
+            element = checkComponent(element.firstElementChild, 'div',
+                'root/responsivegrid/component1',
+                '.aem-GridColumn\\/root\\/responsivegrid\\/component1');
 
-        expect(element.firstElementChild.matches(`test-comp1[data-title="Component1"]`)).toBeTruthy();
+            expect(element.firstElementChild.matches(`test-comp1[data-title="Component1"]`)).toBeTruthy();
 
-        element = checkComponent(element.nextElementSibling, 'div',
-            'root/responsivegrid/component3',
-            '.aem-GridColumn\\/root\\/responsivegrid\\/component3');
+            element = checkComponent(element.nextElementSibling, 'div',
+                'root/responsivegrid/component3',
+                '.aem-GridColumn\\/root\\/responsivegrid\\/component3');
 
-        expect(element.firstElementChild.matches(`test-comp3[data-title="Component3"]`)).toBeTruthy();
+            expect(element.firstElementChild.matches(`test-comp3[data-title="Component3"]`)).toBeTruthy();
 
-        element = checkComponent(element.nextElementSibling, 'div',
-            'root/responsivegrid/component5',
-            '.aem-GridColumn\\/root\\/responsivegrid\\/component5');
+            element = checkComponent(element.nextElementSibling, 'div',
+                'root/responsivegrid/component5',
+                '.aem-GridColumn\\/root\\/responsivegrid\\/component5');
 
-        expect(element.firstElementChild.matches(`test-comp1[data-title="Component5"]`)).toBeTruthy();
+            expect(element.firstElementChild.matches(`test-comp1[data-title="Component5"]`)).toBeTruthy();
 
-        element = checkComponent(element.nextElementSibling, 'div',
-            'root/responsivegrid/component2',
-            '.aem-GridColumn\\/root\\/responsivegrid\\/component2');
+            element = checkComponent(element.nextElementSibling, 'div',
+                'root/responsivegrid/component2',
+                '.aem-GridColumn\\/root\\/responsivegrid\\/component2');
 
-        expect(element.firstElementChild.matches(`test-comp2[data-title="Component2"]`)).toBeTruthy();
+            expect(element.firstElementChild.matches(`test-comp2[data-title="Component2"]`)).toBeTruthy();
 
-        element = checkComponent(element.nextElementSibling, 'div',
-            'root/responsivegrid/component4',
-            '.aem-GridColumn\\/root\\/responsivegrid\\/component4');
+            element = checkComponent(element.nextElementSibling, 'div',
+                'root/responsivegrid/component4',
+                '.aem-GridColumn\\/root\\/responsivegrid\\/component4');
 
-        expect(element.firstElementChild.matches(`test-comp2[data-title="Component4"]`)).toBeTruthy();
+            expect(element.firstElementChild.matches(`test-comp2[data-title="Component4"]`)).toBeTruthy();
 
-        expect(component).toBeTruthy();
+            expect(component).toBeTruthy();
+        });
     });
 
     it('should create placeholder', () => {
@@ -124,12 +126,14 @@ describe('AEMContainerComponent', () => {
         component.classNames = layout.classNames;
         fixture.detectChanges();
 
-        let element = fixture.nativeElement;
+        fixture.whenStable().then(() => {
+            let element = fixture.nativeElement;
 
-        element = element.firstElementChild.firstElementChild;
-        expect(element.querySelector('div[data-cq-data-path="root/*"][class="new section"]')).toBeDefined();
+            element = element.firstElementChild.firstElementChild;
+            expect(element.querySelector('div[data-cq-data-path="root/*"][class="new section"]')).toBeDefined();
 
-        element = element.firstElementChild.firstElementChild;
-        expect(element.querySelector('div[data-cq-data-path="root/responsivegrid/*"][class="new section"]')).toBeDefined();
+            element = element.firstElementChild.firstElementChild;
+            expect(element.querySelector('div[data-cq-data-path="root/responsivegrid/*"][class="new section"]')).toBeDefined();
+        });
     });
 });
