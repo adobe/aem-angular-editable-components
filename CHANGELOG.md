@@ -1,3 +1,11 @@
+# [1.4.0](https://github.com/adobe/aem-angular-editable-components/compare/v1.3.0...v1.4.0) (2021-09-20)
+
+
+### Features
+
+* basic support for remote SPA ([e34c124](https://github.com/adobe/aem-angular-editable-components/commit/e34c124bb472c5ed24b320da8b41fcb0cf4f301d))
+* support for remote angular app editing in AEM ([1671ec2](https://github.com/adobe/aem-angular-editable-components/commit/1671ec2989ae0ae340c84a1c3767b45b829ddd62))
+
 # [1.3.0](https://github.com/adobe/aem-angular-editable-components/compare/v1.2.1...v1.3.0) (2021-09-02)
 
 
