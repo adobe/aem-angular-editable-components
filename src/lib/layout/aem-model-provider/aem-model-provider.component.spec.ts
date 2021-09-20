@@ -28,6 +28,7 @@ describe('AEMModelProviderComponent', () => {
   let getDataSpy;
 
   beforeEach(() => {
+    spyOn(ModelManager, 'addListener').and.returnValue(undefined);
     getDataSpy = spyOn(ModelManager, 'getData').and.returnValue(Promise.resolve(TEST_MODEL_DATA as Model));
 
     TestBed.configureTestingModule({
@@ -40,12 +41,26 @@ describe('AEMModelProviderComponent', () => {
 
     fixture = TestBed.createComponent(AEMModelProviderComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should call ModelManager#getData when updateItem is called', () => {
+    fixture.detectChanges();
     expect(getDataSpy.calls.count()).toEqual(0);
     component.updateItem();
+    expect(getDataSpy.calls.count()).toEqual(1);
+  });
+
+  it('should emit event to update path for remote spa', () => {
+    spyOn(component.updateDataPath, 'emit');
+    component.pagePath = '/test';
+    fixture.detectChanges();
+    expect(component.updateDataPath.emit).toHaveBeenCalledWith({ cqPath: '/test' });
+  });
+
+  it('should fetch model for remote spa', () => {
+    expect(getDataSpy.calls.count()).toEqual(0);
+    component.pagePath = '/test';
+    fixture.detectChanges();
     expect(getDataSpy.calls.count()).toEqual(1);
   });
 });
