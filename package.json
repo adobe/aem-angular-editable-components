@@ -43,7 +43,7 @@
     "@adobe/aem-spa-component-mapping": "~1.1.0",
     "@adobe/aem-spa-page-model-manager": "~1.5.0",
     "@adobe/eslint-config-editorxp": "^1.0.7",
-    "@angular-devkit/build-angular": "0.901.9",
+    "@angular-devkit/build-angular": "0.1102.18",
     "@angular-devkit/build-ng-packagr": "0.901.9",
     "@angular-eslint/eslint-plugin": "^0.5.0-beta.3",
     "@angular/cli": "^9.1.7",
