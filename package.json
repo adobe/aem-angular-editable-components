@@ -102,5 +102,8 @@
       "extends": [
          "@adobe/eslint-config-editorxp/angular"
       ]
+   },
+   "dependencies": {
+      "@angular-devkit/schematics": "^16.0.5"
    }
 }
