@@ -36,8 +36,8 @@
    "peerDependencies": {
       "@adobe/aem-spa-component-mapping": "~1.1.0",
       "@adobe/aem-spa-page-model-manager": "~1.5.0",
-      "@angular/common": "^10.0.0",
-      "@angular/core": "^10.0.0"
+      "@angular/common": "^11.0.0",
+      "@angular/core": "^11.0.0"
    },
    "devDependencies": {
       "@adobe/aem-spa-component-mapping": "~1.1.0",
@@ -46,17 +46,17 @@
       "@angular-devkit/build-angular": "0.901.9",
       "@angular-devkit/build-ng-packagr": "0.901.9",
       "@angular-eslint/eslint-plugin": "^0.5.0-beta.3",
-      "@angular/cli": "^10.0.0",
-      "@angular/common": "^10.0.0",
-      "@angular/compiler": "^10.0.0",
-      "@angular/compiler-cli": "^9.1.9",
-      "@angular/core": "^9.1.9",
-      "@angular/forms": "^9.1.9",
-      "@angular/language-service": "^9.1.9",
+      "@angular/cli": "^11.0.0",
+      "@angular/common": "^11.0.0",
+      "@angular/compiler": "^11.0.0",
+      "@angular/compiler-cli": "^11.0.0",
+      "@angular/core": "^11.0.0",
+      "@angular/forms": "^11.0.0",
+      "@angular/language-service": "^11.0.0",
       "@angular/localize": "^16.0.4",
-      "@angular/platform-browser": "^9.1.9",
-      "@angular/platform-browser-dynamic": "^9.1.9",
-      "@angular/router": "^9.1.9",
+      "@angular/platform-browser": "^11.0.0",
+      "@angular/platform-browser-dynamic": "^11.0.0",
+      "@angular/router": "^11.0.0",
       "@octokit/core": "^3.1.2",
       "@semantic-release/changelog": "^5.0.1",
       "@semantic-release/git": "^9.0.0",
@@ -104,7 +104,5 @@
          "@adobe/eslint-config-editorxp/angular"
       ]
    },
-   "dependencies": {
-      "@angular-devkit/schematics": "^16.0.5"
-   }
+   "dependencies": {}
 }
