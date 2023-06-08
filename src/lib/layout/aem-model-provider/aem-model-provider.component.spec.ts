@@ -34,9 +34,7 @@ describe('AEMModelProviderComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ AEMComponentDirective, AEMModelProviderComponent ]
     }).overrideModule(BrowserDynamicTestingModule, {
-      set: {
-        entryComponents: [ AEMModelProviderComponent ]
-      }
+      set: {}
     }).compileComponents();
 
     fixture = TestBed.createComponent(AEMModelProviderComponent);

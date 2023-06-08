@@ -41,13 +41,6 @@ import { AEMRemoteComponent } from './layout/aem-remote/aem-remote.component';
         AEMModelProviderComponent,
         AEMPageComponent,
         AEMRemoteComponent
-    ],
-    entryComponents: [
-        AEMContainerComponent,
-        AEMAllowedComponentsContainerComponent,
-        AEMResponsiveGridComponent,
-        AEMPageComponent,
-        AEMRemoteComponent
     ]
 })
 export class SpaAngularEditableComponentsModule {}
