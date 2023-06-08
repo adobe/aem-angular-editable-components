@@ -1,106 +1,106 @@
 {
    "name": "@adobe/aem-angular-editable-components",
-  "version": "1.0.5",
-  "description": "Provides Angular components and integration layer with Adobe Experience Manager Page Editor.",
-  "keywords": [
-    "spa",
-    "aem",
-    "angular",
-    "adobe"
-  ],
-  "author": "Adobe Systems Inc. <sitexpci@adobe.com>",
-  "license": "Apache-2.0",
-  "repository": "github:adobe/aem-angular-editable-components",
-  "homepage": "https://docs.adobe.com/content/help/en/experience-manager-65/developing/headless/spas/spa-reference-materials.html",
-  "bugs": {
-    "url": "https://github.com/adobe/aem-angular-editable-components/issues"
-  },
-  "engines": {
-    "npm": ">=6.14.4",
-    "node": ">=12.16.2"
-  },
-  "scripts": {
-    "build:production": "npm run test && ng build aem-angular-editable-components --prod",
-    "build": "npm run test && ng build aem-angular-editable-components",
-    "clean": "rm -rf dist/",
-    "docs": "npm i && npx typedoc --excludePrivate ./src --out ./dist/docs --exclude '**/test/**/*' --exclude '**/*.spec.ts' --exclude src/test.ts",
-    "e2e": "ng e2e",
-    "linter": "eslint .",
-    "ng": "ng",
-    "semantic-release": "semantic-release",
-    "start": "ng serve",
-    "test:coverage": "ng test aem-angular-editable-components --code-coverage",
-    "test:debug": "ng test aem-angular-editable-components --watch=true --code-coverage",
-    "test": "ng test aem-angular-editable-components"
-  },
-  "peerDependencies": {
-    "@adobe/aem-spa-component-mapping": "~1.1.0",
-    "@adobe/aem-spa-page-model-manager": "~1.5.0",
-    "@angular/common": "^9.1.9",
-    "@angular/core": "^9.1.9"
-  },
-  "devDependencies": {
-    "@adobe/aem-spa-component-mapping": "~1.1.0",
-    "@adobe/aem-spa-page-model-manager": "~1.5.0",
-    "@adobe/eslint-config-editorxp": "^1.0.7",
-    "@angular-devkit/build-angular": "0.901.9",
-    "@angular-devkit/build-ng-packagr": "0.901.9",
-    "@angular-eslint/eslint-plugin": "^0.5.0-beta.3",
-    "@angular/cli": "^9.1.7",
-    "@angular/common": "^9.1.9",
-    "@angular/compiler": "^9.1.9",
-    "@angular/compiler-cli": "^9.1.9",
-    "@angular/core": "^9.1.9",
-    "@angular/forms": "^9.1.9",
-    "@angular/language-service": "^9.1.9",
-    "@angular/platform-browser": "^9.1.9",
-    "@angular/platform-browser-dynamic": "^9.1.9",
-    "@angular/router": "^9.1.9",
-    "@octokit/core": "^3.1.2",
-    "@semantic-release/changelog": "^5.0.1",
-    "@semantic-release/git": "^9.0.0",
-    "@semantic-release/github": "^7.0.7",
-    "@types/jasmine": "^3.5.10",
-    "@types/jasminewd2": "~2.0.8",
-    "@types/node": "^14.0.11",
-    "@typescript-eslint/eslint-plugin": "^4.4.1",
-    "@typescript-eslint/parser": "^4.4.1",
-    "codelyzer": "^5.2.2",
-    "commitizen": "^4.2.1",
-    "core-js": "^3.6.5",
-    "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^7.11.0",
-    "eslint-plugin-angular": "^4.0.1",
-    "eslint-plugin-header": "^3.1.0",
-    "eslint-plugin-json": "^2.1.2",
-    "jasmine-core": "^3.5.0",
-    "jasmine-spec-reporter": "~4.2.1",
-    "karma": "^5.0.9",
-    "karma-chrome-launcher": "^3.1.0",
-    "karma-coverage-istanbul-reporter": "^3.0.3",
-    "karma-jasmine": "^3.3.1",
-    "karma-jasmine-html-reporter": "^1.5.4",
-    "ng-packagr": "^9.1.5",
-    "node-sass": "^4.14.1",
-    "protractor": "^7.0.0",
-    "rxjs": "^6.5.5",
-    "semantic-release": "^17.1.1",
-    "ts-node": "^8.10.2",
-    "tslib": "^1.10.0",
-    "tslint": "^6.1.2",
-    "typedoc": "^0.20.0",
-    "typescript": "3.6.4",
-    "zone.js": "~0.11.0"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-        }
-    },
-    "eslintConfig": {
-        "root": true,
-        "extends": [
-            "@adobe/eslint-config-editorxp/angular"
-        ]
-    }
+   "version": "1.0.5",
+   "description": "Provides Angular components and integration layer with Adobe Experience Manager Page Editor.",
+   "keywords": [
+      "spa",
+      "aem",
+      "angular",
+      "adobe"
+   ],
+   "author": "Adobe Systems Inc. <sitexpci@adobe.com>",
+   "license": "Apache-2.0",
+   "repository": "github:adobe/aem-angular-editable-components",
+   "homepage": "https://docs.adobe.com/content/help/en/experience-manager-65/developing/headless/spas/spa-reference-materials.html",
+   "bugs": {
+      "url": "https://github.com/adobe/aem-angular-editable-components/issues"
+   },
+   "engines": {
+      "npm": ">=6.14.4",
+      "node": ">=12.16.2"
+   },
+   "scripts": {
+      "build:production": "npm run test && ng build aem-angular-editable-components --prod",
+      "build": "npm run test && ng build aem-angular-editable-components",
+      "clean": "rm -rf dist/",
+      "docs": "npm i && npx typedoc --excludePrivate ./src --out ./dist/docs --exclude '**/test/**/*' --exclude '**/*.spec.ts' --exclude src/test.ts",
+      "e2e": "ng e2e",
+      "linter": "eslint .",
+      "ng": "ng",
+      "semantic-release": "semantic-release",
+      "start": "ng serve",
+      "test:coverage": "ng test aem-angular-editable-components --code-coverage",
+      "test:debug": "ng test aem-angular-editable-components --watch=true --code-coverage",
+      "test": "ng test aem-angular-editable-components"
+   },
+   "peerDependencies": {
+      "@adobe/aem-spa-component-mapping": "~1.1.0",
+      "@adobe/aem-spa-page-model-manager": "~1.5.0",
+      "@angular/common": "^9.1.9",
+      "@angular/core": "^9.1.9"
+   },
+   "devDependencies": {
+      "@adobe/aem-spa-component-mapping": "~1.1.0",
+      "@adobe/aem-spa-page-model-manager": "~1.5.0",
+      "@adobe/eslint-config-editorxp": "^1.0.7",
+      "@angular-devkit/build-angular": "0.901.9",
+      "@angular-devkit/build-ng-packagr": "0.901.9",
+      "@angular-eslint/eslint-plugin": "^0.5.0-beta.3",
+      "@angular/cli": "^9.1.7",
+      "@angular/common": "^9.1.9",
+      "@angular/compiler": "^9.1.9",
+      "@angular/compiler-cli": "^9.1.9",
+      "@angular/core": "^9.1.9",
+      "@angular/forms": "^9.1.9",
+      "@angular/language-service": "^9.1.9",
+      "@angular/platform-browser": "^9.1.9",
+      "@angular/platform-browser-dynamic": "^9.1.9",
+      "@angular/router": "^9.1.9",
+      "@octokit/core": "^3.1.2",
+      "@semantic-release/changelog": "^5.0.1",
+      "@semantic-release/git": "^9.0.0",
+      "@semantic-release/github": "^7.0.7",
+      "@types/jasmine": "^3.5.10",
+      "@types/jasminewd2": "~2.0.8",
+      "@types/node": "^14.0.11",
+      "@typescript-eslint/eslint-plugin": "^4.4.1",
+      "@typescript-eslint/parser": "^4.4.1",
+      "codelyzer": "^5.2.2",
+      "commitizen": "^4.2.1",
+      "core-js": "^3.6.5",
+      "cz-conventional-changelog": "^3.3.0",
+      "eslint": "^7.11.0",
+      "eslint-plugin-angular": "^4.0.1",
+      "eslint-plugin-header": "^3.1.0",
+      "eslint-plugin-json": "^2.1.2",
+      "jasmine-core": "^3.5.0",
+      "jasmine-spec-reporter": "~4.2.1",
+      "karma": "^5.0.9",
+      "karma-chrome-launcher": "^3.1.0",
+      "karma-coverage-istanbul-reporter": "^3.0.3",
+      "karma-jasmine": "^3.3.1",
+      "karma-jasmine-html-reporter": "^1.5.4",
+      "ng-packagr": "^9.1.5",
+      "node-sass": "^4.14.1",
+      "protractor": "^7.0.0",
+      "rxjs": "^6.5.5",
+      "semantic-release": "^17.1.1",
+      "ts-node": "^8.10.2",
+      "tslib": "^1.10.0",
+      "tslint": "^6.1.2",
+      "typedoc": "^0.20.0",
+      "typescript": "^3.8.3",
+      "zone.js": "^0.10.3"
+   },
+   "config": {
+      "commitizen": {
+         "path": "./node_modules/cz-conventional-changelog"
+      }
+   },
+   "eslintConfig": {
+      "root": true,
+      "extends": [
+         "@adobe/eslint-config-editorxp/angular"
+      ]
+   }
 }
