@@ -57,7 +57,7 @@
       "@angular/platform-browser": "^11.0.0",
       "@angular/platform-browser-dynamic": "^11.0.0",
       "@angular/router": "^11.0.0",
-      "@ngtools/webpack": "^11.2.19",
+      "@ngtools/webpack": "^16.0.5",
       "@octokit/core": "^3.1.2",
       "@semantic-release/changelog": "^5.0.1",
       "@semantic-release/git": "^9.0.0",
