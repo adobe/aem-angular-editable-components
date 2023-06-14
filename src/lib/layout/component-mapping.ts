@@ -11,7 +11,7 @@
  */
 
 import { ComponentMapping as SPAComponentMapping } from '@adobe/aem-spa-component-mapping';
-import { Input, Type } from '@angular/core';
+import { Directive, Input, Type } from '@angular/core';
 
 /**
  * Indicated whether force reload is turned on, forcing the model to be refetched on every MapTo instantiation.
@@ -58,6 +58,7 @@ export interface EditConfig<P extends MappedComponentProperties = any> {
 /**
  * Provides standard implementation for the MappedComponentProperties using @Input
  */
+@Directive()
 export abstract class AbstractMappedComponent implements MappedComponentProperties {
   @Input() isInEditor = false;
   @Input() cqPath = '';
