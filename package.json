@@ -16,8 +16,8 @@
     "url": "https://github.com/adobe/aem-angular-editable-components/issues"
   },
   "engines": {
-    "npm": ">=7.24.0",
-    "node": ">=16.10.0"
+    "npm": ">=9.7.1",
+    "node": ">=16.14.2"
   },
   "scripts": {
     "build:production": "npm run test && ng build aem-angular-editable-components --configuration production",
