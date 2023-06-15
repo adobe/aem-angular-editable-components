@@ -59,7 +59,7 @@ export interface EditConfig<P extends MappedComponentProperties = any> {
  * Provides standard implementation for the MappedComponentProperties using @Input
  */
 @Directive()
-export abstract class AbstractMappedComponent implements MappedComponentProperties {
+export abstract class AbstractMappedComponentDirective implements MappedComponentProperties {
   @Input() isInEditor = false;
   @Input() cqPath = '';
   @Input() itemName = '';

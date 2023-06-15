@@ -32,7 +32,7 @@
     }
   },
   "angularCompilerOptions": {
-    "enableIvy": false,
+    "enableIvy": true,
     "strictTemplates": true
   },
   "include": [

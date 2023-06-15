@@ -11,7 +11,7 @@
  */
 
 import { Component, Input } from '@angular/core';
-import { AbstractMappedComponent, MappedComponentProperties } from '../../layout/component-mapping';
+import { AbstractMappedComponentDirective, MappedComponentProperties } from '../../layout/component-mapping';
 
 
 export interface LazyComponentType extends MappedComponentProperties {
@@ -25,7 +25,7 @@ export interface LazyComponentType extends MappedComponentProperties {
 /**
  * The current class carries the base presentational logic of the AEM Layout Container (aka. Responsive grid)
  */
-export class LazyComponent extends AbstractMappedComponent implements LazyComponentType {
+export class LazyComponent extends AbstractMappedComponentDirective implements LazyComponentType {
     @Input() otherValue;
 }
 
