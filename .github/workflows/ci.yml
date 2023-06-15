@@ -20,12 +20,6 @@ jobs:
         run: npm run build:production
       - name: Run tests and do code coverage check
         run: npm run test:coverage
-      - name: Run code linter
-        uses: mooyoul/tslint-actions@v1.1.2
-        if: ${{ github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository }}
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          pattern: '*.ts'
       - name: Upload code coverage report to workflow as an artifact
         uses: actions/upload-artifact@v2
         with:

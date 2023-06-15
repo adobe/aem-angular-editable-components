@@ -27,9 +27,7 @@ class AEMDirectiveTestComponent {
 }
 
 @Component({
-  // tslint:disable-next-line:component-selector
   selector: 'directive-component',
-  // tslint:disable-next-line:no-host-metadata-property
   host: {
       '[attr.attr1]': 'attr1',
       '[attr.attr2]': 'attr2'
