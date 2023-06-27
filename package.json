@@ -16,7 +16,7 @@
     "url": "https://github.com/adobe/aem-angular-editable-components/issues"
   },
   "engines": {
-    "npm": ">=9.7.1",
+    "npm": ">=8.14.0",
     "node": ">=16.14.2"
   },
   "scripts": {
