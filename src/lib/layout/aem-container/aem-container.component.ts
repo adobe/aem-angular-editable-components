@@ -13,7 +13,7 @@
 import { Component, Input } from '@angular/core';
 import { Constants } from '../constants';
 import { Utils } from '../utils';
-import { AbstractMappedComponent, ComponentMapping, MappedComponentProperties } from '../component-mapping';
+import { AbstractMappedComponentDirective, ComponentMapping, MappedComponentProperties } from '../component-mapping';
 import { Model } from "@adobe/aem-spa-page-model-manager";
 
 /**
@@ -62,7 +62,7 @@ export interface AEMContainerComponentProperties extends MappedComponentProperti
  * The current component provides the base presentational logic common to containers such as a grid or a page.
  * Container have in common the notion of item holders. Items are represented in the model by the fields _:items_ and _:itemsOrder_
  */
-export class AEMContainerComponent extends AbstractMappedComponent implements AEMContainerComponentProperties{
+export class AEMContainerComponent extends AbstractMappedComponentDirective implements AEMContainerComponentProperties{
 
   @Input() cqItems;
 

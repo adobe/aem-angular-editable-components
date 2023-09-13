@@ -14,7 +14,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { AEMComponentDirective } from './aem-component.directive';
 import { Component, Input } from '@angular/core';
-import { ComponentMapping, MapTo, LazyMapTo, AbstractMappedComponent } from './component-mapping';
+import { ComponentMapping, MapTo, LazyMapTo, AbstractMappedComponentDirective } from './component-mapping';
 import { Utils } from './utils';
 import { LazyComponentType } from "../test/lazy-component-wrapper/lazy.component";
 
@@ -27,16 +27,14 @@ class AEMDirectiveTestComponent {
 }
 
 @Component({
-  // tslint:disable-next-line:component-selector
   selector: 'directive-component',
-  // tslint:disable-next-line:no-host-metadata-property
   host: {
       '[attr.attr1]': 'attr1',
       '[attr.attr2]': 'attr2'
   },
   template: `<div></div>`
 })
-class DirectiveComponent extends AbstractMappedComponent {
+class DirectiveComponent extends AbstractMappedComponentDirective {
   @Input() attr1;
   @Input() attr2;
 }

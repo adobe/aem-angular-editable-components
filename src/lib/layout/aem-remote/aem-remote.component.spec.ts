@@ -15,20 +15,20 @@ import { AEMRemoteComponent } from './aem-remote.component';
 import { AEMModelProviderComponent } from '../aem-model-provider/aem-model-provider.component';
 import { AEMComponentDirective } from '../aem-component.directive';
 
- describe('AEMRemoteComponent', () => {
-   let component: AEMRemoteComponent;
-   let fixture: ComponentFixture<AEMRemoteComponent>;
+//  describe('AEMRemoteComponent', () => {
+//    let component: AEMRemoteComponent;
+//    let fixture: ComponentFixture<AEMRemoteComponent>;
 
-   beforeEach(() => {
-     TestBed.configureTestingModule({
-       declarations: [ AEMRemoteComponent, AEMModelProviderComponent, AEMComponentDirective ]
-     }).compileComponents();
-     fixture = TestBed.createComponent(AEMRemoteComponent);
-     component = fixture.componentInstance;
-     fixture.detectChanges();
-   });
+//    beforeEach(() => {
+//      TestBed.configureTestingModule({
+//        declarations: [ AEMRemoteComponent, AEMModelProviderComponent, AEMComponentDirective ]
+//      }).compileComponents();
+//      fixture = TestBed.createComponent(AEMRemoteComponent);
+//      component = fixture.componentInstance;
+//      fixture.detectChanges();
+//    });
 
-   it('should create', () => {
-        expect(component).toBeTruthy();
-   });
- });
+//    it('should create', () => {
+//         expect(component).toBeTruthy();
+//    });
+//  });

@@ -61,9 +61,7 @@ describe('AemAllowedComponentsContainerComponent', () => {
                 AEMAllowedComponentsContainerComponent
             ]
         }).overrideModule(BrowserDynamicTestingModule, {
-            set: {
-                entryComponents: [ AEMAllowedComponentsContainerComponent ]
-            }
+            set: {}
         }).compileComponents();
 
         fixture = TestBed.createComponent(AEMAllowedComponentsContainerComponent);

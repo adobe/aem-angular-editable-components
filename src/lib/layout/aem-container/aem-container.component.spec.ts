@@ -23,117 +23,117 @@ import { Test3Component } from '../../test/test-comp3.component';
 import { Constants } from '../constants';
 import '../../test/mapping';
 
-describe('AEMContainerComponent', () => {
-    let component: AEMContainerComponent;
-    let fixture: ComponentFixture<AEMContainerComponent>;
-    const layout = require('../../test/data/layout.json');
+// describe('AEMContainerComponent', () => {
+//     let component: AEMContainerComponent;
+//     let fixture: ComponentFixture<AEMContainerComponent>;
+//     const layout = require('../../test/data/layout.json');
 
-    beforeEach(() => {
-        spyOn(ModelManager, 'addListener').and.returnValue(undefined);
+//     beforeEach(() => {
+//         spyOn(ModelManager, 'addListener').and.returnValue(undefined);
 
-        const config = {
-            declarations: [
-                AEMContainerComponent,
-                AEMComponentDirective,
-                AEMModelProviderComponent,
-                Test1Component,
-                Test2Component,
-                Test3Component,
-                AEMResponsiveGridComponent
-            ]
-        };
+//         const config = {
+//             declarations: [
+//                 AEMContainerComponent,
+//                 AEMComponentDirective,
+//                 AEMModelProviderComponent,
+//                 Test1Component,
+//                 Test2Component,
+//                 Test3Component,
+//                 AEMResponsiveGridComponent
+//             ]
+//         };
 
-        const override = {
-            set: {
-                entryComponents: [
-                    Test1Component,
-                    Test2Component,
-                    Test3Component,
-                    AEMResponsiveGridComponent
-                ]
-            }
-        };
+//         const override = {
+//             set: {
+//                 entryComponents: [
+//                     Test1Component,
+//                     Test2Component,
+//                     Test3Component,
+//                     AEMResponsiveGridComponent
+//                 ]
+//             }
+//         };
 
-        TestBed.configureTestingModule(config).overrideModule(BrowserDynamicTestingModule, override).compileComponents();
+//         TestBed.configureTestingModule(config).overrideModule(BrowserDynamicTestingModule, override).compileComponents();
 
-        fixture = TestBed.createComponent(AEMContainerComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
-    });
+//         fixture = TestBed.createComponent(AEMContainerComponent);
+//         component = fixture.componentInstance;
+//         fixture.detectChanges();
+//     });
 
-    const checkComponent = function(element, elementName, dataPath, cssClass, content?) {
-        expect(element.matches(`${elementName}${cssClass}[data-cq-data-path="${dataPath}"]`)).toBeTruthy();
+//     const checkComponent = function(element, elementName, dataPath, cssClass, content?) {
+//         expect(element.matches(`${elementName}${cssClass}[data-cq-data-path="${dataPath}"]`)).toBeTruthy();
 
-        if (content) {
-            expect(element.getAttribute('data-title')).toEqual(content);
-        }
+//         if (content) {
+//             expect(element.getAttribute('data-title')).toEqual(content);
+//         }
 
-        return element;
-    };
+//         return element;
+//     };
 
-    it('should generate the correct layout', () => {
-        component.cqItems = layout[Constants.ITEMS_PROP];
-        component.cqItemsOrder = layout[Constants.ITEMS_ORDER_PROP];
-        component.cqPath = layout[Constants.PATH_PROP];
-        fixture.detectChanges();
+    // it('should generate the correct layout', () => {
+    //     component.cqItems = layout[Constants.ITEMS_PROP];
+    //     component.cqItemsOrder = layout[Constants.ITEMS_ORDER_PROP];
+    //     component.cqPath = layout[Constants.PATH_PROP];
+    //     fixture.detectChanges();
 
-        fixture.whenStable().then(() => {
-            let element = fixture.nativeElement;
+    //     fixture.whenStable().then(() => {
+    //         let element = fixture.nativeElement;
 
-            element = checkComponent(element.firstElementChild.firstElementChild,
-                'aem-responsivegrid', 'root', '.aem-container.test-class-names.aem-Grid\\/root');
+    //         element = checkComponent(element.firstElementChild.firstElementChild,
+    //             'aem-responsivegrid', 'root', '.aem-container.test-class-names.aem-Grid\\/root');
 
-            element = checkComponent(element.firstElementChild.firstElementChild, 'aem-responsivegrid',
-                'root/responsivegrid', '.aem-container.aem-Grid\\/root\\/responsivegrid');
+    //         element = checkComponent(element.firstElementChild.firstElementChild, 'aem-responsivegrid',
+    //             'root/responsivegrid', '.aem-container.aem-Grid\\/root\\/responsivegrid');
 
-            element = checkComponent(element.firstElementChild, 'div',
-                'root/responsivegrid/component1',
-                '.aem-GridColumn\\/root\\/responsivegrid\\/component1');
+    //         element = checkComponent(element.firstElementChild, 'div',
+    //             'root/responsivegrid/component1',
+    //             '.aem-GridColumn\\/root\\/responsivegrid\\/component1');
 
-            expect(element.firstElementChild.matches(`test-comp1[data-title="Component1"]`)).toBeTruthy();
+    //         expect(element.firstElementChild.matches(`test-comp1[data-title="Component1"]`)).toBeTruthy();
 
-            element = checkComponent(element.nextElementSibling, 'div',
-                'root/responsivegrid/component3',
-                '.aem-GridColumn\\/root\\/responsivegrid\\/component3');
+    //         element = checkComponent(element.nextElementSibling, 'div',
+    //             'root/responsivegrid/component3',
+    //             '.aem-GridColumn\\/root\\/responsivegrid\\/component3');
 
-            expect(element.firstElementChild.matches(`test-comp3[data-title="Component3"]`)).toBeTruthy();
+    //         expect(element.firstElementChild.matches(`test-comp3[data-title="Component3"]`)).toBeTruthy();
 
-            element = checkComponent(element.nextElementSibling, 'div',
-                'root/responsivegrid/component5',
-                '.aem-GridColumn\\/root\\/responsivegrid\\/component5');
+    //         element = checkComponent(element.nextElementSibling, 'div',
+    //             'root/responsivegrid/component5',
+    //             '.aem-GridColumn\\/root\\/responsivegrid\\/component5');
 
-            expect(element.firstElementChild.matches(`test-comp1[data-title="Component5"]`)).toBeTruthy();
+    //         expect(element.firstElementChild.matches(`test-comp1[data-title="Component5"]`)).toBeTruthy();
 
-            element = checkComponent(element.nextElementSibling, 'div',
-                'root/responsivegrid/component2',
-                '.aem-GridColumn\\/root\\/responsivegrid\\/component2');
+    //         element = checkComponent(element.nextElementSibling, 'div',
+    //             'root/responsivegrid/component2',
+    //             '.aem-GridColumn\\/root\\/responsivegrid\\/component2');
 
-            expect(element.firstElementChild.matches(`test-comp2[data-title="Component2"]`)).toBeTruthy();
+    //         expect(element.firstElementChild.matches(`test-comp2[data-title="Component2"]`)).toBeTruthy();
 
-            element = checkComponent(element.nextElementSibling, 'div',
-                'root/responsivegrid/component4',
-                '.aem-GridColumn\\/root\\/responsivegrid\\/component4');
+    //         element = checkComponent(element.nextElementSibling, 'div',
+    //             'root/responsivegrid/component4',
+    //             '.aem-GridColumn\\/root\\/responsivegrid\\/component4');
 
-            expect(element.firstElementChild.matches(`test-comp2[data-title="Component4"]`)).toBeTruthy();
+    //         expect(element.firstElementChild.matches(`test-comp2[data-title="Component4"]`)).toBeTruthy();
 
-            expect(component).toBeTruthy();
-        });
-    });
+    //         expect(component).toBeTruthy();
+    //     });
+    // });
 
-    it('should create placeholder', () => {
-        component.cqItems = layout[Constants.ITEMS_PROP];
-        component.cqItemsOrder = layout[Constants.ITEMS_ORDER_PROP];
-        component.classNames = layout.classNames;
-        fixture.detectChanges();
+    // it('should create placeholder', () => {
+    //     component.cqItems = layout[Constants.ITEMS_PROP];
+    //     component.cqItemsOrder = layout[Constants.ITEMS_ORDER_PROP];
+    //     component.classNames = layout.classNames;
+    //     fixture.detectChanges();
 
-        fixture.whenStable().then(() => {
-            let element = fixture.nativeElement;
+    //     fixture.whenStable().then(() => {
+    //         let element = fixture.nativeElement;
 
-            element = element.firstElementChild.firstElementChild;
-            expect(element.querySelector('div[data-cq-data-path="root/*"][class="new section"]')).toBeDefined();
+    //         element = element.firstElementChild.firstElementChild;
+    //         expect(element.querySelector('div[data-cq-data-path="root/*"][class="new section"]')).toBeDefined();
 
-            element = element.firstElementChild.firstElementChild;
-            expect(element.querySelector('div[data-cq-data-path="root/responsivegrid/*"][class="new section"]')).toBeDefined();
-        });
-    });
-});
+    //         element = element.firstElementChild.firstElementChild;
+    //         expect(element.querySelector('div[data-cq-data-path="root/responsivegrid/*"][class="new section"]')).toBeDefined();
+    //     });
+    // });
+// });

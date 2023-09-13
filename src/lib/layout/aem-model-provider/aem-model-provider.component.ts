@@ -67,7 +67,8 @@ export class AEMModelProviderComponent {
     });
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    await ModelManager.initialize();
     if (!this.cqItem && this.pagePath) {
       this.cqPath = Utils.getCQPath(this.pagePath, this.itemPath);
       this.updateDataPath.emit({ cqPath: this.cqPath });

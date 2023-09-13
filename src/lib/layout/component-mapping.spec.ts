@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-import { ComponentMapping, MapTo, MappedComponentProperties, EditConfig, AbstractMappedComponent, LazyMapTo } from './component-mapping';
+import { ComponentMapping, MapTo, MappedComponentProperties, EditConfig, AbstractMappedComponentDirective, LazyMapTo } from './component-mapping';
 import { Input, Type } from '@angular/core';
 import LazyComponent, { LazyComponentType } from '../test/lazy-component-wrapper/lazy.component';
 
@@ -23,11 +23,11 @@ interface TestProperties2 {
 }
 
 
-class ComponentTest1 extends AbstractMappedComponent implements TestProperties {
+class ComponentTest1 extends AbstractMappedComponentDirective implements TestProperties {
   @Input() some = 'defaultValue';
 }
 
-class ComponentTest2 extends AbstractMappedComponent implements  TestProperties2 {
+class ComponentTest2 extends AbstractMappedComponentDirective implements  TestProperties2 {
   @Input() some = 'otherDefaultValue';
 }
 

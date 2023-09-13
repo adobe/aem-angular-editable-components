@@ -11,7 +11,7 @@
  */
 
 import { Component, Input } from '@angular/core';
-import { AbstractMappedComponent } from '../layout/component-mapping';
+import { AbstractMappedComponentDirective } from '../layout/component-mapping';
 import { TestCompProperties } from './test-comp.type';
 
 @Component({
@@ -21,6 +21,6 @@ import { TestCompProperties } from './test-comp.type';
   },
   template: `<div>{{ title }}</div>`
 })
-export class Test3Component extends AbstractMappedComponent implements TestCompProperties {
+export class Test3Component extends AbstractMappedComponentDirective implements TestCompProperties {
   @Input() title: string;
 }
