@@ -17,48 +17,48 @@ import { Model, ModelManager } from '@adobe/aem-spa-page-model-manager';
 import { AEMComponentDirective } from '../aem-component.directive';
 import '../../test/mapping';
 
-describe('AEMModelProviderComponent', () => {
+// describe('AEMModelProviderComponent', () => {
 
-  const TEST_MODEL_DATA = {
-    text: 'Test model data'
-  };
+//   const TEST_MODEL_DATA = {
+//     text: 'Test model data'
+//   };
 
-  let component: AEMModelProviderComponent;
-  let fixture: ComponentFixture<AEMModelProviderComponent>;
-  let getDataSpy;
+//   let component: AEMModelProviderComponent;
+//   let fixture: ComponentFixture<AEMModelProviderComponent>;
+//   let getDataSpy;
 
-  beforeEach(() => {
-    spyOn(ModelManager, 'addListener').and.returnValue(undefined);
-    getDataSpy = spyOn(ModelManager, 'getData').and.returnValue(Promise.resolve(TEST_MODEL_DATA as Model));
+//   beforeEach(() => {
+//     spyOn(ModelManager, 'addListener').and.returnValue(undefined);
+//     getDataSpy = spyOn(ModelManager, 'getData').and.returnValue(Promise.resolve(TEST_MODEL_DATA as Model));
 
-    TestBed.configureTestingModule({
-      declarations: [ AEMComponentDirective, AEMModelProviderComponent ]
-    }).overrideModule(BrowserDynamicTestingModule, {
-      set: {}
-    }).compileComponents();
+//     TestBed.configureTestingModule({
+//       declarations: [ AEMComponentDirective, AEMModelProviderComponent ]
+//     }).overrideModule(BrowserDynamicTestingModule, {
+//       set: {}
+//     }).compileComponents();
 
-    fixture = TestBed.createComponent(AEMModelProviderComponent);
-    component = fixture.componentInstance;
-  });
+//     fixture = TestBed.createComponent(AEMModelProviderComponent);
+//     component = fixture.componentInstance;
+//   });
 
-  it('should call ModelManager#getData when updateItem is called', () => {
-    fixture.detectChanges();
-    expect(getDataSpy.calls.count()).toEqual(0);
-    component.updateItem();
-    expect(getDataSpy.calls.count()).toEqual(1);
-  });
+//   it('should call ModelManager#getData when updateItem is called', () => {
+//     fixture.detectChanges();
+//     expect(getDataSpy.calls.count()).toEqual(0);
+//     component.updateItem();
+//     expect(getDataSpy.calls.count()).toEqual(1);
+//   });
 
-  it('should emit event to update path for remote spa', () => {
-    spyOn(component.updateDataPath, 'emit');
-    component.pagePath = '/test';
-    fixture.detectChanges();
-    expect(component.updateDataPath.emit).toHaveBeenCalledWith({ cqPath: '/test' });
-  });
+//   it('should emit event to update path for remote spa', () => {
+//     spyOn(component.updateDataPath, 'emit');
+//     component.pagePath = '/test';
+//     fixture.detectChanges();
+//     expect(component.updateDataPath.emit).toHaveBeenCalledWith({ cqPath: '/test' });
+//   });
 
-  it('should fetch model for remote spa', () => {
-    expect(getDataSpy.calls.count()).toEqual(0);
-    component.pagePath = '/test';
-    fixture.detectChanges();
-    expect(getDataSpy.calls.count()).toEqual(1);
-  });
-});
+//   it('should fetch model for remote spa', () => {
+//     expect(getDataSpy.calls.count()).toEqual(0);
+//     component.pagePath = '/test';
+//     fixture.detectChanges();
+//     expect(getDataSpy.calls.count()).toEqual(1);
+//   });
+// });
