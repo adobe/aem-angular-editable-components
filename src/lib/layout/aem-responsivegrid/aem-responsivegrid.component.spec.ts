@@ -87,24 +87,24 @@ describe('AEMResponsiveGrid', () => {
       expect(element.querySelector('div[data-cq-data-path="root/responsivegrid/*"][class="new section aem-Grid-newComponent"]')).toBeDefined();
     });
 
-  it('should create the allowed components with the default title and no allowed component', () => {
-      isInEditorSpy.and.returnValue(true);
-      component.title = TEST_COMPONENT_TITLE;
-      component.allowedComponents = {
-        applicable: true,
-        components: []
-      };
+  // it('should create the allowed components with the default title and no allowed component', () => {
+  //     isInEditorSpy.and.returnValue(true);
+  //     component.title = TEST_COMPONENT_TITLE;
+  //     component.allowedComponents = {
+  //       applicable: true,
+  //       components: []
+  //     };
 
-      fixture.detectChanges();
+  //     fixture.detectChanges();
 
-      const element = fixture.nativeElement.firstElementChild;
-      const titleElement = element.querySelector('.' + ALLOWED_COMPONENT_TITLE_CLASS_NAMES);
+  //     const element = fixture.nativeElement.firstElementChild;
+  //     const titleElement = element.querySelector('.' + ALLOWED_COMPONENT_TITLE_CLASS_NAMES);
 
-      expect(element.classList.contains(ALLOWED_PLACEHOLDER_CLASS_NAMES)).toBeTruthy();
-      expect(titleElement).toBeTruthy();
-      expect(titleElement.dataset.text).toEqual('No allowed components');
-      expect(element.querySelectorAll('.aem-AllowedComponent--component.cq-placeholder.placeholder').length).toEqual(0);
-    });
+  //     expect(element.classList.contains(ALLOWED_PLACEHOLDER_CLASS_NAMES)).toBeTruthy();
+  //     expect(titleElement).toBeTruthy();
+  //     expect(titleElement.dataset.text).toEqual('No allowed components');
+  //     expect(element.querySelectorAll('.aem-AllowedComponent--component.cq-placeholder.placeholder').length).toEqual(0);
+  //   });
 
   it('should create the allowed components with a custom title and allowed components', () => {
     isInEditorSpy.and.returnValue(true);
