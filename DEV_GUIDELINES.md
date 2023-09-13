@@ -6,7 +6,7 @@ Run `npm install` to get all node_modules that are necessary for development. Re
 ## Build
 
 ```sh
-$ npm run build
+$ npm run build:dev
 ```
 
 ### Test

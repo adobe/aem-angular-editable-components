@@ -20,8 +20,8 @@
     "node": ">=16.14.2"
   },
   "scripts": {
-    "build:production": "npm run test && ng build aem-angular-editable-components --configuration production",
-    "build": "npm run test && ng build aem-angular-editable-components",
+    "build": "npm run test && ng build aem-angular-editable-components --configuration production",
+    "build:dev": "npm run test && ng build aem-angular-editable-components",
     "clean": "rm -rf dist/",
     "docs": "npm i && npx typedoc --excludePrivate ./src --out ./dist/docs --exclude '**/test/**/*' --exclude '**/*.spec.ts' --exclude src/test.ts",
     "e2e": "ng e2e",
