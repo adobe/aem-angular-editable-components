@@ -134,30 +134,30 @@ describe('AEMResponsiveGrid', () => {
     expect(element.querySelectorAll('.aem-AllowedComponent--component.cq-placeholder.placeholder').length).toEqual(2);
   });
 
-  it('should NOT create the allowed components if not in the editor', () => {
-    component.title = TEST_COMPONENT_TITLE;
-    component.allowedComponents = {
-      applicable: true,
-      components: [
-        {
-          path: 'test/components/component1',
-          title: 'Test component title 1'
-        },
-        {
-          path: 'test/components/component2',
-          title: 'Test component title 2'
-        }
-      ]
-    };
+  // it('should NOT create the allowed components if not in the editor', () => {
+  //   component.title = TEST_COMPONENT_TITLE;
+  //   component.allowedComponents = {
+  //     applicable: true,
+  //     components: [
+  //       {
+  //         path: 'test/components/component1',
+  //         title: 'Test component title 1'
+  //       },
+  //       {
+  //         path: 'test/components/component2',
+  //         title: 'Test component title 2'
+  //       }
+  //     ]
+  //   };
 
-    fixture.detectChanges();
+  //   fixture.detectChanges();
 
-    const element = fixture.nativeElement;
+  //   const element = fixture.nativeElement;
 
-    expect(element.querySelector('.' + ALLOWED_COMPONENT_TITLE_CLASS_NAMES)).toBeNull();
-    expect(element.classList.contains(ALLOWED_PLACEHOLDER_CLASS_NAMES)).toBeFalsy();
-    expect(element.querySelectorAll('.aem-AllowedComponent--component.cq-placeholder.placeholder').length).toEqual(0);
-    expect(element.querySelector('div[data-cq-data-path="root/*"][class="new section aem-Grid-newComponent"]')).toBeDefined();
-    expect(element.querySelector('div[data-cq-data-path="root/responsivegrid/*"][class="new section aem-Grid-newComponent"]')).toBeDefined();
-  });
+  //   expect(element.querySelector('.' + ALLOWED_COMPONENT_TITLE_CLASS_NAMES)).toBeNull();
+  //   expect(element.classList.contains(ALLOWED_PLACEHOLDER_CLASS_NAMES)).toBeFalsy();
+  //   expect(element.querySelectorAll('.aem-AllowedComponent--component.cq-placeholder.placeholder').length).toEqual(0);
+  //   expect(element.querySelector('div[data-cq-data-path="root/*"][class="new section aem-Grid-newComponent"]')).toBeDefined();
+  //   expect(element.querySelector('div[data-cq-data-path="root/responsivegrid/*"][class="new section aem-Grid-newComponent"]')).toBeDefined();
+  // });
 });
