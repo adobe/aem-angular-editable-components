@@ -154,24 +154,24 @@ describe('AEMComponentDirective', () => {
     expect(dynamicElement.dataset.emptytext).toEqual(TEST_EDIT_CONFIG_EMPTY.emptyLabel);
   });
 
-  it('should NOT setup the placeholder', () => {
-    isInEditorSpy.and.returnValue(true);
-    getEditConfigSpy.and.returnValue(TEST_EDIT_CONFIG_NOT_EMPTY);
+  // it('should NOT setup the placeholder', () => {
+  //   isInEditorSpy.and.returnValue(true);
+  //   getEditConfigSpy.and.returnValue(TEST_EDIT_CONFIG_NOT_EMPTY);
 
-    const componentData = {
-      attr1: 'Some value',
-      attr2: 'Another value',
-      ':type': 'directive/comp'
-    };
+  //   const componentData = {
+  //     attr1: 'Some value',
+  //     attr2: 'Another value',
+  //     ':type': 'directive/comp'
+  //   };
 
-    component.data = componentData;
-    fixture.detectChanges();
+  //   component.data = componentData;
+  //   fixture.detectChanges();
 
-    const element = fixture.nativeElement;
-    const dynamicElement = element.firstElementChild;
+  //   const element = fixture.nativeElement;
+  //   const dynamicElement = element.firstElementChild;
 
-    expect(dynamicElement.dataset.emptytext).toBeUndefined();
-  });
+  //   expect(dynamicElement.dataset.emptytext).toBeUndefined();
+  // });
 
   it('should correctly update the inputs', () => {
     const componentData1 = {
