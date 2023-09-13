@@ -23,6 +23,31 @@
 * angular version update to non backward-compatible version
 * The project was upgraded to Angular v13
 
+# [2.0.0](https://github.com/adobe/aem-angular-editable-components/compare/v1.4.0...v2.0.0) (2023-09-13)
+
+
+### Features
+
+* trigger release ([d909c3f](https://github.com/adobe/aem-angular-editable-components/commit/d909c3f0233d6594b191c72636a89e39553b2031))
+
+
+* feat!: update angular ([1759bfb](https://github.com/adobe/aem-angular-editable-components/commit/1759bfb73a58b36d1a3c805dd108aeba859b2a4a))
+* feat!: update angular version ([d352425](https://github.com/adobe/aem-angular-editable-components/commit/d3524257772aa743beeb21014cfde648b32ddb54))
+* feat!: updated the commit message for breaking changes ([9903864](https://github.com/adobe/aem-angular-editable-components/commit/9903864aef0d61a2720aae6a12bf5344e214fd22))
+
+
+### Reverts
+
+* Revert "Added ModelManager.initialize" ([018cc79](https://github.com/adobe/aem-angular-editable-components/commit/018cc79958399961ffc375925a2e419f55a1ff16))
+
+
+### BREAKING CHANGES
+
+* angular version updated
+* angular update to non bacnward-compatible version
+* angular version update to non backward-compatible version
+* The project was upgraded to Angular v13
+
 # [1.4.0](https://github.com/adobe/aem-angular-editable-components/compare/v1.3.0...v1.4.0) (2021-09-20)
 
 
