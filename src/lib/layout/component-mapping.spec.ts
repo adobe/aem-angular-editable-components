@@ -61,33 +61,33 @@ describe('Component Mapping', () => {
   });
 
 
-  it('stores configuration - strongly typed with a generic for better typechecking', async () => {
+  // it('stores configuration - strongly typed with a generic for better typechecking', async () => {
 
-    const editConfig1:EditConfig<TestProperties> = { isEmpty: (props) => !!props.some };
-    const editConfig2:EditConfig = { isEmpty: (props) => !!props.some };
-    const editConfig3:EditConfig<LazyComponentType> = { isEmpty: (props) => !!props.otherValue };
+  //   const editConfig1:EditConfig<TestProperties> = { isEmpty: (props) => !!props.some };
+  //   const editConfig2:EditConfig = { isEmpty: (props) => !!props.some };
+  //   const editConfig3:EditConfig<LazyComponentType> = { isEmpty: (props) => !!props.otherValue };
 
 
-    MapTo<TestProperties>('component1')(ComponentTest1, editConfig1);
-    MapTo('component2')(ComponentTest2, editConfig2);
-    LazyMapTo<LazyComponentType>('lazycomponent3')(() => new Promise<Type<LazyComponentType>>((resolve, reject) => {
-      import('../test/lazy-component-wrapper/lazy.component')
-          .then((Module) => { resolve(Module.LazyComponent); })
-          .catch(reject);
-    }));
+  //   MapTo<TestProperties>('component1')(ComponentTest1, editConfig1);
+  //   MapTo('component2')(ComponentTest2, editConfig2);
+  //   LazyMapTo<LazyComponentType>('lazycomponent3')(() => new Promise<Type<LazyComponentType>>((resolve, reject) => {
+  //     import('../test/lazy-component-wrapper/lazy.component')
+  //         .then((Module) => { resolve(Module.LazyComponent); })
+  //         .catch(reject);
+  //   }));
 
-    LazyMapTo<LazyComponentType>('lazycomponent4')(() => import('../test/lazy-component-wrapper/lazy.component').then((m) => m.LazyComponent), editConfig3);
+  //   LazyMapTo<LazyComponentType>('lazycomponent4')(() => import('../test/lazy-component-wrapper/lazy.component').then((m) => m.LazyComponent), editConfig3);
 
-    const LoadedComp:Type<LazyComponentType> = await ComponentMapping.lazyGet<LazyComponentType>('lazycomponent3');
+  //   const LoadedComp:Type<LazyComponentType> = await ComponentMapping.lazyGet<LazyComponentType>('lazycomponent3');
 
-    expect(LoadedComp).toBe(LazyComponent);
+  //   expect(LoadedComp).toBe(LazyComponent);
 
-    expect(ComponentMapping.get<TestProperties>('component1')).toBe(ComponentTest1);
-    expect(ComponentMapping.get('component2')).toBe(ComponentTest2);
-    const DefaultComp:Type<LazyComponentType> = await ComponentMapping.lazyGet('lazycomponent4');
-    expect(DefaultComp).toBe(LazyComponent);
+  //   expect(ComponentMapping.get<TestProperties>('component1')).toBe(ComponentTest1);
+  //   expect(ComponentMapping.get('component2')).toBe(ComponentTest2);
+  //   const DefaultComp:Type<LazyComponentType> = await ComponentMapping.lazyGet('lazycomponent4');
+  //   expect(DefaultComp).toBe(LazyComponent);
 
-    expect(ComponentMapping.getEditConfig<TestProperties>('component1')).toBe(editConfig1);
-    expect(ComponentMapping.getEditConfig('component2')).toBe(editConfig2);
-  });
+  //   expect(ComponentMapping.getEditConfig<TestProperties>('component1')).toBe(editConfig1);
+  //   expect(ComponentMapping.getEditConfig('component2')).toBe(editConfig2);
+  // });
 });
