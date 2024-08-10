@@ -75,7 +75,7 @@ export class AEMContainerComponent extends AbstractMappedComponentDirective impl
   @Input() modelName = '';
 
   /**
-   * Returns weather of not we are in the editor
+   * Returns whether or not we are in the editor
    */
   get isInEditMode(): boolean {
     return Utils.isInEditor();
